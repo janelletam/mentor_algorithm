@@ -5,7 +5,7 @@ public class Mentor {
     private String preferredName;
     private String lastName;
 
-    private int age;
+    private String age;
     private String phoneNumber;
     private String email;
     private String pronouns;
@@ -18,23 +18,23 @@ public class Mentor {
     private String emergencyContactEmail;
     private String emergencyContactNumber;
 
-    private boolean isReadingMentor;
+    private String isReadingMentor;
+    private String isMathMentor;
 
     private String availabilityOnline;
     private String availabilityInPerson;
     private String availabilityClayton;
 
-    private boolean isReturning;
-    private boolean isPhotoVideoConsentTrue;
+    private String isReturning;
+    private String isPhotoVideoConsentTrue;
 
-    public Mentor(String firstName, String preferredName, String lastName, int age,
+    public Mentor(String firstName, String preferredName, String lastName, String age,
                   String phoneNumber, String email, String pronouns, String school,
                   String yearsAttended, String major, String emergencyContactName,
                   String emergencyContactEmail, String emergencyContactNumber,
-                  boolean isReadingMentor, boolean isMathMentor,
-                  String availabilityOnline,
+                  String isReadingMentor, String isMathMentor, String availabilityOnline,
                   String availabilityInPerson, String availabilityClayton,
-                  boolean isReturning, boolean isPhotoVideoConsentTrue) {
+                  String isReturning, String isPhotoVideoConsentTrue) {
         this.firstName = firstName;
         this.preferredName = preferredName;
         this.lastName = lastName;
@@ -49,15 +49,12 @@ public class Mentor {
         this.emergencyContactEmail = emergencyContactEmail;
         this.emergencyContactNumber = emergencyContactNumber;
         this.isReadingMentor = isReadingMentor;
+        this.isMathMentor = isMathMentor;
         this.availabilityOnline = availabilityOnline;
         this.availabilityInPerson = availabilityInPerson;
         this.availabilityClayton = availabilityClayton;
         this.isReturning = isReturning;
         this.isPhotoVideoConsentTrue = isPhotoVideoConsentTrue;
-    }
-
-    public Mentor() {
-
     }
 
     public String getFirstName() {
@@ -84,11 +81,11 @@ public class Mentor {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -164,16 +161,20 @@ public class Mentor {
         this.emergencyContactNumber = emergencyContactNumber;
     }
 
-    public boolean isReadingMentor() {
+    public String getIsReadingMentor() {
         return isReadingMentor;
     }
 
-    public boolean isMathMentor() {
-        return isReadingMentor;
+    public void setIsReadingMentor(String isReadingMentor) {
+        this.isReadingMentor = isReadingMentor;
     }
 
-    public void setReadingMentor(boolean readingMentor) {
-        isReadingMentor = readingMentor;
+    public String getIsMathMentor() {
+        return isMathMentor;
+    }
+
+    public void setIsMathMentor(String isMathMentor) {
+        this.isMathMentor = isMathMentor;
     }
 
     public String getAvailabilityOnline() {
@@ -200,30 +201,19 @@ public class Mentor {
         this.availabilityClayton = availabilityClayton;
     }
 
-    public boolean isReturning() {
+    public String getIsReturning() {
         return isReturning;
     }
 
-    public void setReturning(boolean returning) {
-        isReturning = returning;
+    public void setIsReturning(String isReturning) {
+        this.isReturning = isReturning;
     }
 
-    public boolean isPhotoVideoConsentTrue() {
+    public String getIsPhotoVideoConsentTrue() {
         return isPhotoVideoConsentTrue;
     }
 
-    public void setPhotoVideoConsentTrue(boolean photoVideoConsentTrue) {
-        isPhotoVideoConsentTrue = photoVideoConsentTrue;
+    public void setIsPhotoVideoConsentTrue(String isPhotoVideoConsentTrue) {
+        this.isPhotoVideoConsentTrue = isPhotoVideoConsentTrue;
     }
-
-
-
-
-    /*
-    @Override
-    public String toString() {
-        return "Book [name=" + name + ", price=" + price + ", author=" + author
-                + "]";
-    }
-     */
 }

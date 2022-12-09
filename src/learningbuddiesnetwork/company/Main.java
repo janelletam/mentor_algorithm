@@ -52,10 +52,10 @@ public class Main {
 
         for(int i = 0; i < currentList.size(); i++){
             Mentor thisMen = currentList.get(i);
-            if(thisMen.isReadingMentor()){
+            if(thisMen.getIsReadingMentor()){
                 sortedReadingList.add(thisMen);
             }
-            if(thisMen.isMathMentor()){
+            if(thisMen.getIsMathMentor()){
                 sortedMathList.add(thisMen);
             }
         }
