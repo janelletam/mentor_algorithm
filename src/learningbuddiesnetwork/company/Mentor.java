@@ -27,7 +27,13 @@ public class Mentor {
     private boolean isReturning;
     private boolean isPhotoVideoConsentTrue;
 
-    public Mentor(String firstName, String preferredName, String lastName, int age, String phoneNumber, String email, String pronouns, String school, String yearsAttended, String major, String emergencyContactName, String emergencyContactEmail, String emergencyContactNumber, boolean isReadingMentor, String availabilityOnline, String availabilityInPerson, String availabilityClayton, boolean isReturning, boolean isPhotoVideoConsentTrue) {
+    public Mentor(String firstName, String preferredName, String lastName, int age,
+                  String phoneNumber, String email, String pronouns, String school,
+                  String yearsAttended, String major, String emergencyContactName,
+                  String emergencyContactEmail, String emergencyContactNumber,
+                  boolean isReadingMentor, String availabilityOnline,
+                  String availabilityInPerson, String availabilityClayton,
+                  boolean isReturning, boolean isPhotoVideoConsentTrue) {
         this.firstName = firstName;
         this.preferredName = preferredName;
         this.lastName = lastName;
