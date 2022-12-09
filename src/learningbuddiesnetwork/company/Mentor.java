@@ -31,7 +31,8 @@ public class Mentor {
                   String phoneNumber, String email, String pronouns, String school,
                   String yearsAttended, String major, String emergencyContactName,
                   String emergencyContactEmail, String emergencyContactNumber,
-                  boolean isReadingMentor, String availabilityOnline,
+                  boolean isReadingMentor, boolean isMathMentor,
+                  String availabilityOnline,
                   String availabilityInPerson, String availabilityClayton,
                   boolean isReturning, boolean isPhotoVideoConsentTrue) {
         this.firstName = firstName;
@@ -53,6 +54,10 @@ public class Mentor {
         this.availabilityClayton = availabilityClayton;
         this.isReturning = isReturning;
         this.isPhotoVideoConsentTrue = isPhotoVideoConsentTrue;
+    }
+
+    public Mentor() {
+
     }
 
     public String getFirstName() {
@@ -160,6 +165,10 @@ public class Mentor {
     }
 
     public boolean isReadingMentor() {
+        return isReadingMentor;
+    }
+
+    public boolean isMathMentor() {
         return isReadingMentor;
     }
 
