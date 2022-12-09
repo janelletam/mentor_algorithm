@@ -32,7 +32,7 @@ public class Mentor {
                   String phoneNumber, String email, String pronouns, String school,
                   String yearsAttended, String major, String emergencyContactName,
                   String emergencyContactEmail, String emergencyContactNumber,
-                  String isReadingMentor, String isMathMentor, String availabilityOnline,
+                  String isReadingMentor, String availabilityOnline,
                   String availabilityInPerson, String availabilityClayton,
                   String isReturning, String isPhotoVideoConsentTrue) {
         this.firstName = firstName;
@@ -49,7 +49,7 @@ public class Mentor {
         this.emergencyContactEmail = emergencyContactEmail;
         this.emergencyContactNumber = emergencyContactNumber;
         this.isReadingMentor = isReadingMentor;
-        this.isMathMentor = isMathMentor;
+        this.isMathMentor = "";
         this.availabilityOnline = availabilityOnline;
         this.availabilityInPerson = availabilityInPerson;
         this.availabilityClayton = availabilityClayton;
@@ -216,4 +216,6 @@ public class Mentor {
     public void setIsPhotoVideoConsentTrue(String isPhotoVideoConsentTrue) {
         this.isPhotoVideoConsentTrue = isPhotoVideoConsentTrue;
     }
+
+
 }
