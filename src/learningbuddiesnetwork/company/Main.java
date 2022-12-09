@@ -1,5 +1,6 @@
 package learningbuddiesnetwork.company;
 
+import java.io.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -7,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -15,6 +18,8 @@ public class Main {
     static ArrayList<Mentor> sortedReadingList;
     static ArrayList<Mentor> sortedMathList;
     static ArrayList<Mentor> notApplicable;
+
+
 
     public static void main(String[] args) {
 	// write your code here
@@ -27,6 +32,10 @@ public class Main {
         sortedMathList = new ArrayList<>();
         sortedReadingList = new ArrayList<>();
         notApplicable = new ArrayList<>();
+
+
+        //TODO: reimplement .sort in Collection after writing to compare function in Mentor
+
 
 
 
@@ -70,7 +79,7 @@ public class Main {
     }
 
 
-    public static ArrayList<Mentor> isPhotoVideoConsentg(ArrayList<Mentor> currentList){
+    public static ArrayList<Mentor> isPhotoVideoConsent(ArrayList<Mentor> currentList){
         ArrayList<Mentor> list = new ArrayList<>();
 
         for(int i = 0; i < currentList.size(); i++){
@@ -98,6 +107,7 @@ public class Main {
 
 
         }
+        return -1;
     }
 
 
