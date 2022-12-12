@@ -39,8 +39,8 @@ public class Main {
             }
         }
 
-        // Step 2: Sort returning mentors first, then sort new mentors
-        sortArrayListByReturning(goodList);
+        // Step 2: Put returning mentors first at the beginning of the list, then add new mentors
+        goodList = sortArrayListByReturning(goodList);
 
         // Step 3: Initialize all the possible times
         for (int i = 0; i < goodList.size(); i++) {
@@ -67,35 +67,35 @@ public class Main {
 
         // Step 4: Place the people who only have 1 preference
         for (int i = 0; i < goodList.size(); i++) {
-            Mentor thisM = goodList.get(i);
-            ArrayList<String> currentMT = thisM.allAvailableTimes;
-            if (thisM.getNumOfAvailabilities() == 1 && thisM.getIsReturning()) {
-                ArrayList<Mentor> currTimeField = output.get(currentMT.get(0));
+            Mentor currentMentor = goodList.get(i);
+            ArrayList<String> currentMentorAvailability = currentMentor.allAvailableTimes;
+            if (currentMentor.getNumOfAvailabilities() == 1 && currentMentor.getIsReturning()) {
+                ArrayList<Mentor> currTimeField = output.get(currentMentorAvailability.get(0));
                 if (currTimeField.size() < 8) {
-                    currTimeField.add(thisM);
-                    goodList.remove(thisM);
+                    currTimeField.add(currentMentor);
+                    goodList.remove(currentMentor);
                     i--;
                 } else {
-                    cannotHaveAPositionFor.add(thisM);
+                    cannotHaveAPositionFor.add(currentMentor);
                 }
             }
         }
 
         //Step 5: Place everyone else
         for (int i = 0; i < goodList.size(); i++) {
-            Mentor thisM = goodList.get(i);
-            ArrayList<String> currentMT = thisM.allAvailableTimes;
+            Mentor thisMentor = goodList.get(i);
+            ArrayList<String> currentMentorAvailability = thisMentor.allAvailableTimes;
             boolean foundPosition = false;
-            for (int j = 0; j < currentMT.size(); j++) {
-                ArrayList<Mentor> currTimeField = output.get(currentMT.get(j));
+            for (int j = 0; j < currentMentorAvailability.size(); j++) {
+                ArrayList<Mentor> currTimeField = output.get(currentMentorAvailability.get(j));
                 if (currTimeField.size() < 8) {
-                    currTimeField.add(thisM);
+                    currTimeField.add(thisMentor);
                     foundPosition = true;
                     break;
                 }
             }
             if (!foundPosition) {
-                cannotHaveAPositionFor.add(thisM);
+                cannotHaveAPositionFor.add(thisMentor);
             }
         }
 
@@ -140,17 +140,27 @@ public class Main {
 //    }
 
     public static ArrayList<Mentor> sortArrayListByReturning(ArrayList<Mentor> currentList) {
-        ArrayList<Mentor> list = new ArrayList<>();
+        ArrayList<Mentor> sortedMentorList = new ArrayList<>();
+
+        // Place all the returning mentors in the order that they applied at the front of the ArrayList
+        // (so returning mentors who apply sooner get priority)
+        // Place all the new mentors in the order that they applied after the last returning mentor
+        // (so mew mentors who apply sooner get priority)
+
+        int lastReturningMentorIndex = 0;
 
         for (int i = 0; i < currentList.size(); i++) {
             Mentor thisMentor = currentList.get(i);
+            // Add returning mentors to front of list
             if (thisMentor.getIsReturning()) {
-                list.add(0, thisMentor);
-            } else {
-                list.add(thisMentor);
+                sortedMentorList.add(lastReturningMentorIndex, thisMentor);
+                lastReturningMentorIndex++;
             }
+            // Add new mentors to end of list
+            else sortedMentorList.add(thisMentor);
         }
-        return list;
+
+        return sortedMentorList;
     }
 
     public static void addToMathList(Mentor M, String Time) {
@@ -158,7 +168,6 @@ public class Main {
 
     public static void addToReadingList(Mentor M, String Time) {
     }
-
 
 //    public static ArrayList<Mentor> isPhotoVideoConsent(ArrayList<Mentor> currentList){
 //        ArrayList<Mentor> list = new ArrayList<>();
@@ -175,6 +184,5 @@ public class Main {
 //        return list;
 //
 //    }
-
 
 }
