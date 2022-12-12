@@ -7,40 +7,65 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.*;
 
 public class CSVReader {
 
-    public static ArrayList<Mentor> readMentorsFromCSV(String fileName) {
+    static BufferedReader f;
+    static StringTokenizer tok;
+
+
+    public static ArrayList<Mentor> readMentorsFromCSV(String fileName) throws IOException{
         ArrayList<Mentor> listOfMentors = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
+        f = Files.newBufferedReader(pathToFile,
+                StandardCharsets.US_ASCII);
 
-        // Create an instance of BufferedReader
-        // Using try with resource, Java 7 feature to close resources
-        try (BufferedReader br = Files.newBufferedReader(pathToFile,
-                StandardCharsets.US_ASCII)) {
+        String line = nextLine();
+        while (!line.equals("null")) { //!!!
 
-            // Read the first line from the text file
-            String line = br.readLine();
+            // Use string.split to load a string array with the values from
+            // each line of the file, using a comma as the delimiter
+            String[] attributes = line.split(",");
+            Mentor mentor = createMentor(attributes);
 
-            // Loop until all lines are read
-            while (line != null) {
+            // adding Mentor into ArrayList
+            listOfMentors.add(mentor);
 
-                // Use string.split to load a string array with the values from
-                // each line of the file, using a comma as the delimiter
-                String[] attributes = line.split(",");
-                Mentor mentor = createMentor(attributes);
-
-                // adding Mentor into ArrayList
-                listOfMentors.add(mentor);
-
-                // Read next line before looping. If end of file reached, line would be null
-                line = br.readLine();
-            }
-
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+            // Read next line before looping. If end of file reached, line would be null
+            line = nextLine();
         }
 
+        //we can simply the try catch by having an IOException
+
+//        // Create an instance of BufferedReader
+//        // Using try with resource, Java 7 feature to close resources
+//        try (BufferedReader br = Files.newBufferedReader(pathToFile,
+//                StandardCharsets.US_ASCII)) {
+//
+//            // Read the first line from the text file
+//            String line = f.readLine();
+//
+//            // Loop until all lines are read
+//            while (line != null) {
+//
+//                // Use string.split to load a string array with the values from
+//                // each line of the file, using a comma as the delimiter
+//                String[] attributes = line.split(",");
+//                Mentor mentor = createMentor(attributes);
+//
+//                // adding Mentor into ArrayList
+//                listOfMentors.add(mentor);
+//
+//                // Read next line before looping. If end of file reached, line would be null
+//                line = br.readLine();
+//            }
+//
+//        } catch (IOException ioe) {
+//            ioe.printStackTrace();
+//        }
+
+        f.close();
         return listOfMentors;
     }
 
@@ -58,31 +83,66 @@ public class CSVReader {
         String major = attributes[9];
 
         //Todo: Join these fields together
-        String emergencyContactName = attributes[10];
-        String emergencyContactEmail = attributes[11];
-        String emergencyContactNumber = attributes[12];
+        String emergencyContactName;
+        int i = 0;
+        if(attributes.length == 20){
+            emergencyContactName = attributes[10]+ attributes[11];
+            i = 1;
+        }
+        else {
+            emergencyContactName = attributes[10];
+        }
 
-        String isReadingMentor = attributes[13];
-        String isMathMentor = attributes[14];
+        String emergencyContactEmail = attributes[11 + i];
+        String emergencyContactNumber = attributes[12 + i];
 
-        String availabilityOnline= attributes[15];
-        String availabilityInPerson = attributes[16];
-        String availabilityClayton = attributes[17];
+        String isReadingMentor = attributes[13 + i];
 
-        String isReturning = attributes[18];
-        String isPhotoVideoConsentTrue = attributes[19];
+        String availabilityOnline= attributes[14 + i];
+        String availabilityInPerson = attributes[15 + i];
+        String availabilityClayton = attributes[16 + i];
+
+        String isReturning = attributes[17 + i];
+        String isPhotoVideoConsentTrue = attributes[18 + i];
 
         // Create and return Mentor with these attributes
         return new Mentor(firstName, preferredName, lastName, age, phoneNumber, email, pronouns,
                 school, yearsAttended, major, emergencyContactName, emergencyContactEmail,
-                emergencyContactNumber, isReadingMentor, isMathMentor, availabilityOnline,
+                emergencyContactNumber, isReadingMentor, availabilityOnline,
                 availabilityInPerson, availabilityClayton, isReturning, isPhotoVideoConsentTrue);
+    }
 
 
+    static String next() throws IOException {
+        while (tok == null || !tok.hasMoreTokens()) {
+            tok = new StringTokenizer(f.readLine().trim());
+        }
+        return tok.nextToken();
+    }
 
+    long nextLong() throws IOException {
+        return Long.parseLong(next());
+    }
 
-        //sakfdhasdfhk
-        //testing
+    int nextInt() throws IOException {
+        return Integer.parseInt(next());
+    }
+
+    double nextDouble() throws IOException {
+        return Double.parseDouble(next());
+    }
+
+    static char nextCharacter() throws IOException {
+        return next().charAt(0);
+    }
+
+    static String nextLine() throws IOException {
+        String s = f.readLine();
+        if(s == null){
+            return "null";
+        }
+        return s.trim();
+
     }
 
 }
