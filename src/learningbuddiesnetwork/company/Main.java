@@ -11,7 +11,7 @@ public class Main {
 //    static ArrayList<MentorWithGFields> sortedReadingList;
 //    static ArrayList<MentorWithGFields> sortedMathList;
 
-    static ArrayList<MentorWithGFields> tobeReviewed;
+    static ArrayList<MentorWithGFields> toBeReviewed;
 
     static HashMap<String, ArrayList<MentorWithGFields>> OutPut;
     static ArrayList<MentorWithGFields> cannotHaveAPositionFor;
@@ -28,7 +28,7 @@ public class Main {
         revisedList = new ArrayList<>();
 //        sortedMathList = new ArrayList<>();
 //        sortedReadingList = new ArrayList<>();
-        tobeReviewed = new ArrayList<>();
+        toBeReviewed = new ArrayList<>();
         goodList = new ArrayList<>();
         OutPut = new HashMap<>();
         cannotHaveAPositionFor = new ArrayList<>();
@@ -40,7 +40,7 @@ public class Main {
         initialList = CSVReader.readMentorsFromCSV("/Users/timothylin/IdeaProjects/mentor_algorithm1/src/learningbuddiesnetwork/company/testCSVFile.csv");
         //input finished
 
-        for(int i = 1; i < initialList.size();i++){
+        for(int i = 1; i < initialList.size(); i++){
             MentorWithGFields newM = new MentorWithGFields(initialList.get(i));
             revisedList.add(newM);
         }
@@ -54,7 +54,7 @@ public class Main {
                 goodList.add(newM);
             }
             else {
-                tobeReviewed.add(newM);
+                toBeReviewed.add(newM);
             }
         }
 

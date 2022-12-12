@@ -5,7 +5,7 @@ public class Mentor {
     private String preferredName;
     private String lastName;
 
-    private String age;
+    private int age;
     private String phoneNumber;
     private String email;
     private String pronouns;
@@ -18,15 +18,15 @@ public class Mentor {
     private String emergencyContactEmail;
     private String emergencyContactNumber;
 
-    private String isReadingMentor;
-    private String isMathMentor;
+    private boolean isReadingMentor;
+    private boolean isMathMentor;
 
     private String availabilityOnline;
     private String availabilityInPerson;
     private String availabilityClayton;
 
-    private String isReturning;
-    private String isPhotoVideoConsentTrue;
+    private boolean isReturning;
+    private boolean isPhotoVideoConsentTrue;
 
     public Mentor(String firstName, String preferredName, String lastName, String age,
                   String phoneNumber, String email, String pronouns, String school,
@@ -38,7 +38,7 @@ public class Mentor {
         this.firstName = firstName;
         this.preferredName = preferredName;
         this.lastName = lastName;
-        this.age = age;
+        this.age = Integer.parseInt(age);
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.pronouns = pronouns;
@@ -48,13 +48,26 @@ public class Mentor {
         this.emergencyContactName = emergencyContactName;
         this.emergencyContactEmail = emergencyContactEmail;
         this.emergencyContactNumber = emergencyContactNumber;
-        this.isReadingMentor = isReadingMentor;
-        this.isMathMentor = "";
+
+        // In the application form, users can choose to be either a "Reading Mentor" or a "Math Mentor"
+        if (isReadingMentor.equalsIgnoreCase("Reading Mentor")) {
+            this.isReadingMentor = true;
+            this.isMathMentor = false;
+        } else {
+            this.isReadingMentor = false;
+            this.isMathMentor = true;
+        }
+
         this.availabilityOnline = availabilityOnline;
         this.availabilityInPerson = availabilityInPerson;
         this.availabilityClayton = availabilityClayton;
-        this.isReturning = isReturning;
-        this.isPhotoVideoConsentTrue = isPhotoVideoConsentTrue;
+
+        if (isReturning.equalsIgnoreCase("yes")) this.isReturning = true;
+        else this.isReturning = false;
+
+        if (isPhotoVideoConsentTrue.equalsIgnoreCase("yes")) this.isPhotoVideoConsentTrue = true;
+        else this.isPhotoVideoConsentTrue = false;
+
     }
 
     public String getFirstName() {
@@ -81,11 +94,11 @@ public class Mentor {
         this.lastName = lastName;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -161,19 +174,19 @@ public class Mentor {
         this.emergencyContactNumber = emergencyContactNumber;
     }
 
-    public String getIsReadingMentor() {
+    public boolean getIsReadingMentor() {
         return isReadingMentor;
     }
 
-    public void setIsReadingMentor(String isReadingMentor) {
+    public void setIsReadingMentor(boolean isReadingMentor) {
         this.isReadingMentor = isReadingMentor;
     }
 
-    public String getIsMathMentor() {
+    public boolean getIsMathMentor() {
         return isMathMentor;
     }
 
-    public void setIsMathMentor(String isMathMentor) {
+    public void setIsMathMentor(boolean isMathMentor) {
         this.isMathMentor = isMathMentor;
     }
 
@@ -201,19 +214,19 @@ public class Mentor {
         this.availabilityClayton = availabilityClayton;
     }
 
-    public String getIsReturning() {
+    public boolean getIsReturning() {
         return isReturning;
     }
 
-    public void setIsReturning(String isReturning) {
+    public void setIsReturning(boolean isReturning) {
         this.isReturning = isReturning;
     }
 
-    public String getIsPhotoVideoConsentTrue() {
+    public boolean getIsPhotoVideoConsentTrue() {
         return isPhotoVideoConsentTrue;
     }
 
-    public void setIsPhotoVideoConsentTrue(String isPhotoVideoConsentTrue) {
+    public void setIsPhotoVideoConsentTrue(boolean isPhotoVideoConsentTrue) {
         this.isPhotoVideoConsentTrue = isPhotoVideoConsentTrue;
     }
 
