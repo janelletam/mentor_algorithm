@@ -1,7 +1,5 @@
 package learningbuddiesnetwork.company;
 
-import com.sun.source.tree.ReturnTree;
-
 import java.util.ArrayList;
 
 public class MentorWithGFields {
@@ -31,7 +29,7 @@ public class MentorWithGFields {
     private boolean isReturning;
     private boolean isPhotoVideoConsentTrue;
 
-    public ArrayList<String> allAvaTimes;
+    public ArrayList<String> allAvailableTimes;
 
     public MentorWithGFields(Mentor m) {
         this.firstName = m.getFirstName();
@@ -70,30 +68,30 @@ public class MentorWithGFields {
             this.isReadingMentor = false;
         }
 
-        allAvaTimes = new ArrayList<>();
+        allAvailableTimes = new ArrayList<>();
         String[] add = availabilityOnline.split(";");
         String[] add1 = availabilityInPerson.split(";");
         String[] add2 = availabilityClayton.split(";");
 
 
         //add all in add1 to allAvaTimes
-        for(int i = 0; i < add1.length; i++){
-            if (add1[i] != null && !(add1[i].equalsIgnoreCase("Nan")) && !(add1[i].equalsIgnoreCase("")) ){
-                allAvaTimes.add(add1[i]);
+        for (int i = 0; i < add1.length; i++) {
+            if (add1[i] != null && !(add1[i].equalsIgnoreCase("Nan")) && !(add1[i].equalsIgnoreCase(""))) {
+                allAvailableTimes.add(add1[i]);
             }
         }
 
         //add all in add2 to allAvaTimes
-        for(int i = 0; i < add2.length; i++){
-            if (add2[i] != null && !(add2[i].equalsIgnoreCase("Nan")) && !(add2[i].equalsIgnoreCase(""))){
-                allAvaTimes.add(add2[i]);
+        for (int i = 0; i < add2.length; i++) {
+            if (add2[i] != null && !(add2[i].equalsIgnoreCase("Nan")) && !(add2[i].equalsIgnoreCase(""))) {
+                allAvailableTimes.add(add2[i]);
             }
         }
 
         //add all in add to allAvaTimes
-        for(int i = 0; i < add.length; i++){
-            if (add[i] != null && !(add[i].equalsIgnoreCase("Nan")) && !(add[i].equalsIgnoreCase(""))){
-                allAvaTimes.add(add[i]);
+        for (int i = 0; i < add.length; i++) {
+            if (add[i] != null && !(add[i].equalsIgnoreCase("Nan")) && !(add[i].equalsIgnoreCase(""))) {
+                allAvailableTimes.add(add[i]);
             }
         }
 
@@ -253,11 +251,11 @@ public class MentorWithGFields {
     }
 
 
-     @Override
-     public String toString() {
-         return "Student [name=" + firstName + " " + lastName +"  "+  "Preferred Name=" + preferredName + "Age=" +age + "  "+ "Phone Number=" + phoneNumber +  "  "+ "Email=" +email +"  "+ "Pronouns=" +  pronouns + "  " + "Position=" + position()
-                 + "]";
-     }
+    @Override
+    public String toString() {
+        return "Student [name=" + firstName + " " + lastName + "  " + "Preferred Name=" + preferredName + "Age=" + age + "  " + "Phone Number=" + phoneNumber + "  " + "Email=" + email + "  " + "Pronouns=" + pronouns + "  " + "Position=" + position()
+                + "]";
+    }
 
     public boolean isValid() {
         return (age >= 15 && isAvailable());
@@ -304,13 +302,12 @@ public class MentorWithGFields {
         return false;
     }
 
-    public String position(){
-        if(isReadingMentor){
+    public String position() {
+        if (isReadingMentor) {
             return "Reading Mentor";
         }
         return "Math Mentor";
     }
-
 
 
 }

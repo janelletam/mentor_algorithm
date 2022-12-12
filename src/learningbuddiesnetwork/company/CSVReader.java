@@ -11,14 +11,13 @@ import java.util.*;
 
 public class CSVReader {
 
-    static BufferedReader f;
-    static StringTokenizer tok;
+    static BufferedReader bufferedReader;
+    static StringTokenizer tokenizer;
 
-
-    public static ArrayList<Mentor> readMentorsFromCSV(String fileName) throws IOException{
+    public static ArrayList<Mentor> readMentorsFromCSV(String fileName) throws IOException {
         ArrayList<Mentor> listOfMentors = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
-        f = Files.newBufferedReader(pathToFile,
+        bufferedReader = Files.newBufferedReader(pathToFile,
                 StandardCharsets.US_ASCII);
 
         String line = nextLine();
@@ -65,7 +64,7 @@ public class CSVReader {
 //            ioe.printStackTrace();
 //        }
 
-        f.close();
+        bufferedReader.close();
         return listOfMentors;
     }
 
@@ -85,11 +84,10 @@ public class CSVReader {
         //Todo: Join these fields together
         String emergencyContactName;
         int i = 0;
-        if(attributes.length == 20){
-            emergencyContactName = attributes[10]+ attributes[11];
+        if (attributes.length == 20) {
+            emergencyContactName = attributes[10] + attributes[11];
             i = 1;
-        }
-        else {
+        } else {
             emergencyContactName = attributes[10];
         }
 
@@ -98,7 +96,7 @@ public class CSVReader {
 
         String isReadingMentor = attributes[13 + i];
 
-        String availabilityOnline= attributes[14 + i];
+        String availabilityOnline = attributes[14 + i];
         String availabilityInPerson = attributes[15 + i];
         String availabilityClayton = attributes[16 + i];
 
@@ -114,10 +112,10 @@ public class CSVReader {
 
 
     static String next() throws IOException {
-        while (tok == null || !tok.hasMoreTokens()) {
-            tok = new StringTokenizer(f.readLine().trim());
+        while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            tokenizer = new StringTokenizer(bufferedReader.readLine().trim());
         }
-        return tok.nextToken();
+        return tokenizer.nextToken();
     }
 
     long nextLong() throws IOException {
@@ -137,8 +135,8 @@ public class CSVReader {
     }
 
     static String nextLine() throws IOException {
-        String s = f.readLine();
-        if(s == null){
+        String s = bufferedReader.readLine();
+        if (s == null) {
             return "null";
         }
         return s.trim();
