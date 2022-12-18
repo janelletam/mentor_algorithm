@@ -66,7 +66,7 @@ public class Main {
         }
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //Important: The initialization of Mentor already placed all the available in person times in front.
+        //Important: The initialization of Mentor already placed all the available Clayton and in person times in front.
 
         // Step 4: Place the people who only have 1 preference
         for (int i = 0; i < goodList.size(); i++) {

@@ -71,15 +71,15 @@ public class Mentor {
         this.availabilityClayton = availabilityClayton;
 
         allAvailableTimes = new ArrayList<>();
-        String[] individualOnlineTimes = availabilityOnline.split(";");
-        String[] individualIPTimes = availabilityInPerson.split(";");
         String[] individualClaytonTimes = availabilityClayton.split(";");
+        String[] individualIPTimes = availabilityInPerson.split(";");
+        String[] individualOnlineTimes = availabilityOnline.split(";");
 
-        // Add all online availabilities from individualOnlineTimes to allAvailableTimes
-        for (int i = 0; i < individualOnlineTimes.length; i++) {
-            if (individualOnlineTimes[i] != null && !(individualOnlineTimes[i].equalsIgnoreCase("Nan"))
-                    && !(individualOnlineTimes[i].equalsIgnoreCase(""))) {
-                allAvailableTimes.add(individualOnlineTimes[i]);
+        // Add all Clayton availabilities from individualClaytonTimes to allAvailableTimes
+        for (int i = 0; i < individualClaytonTimes.length; i++) {
+            if (individualClaytonTimes[i] != null && !(individualClaytonTimes[i].equalsIgnoreCase("Nan"))
+                    && !(individualClaytonTimes[i].equalsIgnoreCase(""))) {
+                allAvailableTimes.add(individualClaytonTimes[i]);
             }
         }
 
@@ -91,11 +91,11 @@ public class Mentor {
             }
         }
 
-        // Add all Clayton availabilities from individualClaytonTimes to allAvailableTimes
-        for (int i = 0; i < individualClaytonTimes.length; i++) {
-            if (individualClaytonTimes[i] != null && !(individualClaytonTimes[i].equalsIgnoreCase("Nan"))
-                    && !(individualClaytonTimes[i].equalsIgnoreCase(""))) {
-                allAvailableTimes.add(individualClaytonTimes[i]);
+        // Add all online availabilities from individualOnlineTimes to allAvailableTimes
+        for (int i = 0; i < individualOnlineTimes.length; i++) {
+            if (individualOnlineTimes[i] != null && !(individualOnlineTimes[i].equalsIgnoreCase("Nan"))
+                    && !(individualOnlineTimes[i].equalsIgnoreCase(""))) {
+                allAvailableTimes.add(individualOnlineTimes[i]);
             }
         }
 
