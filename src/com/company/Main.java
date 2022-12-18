@@ -14,6 +14,9 @@ public class Main {
     static HashMap<String, ArrayList<Mentor>> output;
     static ArrayList<Mentor> cannotHaveAPositionFor;
 
+    static final int ONE_PREFERENCE = 1;
+    static final int POD_MAX_SIZE = 8;
+
 //    static HashMap<String, ArrayList<Mentor>> ReadingOutPut;
 
     public static void main(String[] args) throws IOException {
@@ -45,7 +48,7 @@ public class Main {
         // Step 3: Initialize all the possible times
         for (int i = 0; i < goodList.size(); i++) {
             Mentor currentMentor = goodList.get(i);
-            ArrayList<String> currentMentorAvailability = currentMentor.allAvailableTimes;
+            ArrayList<String> currentMentorAvailability = currentMentor.getAllAvailableTimes();
 
             for (int j = 0; j < currentMentorAvailability.size(); j++) {
                 String thisAvailableTime = currentMentorAvailability.get(j);
@@ -68,34 +71,37 @@ public class Main {
         // Step 4: Place the people who only have 1 preference
         for (int i = 0; i < goodList.size(); i++) {
             Mentor currentMentor = goodList.get(i);
-            ArrayList<String> currentMentorAvailability = currentMentor.allAvailableTimes;
-            if (currentMentor.getNumOfAvailabilities() == 1 && currentMentor.getIsReturning()) {
-                ArrayList<Mentor> currTimeField = output.get(currentMentorAvailability.get(0));
-                if (currTimeField.size() < 8) {
-                    currTimeField.add(currentMentor);
+            if (currentMentor.getAllAvailableTimes().size() == ONE_PREFERENCE && currentMentor.getIsReturning()) {
+                ArrayList<Mentor> currentTimeField = output.get(currentMentor.getAllAvailableTimes().get(0));
+                if (currentTimeField.size() < POD_MAX_SIZE) {
+                    currentTimeField.add(currentMentor);
                     goodList.remove(currentMentor);
+                    // Current mentor has been removed from goodList, so a new Mentor has replaced their
+                    // previous index spot
                     i--;
                 } else {
+                    // Mentor has only indicated one availability. However, there are no more spots in that pod
                     cannotHaveAPositionFor.add(currentMentor);
                 }
             }
         }
 
-        //Step 5: Place everyone else
+        // Step 5: Place everyone else
         for (int i = 0; i < goodList.size(); i++) {
-            Mentor thisMentor = goodList.get(i);
-            ArrayList<String> currentMentorAvailability = thisMentor.allAvailableTimes;
+            Mentor currentMentor = goodList.get(i);
             boolean foundPosition = false;
-            for (int j = 0; j < currentMentorAvailability.size(); j++) {
-                ArrayList<Mentor> currTimeField = output.get(currentMentorAvailability.get(j));
-                if (currTimeField.size() < 8) {
-                    currTimeField.add(thisMentor);
+            for (int j = 0; j < currentMentor.getAllAvailableTimes().size(); j++) {
+                ArrayList<Mentor> currentTimeField = output.get(currentMentor.getAllAvailableTimes().get(j));
+                // Add Mentor into the first pod with available spots
+                if (currentTimeField.size() < POD_MAX_SIZE) {
+                    currentTimeField.add(currentMentor);
                     foundPosition = true;
                     break;
                 }
             }
+            // Mentor has not indicated availability
             if (!foundPosition) {
-                cannotHaveAPositionFor.add(thisMentor);
+                cannotHaveAPositionFor.add(currentMentor);
             }
         }
 
@@ -103,7 +109,7 @@ public class Main {
 
         //Todo: Create separate output class to separate logic
 
-        //Step 6: Output of Program
+        // Step 6: Output of Program
         for (String time : output.keySet()
         ) {
             out.println();
@@ -119,25 +125,7 @@ public class Main {
         }
 
         out.close();
-
-        //code to read in from a CSV file still in progress
     }
-
-    //    public static ArrayList<MentorWithGFields> sortMathReading(ArrayList<MentorWithGFields> currentList){
-//        ArrayList<MentorWithGFields> list = new ArrayList<>();
-//
-//        for(int i = 0; i < currentList.size(); i++){
-//            MentorWithGFields thisMen = currentList.get(i);
-//            if(thisMen.isReadingMentor()){
-//                sortedReadingList.add(thisMen);
-//            }
-//            else{
-//                sortedMathList.add(thisMen);
-//            }
-//        }
-//        return list;
-//
-//    }
 
     public static ArrayList<Mentor> sortArrayListByReturning(ArrayList<Mentor> currentList) {
         ArrayList<Mentor> sortedMentorList = new ArrayList<>();

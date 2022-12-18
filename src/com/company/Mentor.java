@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Mentor {
     // All fields below are from application form
+    // NOTE: To count total number of availabilities, use getAllAvailableTimes().size()
+
     private String firstName;
     private String preferredName;
     private String lastName;
@@ -32,7 +34,7 @@ public class Mentor {
     private boolean isPhotoVideoConsentTrue;
 
     // Our own variable
-    public ArrayList<String> allAvailableTimes;
+    private ArrayList<String> allAvailableTimes;
 
     public Mentor(String firstName, String preferredName, String lastName, String age,
                   String phoneNumber, String email, String pronouns, String school,
@@ -125,33 +127,6 @@ public class Mentor {
                 availabilityInPerson.equalsIgnoreCase("NaN")));
     }
 
-    // Count total number of availabilities: online, Clayton, and in-person
-    public int getNumOfAvailabilities() {
-        int total = 0;
-        for (int i = 0; i < availabilityOnline.length(); i++) {
-            char thisChar = availabilityOnline.charAt(i);
-            if (thisChar == ';') {
-                total++;
-            }
-        }
-
-        for (int i = 0; i < availabilityClayton.length(); i++) {
-            char thisChar = availabilityClayton.charAt(i);
-            if (thisChar == ';') {
-                total++;
-            }
-        }
-
-        for (int i = 0; i < availabilityInPerson.length(); i++) {
-            char thisChar = availabilityInPerson.charAt(i);
-            if (thisChar == ';') {
-                total++;
-            }
-        }
-
-        return total;
-    }
-
     // Determine if the mentor has indicated availability for an in-person program.
     // In-person pods are harder to fill than online pods, so they should be placed in an
     // in-person program.
@@ -172,7 +147,10 @@ public class Mentor {
         return "Math Mentor";
     }
 
-    // Getters and setters
+    /* ###################################################################
+    Getters and setters
+    ################################################################### */
+
     public String getFirstName() {
         return firstName;
     }
@@ -331,5 +309,13 @@ public class Mentor {
 
     public void setIsPhotoVideoConsentTrue(boolean isPhotoVideoConsentTrue) {
         this.isPhotoVideoConsentTrue = isPhotoVideoConsentTrue;
+    }
+
+    public void setAllAvailableTimes(ArrayList<String> allAvailableTimes) {
+        this.allAvailableTimes = allAvailableTimes;
+    }
+
+    public ArrayList<String> getAllAvailableTimes() {
+        return allAvailableTimes;
     }
 }
