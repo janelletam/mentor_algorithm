@@ -14,6 +14,7 @@ public class CSVReader {
     static BufferedReader bufferedReader;
     static StringTokenizer tokenizer;
 
+    // Read Mentors
     public static ArrayList<Mentor> readMentorsFromCSV(String fileName) throws IOException {
         ArrayList<Mentor> listOfMentors = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
@@ -35,37 +36,34 @@ public class CSVReader {
             line = nextLine();
         }
 
-        //we can simply the try catch by having an IOException
-
-//        // Create an instance of BufferedReader
-//        // Using try with resource, Java 7 feature to close resources
-//        try (BufferedReader br = Files.newBufferedReader(pathToFile,
-//                StandardCharsets.US_ASCII)) {
-//
-//            // Read the first line from the text file
-//            String line = f.readLine();
-//
-//            // Loop until all lines are read
-//            while (line != null) {
-//
-//                // Use string.split to load a string array with the values from
-//                // each line of the file, using a comma as the delimiter
-//                String[] attributes = line.split(",");
-//                Mentor mentor = createMentor(attributes);
-//
-//                // adding Mentor into ArrayList
-//                listOfMentors.add(mentor);
-//
-//                // Read next line before looping. If end of file reached, line would be null
-//                line = br.readLine();
-//            }
-//
-//        } catch (IOException ioe) {
-//            ioe.printStackTrace();
-//        }
-
         bufferedReader.close();
         return listOfMentors;
+    }
+
+    // Read Pods
+    public static ArrayList<Pod> readPodsFromCSV(String fileName) throws IOException {
+        ArrayList<Pod> listOfPods = new ArrayList<>();
+        Path pathToFile = Paths.get(fileName);
+        bufferedReader = Files.newBufferedReader(pathToFile,
+                StandardCharsets.US_ASCII);
+
+        String line = nextLine();
+        while (!line.equals("null")) { //!!!
+
+            // Use string.split to load a string array with the values from
+            // each line of the file, using a comma as the delimiter
+            String[] attributes = line.split(",");
+            Pod pod = createPod(attributes);
+
+            // adding Pod into ArrayList
+            listOfPods.add(pod);
+
+            // Read next line before looping. If end of file reached, line would be null
+            line = nextLine();
+        }
+
+        bufferedReader.close();
+        return listOfPods;
     }
 
     private static Mentor createMentor(String[] attributes) {
@@ -110,6 +108,25 @@ public class CSVReader {
                 availabilityInPerson, availabilityClayton, isReturning, isPhotoVideoConsentTrue);
     }
 
+    private static Pod createPod(String[] attributes) {
+        String time = attributes[0];
+        String podName= attributes[1];
+        boolean isReading = false;
+        boolean isMath = false;
+        boolean isIP = false;
+        boolean isOnline = false;
+        boolean isClayton = false;
+
+        // If any of the variables from the file are 1 (meaning true), make the pod's variables also true
+        if (attributes[2].equals("1")) isReading = true;
+        if (attributes[3].equals("1")) isMath = true;
+        if (attributes[4].equals("1")) isIP = true;
+        if (attributes[5].equals("1")) isOnline = true;
+        if (attributes[6].equals("1")) isClayton = true;
+
+        // Create and return Pod with these attributes
+        return new Pod(time, podName, isReading, isMath, isIP, isOnline, isClayton);
+    }
 
     static String next() throws IOException {
         while (tokenizer == null || !tokenizer.hasMoreTokens()) {

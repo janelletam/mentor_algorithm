@@ -57,8 +57,9 @@ public class Mentor {
         this.emergencyContactEmail = emergencyContactEmail;
         this.emergencyContactNumber = emergencyContactNumber;
 
-        // In the application form, users can choose to be either a "Reading Mentor" or a "Math Mentor"
-        if (isReadingMentor.equalsIgnoreCase("Reading Mentor")) {
+        // In the application form, users can choose to be either a Reading Mentor or a Math Mentor or both
+        // Prioritize Reading Mentors b/c there are more reading pods
+        if (isReadingMentor.equalsIgnoreCase("Reading Mentor") || isReadingMentor.equalsIgnoreCase("Reading Mentor; Math Mentor")) {
             this.isReadingMentor = true;
             this.isMathMentor = false;
         } else {
@@ -70,11 +71,14 @@ public class Mentor {
         this.availabilityInPerson = availabilityInPerson;
         this.availabilityClayton = availabilityClayton;
 
+        // NOTE: Need space after ";" b/c we later compare the characters of these fields with our list of Pods
+        // Space interferes with this comparison
         allAvailableTimes = new ArrayList<>();
-        String[] individualClaytonTimes = availabilityClayton.split(";");
-        String[] individualIPTimes = availabilityInPerson.split(";");
-        String[] individualOnlineTimes = availabilityOnline.split(";");
+        String[] individualClaytonTimes = availabilityClayton.split("; ");
+        String[] individualIPTimes = availabilityInPerson.split("; ");
+        String[] individualOnlineTimes = availabilityOnline.split("; ");
 
+        // Prioritize Clayton > IP > Earlier Online Times > Later Online Times
         // Add all Clayton availabilities from individualClaytonTimes to allAvailableTimes
         for (int i = 0; i < individualClaytonTimes.length; i++) {
             if (individualClaytonTimes[i] != null && !(individualClaytonTimes[i].equalsIgnoreCase("Nan"))
@@ -110,7 +114,7 @@ public class Mentor {
     //Todo: Migrate logic to output class
     @Override
     public String toString() {
-        return "Student [name=" + firstName + " " + lastName + "  " + "Preferred Name=" +
+        return "Mentor [name=" + firstName + " " + lastName + "  " + "Preferred Name=" +
                 preferredName + "Age=" + age + "  " + "Phone Number=" + phoneNumber + "  " +
                 "Email=" + email + "  " + "Pronouns=" + pronouns + "  " + "Position=" +
                 position() + "]";
@@ -122,9 +126,9 @@ public class Mentor {
 
     // Mentor is not available if they have not selected any times
     public boolean isAvailable() {
-        return (!(availabilityClayton.equalsIgnoreCase("NaN") &&
-                availabilityOnline.equalsIgnoreCase("NaN") &&
-                availabilityInPerson.equalsIgnoreCase("NaN")));
+        return (!((availabilityClayton.equalsIgnoreCase("NaN") || availabilityClayton.equalsIgnoreCase("")) &&
+                (availabilityOnline.equalsIgnoreCase("NaN") || availabilityOnline.equalsIgnoreCase("")) &&
+                (availabilityInPerson.equalsIgnoreCase("NaN") || availabilityInPerson.equalsIgnoreCase(""))));
     }
 
     // Determine if the mentor has indicated availability for an in-person program.
