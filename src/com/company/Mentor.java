@@ -11,9 +11,11 @@ public class Mentor {
     private String lastName;
 
     private int age;
-    private String phoneNumber;
-    private String email;
     private String pronouns;
+    private String preferredEmail;
+    private String gmail;
+    private String phoneNumber;
+
     private String school;
     private String yearsAttended;
     private String major;
@@ -29,30 +31,44 @@ public class Mentor {
     private String availabilityOnline;
     private String availabilityInPerson;
     private String availabilityClayton;
+    private String availabilityComments;
 
     private boolean isReturning;
     private boolean isPhotoVideoConsentTrue;
+
+    private String tellUsAboutYourself;
+    private String previousPodType;
+    private String indigenousExperience;
+    private String neuroDivergentExperience;
+    private String otherLanguages;
+    private String howDidYouHearAboutUs;
 
     // Our own variable
     private ArrayList<String> allAvailableTimes;
 
     public Mentor(String firstName, String preferredName, String lastName, String age,
-                  String phoneNumber, String email, String pronouns, String school,
-                  String yearsAttended, String major, String emergencyContactName,
-                  String emergencyContactEmail, String emergencyContactNumber,
+                  String pronouns, String preferredEmail, String gmail, String phoneNumber,
+                  String school, String yearsAttended, String major,
+                  String emergencyContactName, String emergencyContactEmail, String emergencyContactNumber,
                   String isReadingMentor, String availabilityOnline,
-                  String availabilityInPerson, String availabilityClayton,
-                  String isReturning, String isPhotoVideoConsentTrue) {
+                  String availabilityInPerson, String availabilityClayton, String availabilityComments,
+                  String isReturning, String isPhotoVideoConsentTrue,
+                  String tellUsAboutYourself, String previousPodType, String indigenousExperience,
+                  String neuroDivergentExperience, String otherLanguages, String howDidYouHearAboutUs) {
         this.firstName = firstName;
         this.preferredName = preferredName;
         this.lastName = lastName;
         this.age = Integer.parseInt(age);
-        this.phoneNumber = phoneNumber;
-        this.email = email;
         this.pronouns = pronouns;
+
+        this.preferredEmail = preferredEmail;
+        this.gmail = gmail;
+        this.phoneNumber = phoneNumber;
+
         this.school = school;
         this.yearsAttended = yearsAttended;
         this.major = major;
+
         this.emergencyContactName = emergencyContactName;
         this.emergencyContactEmail = emergencyContactEmail;
         this.emergencyContactNumber = emergencyContactNumber;
@@ -70,6 +86,7 @@ public class Mentor {
         this.availabilityOnline = availabilityOnline;
         this.availabilityInPerson = availabilityInPerson;
         this.availabilityClayton = availabilityClayton;
+        this.availabilityComments = availabilityComments;
 
         // NOTE: Need space after ";" b/c we later compare the characters of these fields with our list of Pods
         // Space interferes with this comparison
@@ -80,26 +97,26 @@ public class Mentor {
 
         // Prioritize Clayton > IP > Earlier Online Times > Later Online Times
         // Add all Clayton availabilities from individualClaytonTimes to allAvailableTimes
-        for (int i = 0; i < individualClaytonTimes.length; i++) {
-            if (individualClaytonTimes[i] != null && !(individualClaytonTimes[i].equalsIgnoreCase("Nan"))
-                    && !(individualClaytonTimes[i].equalsIgnoreCase(""))) {
-                allAvailableTimes.add(individualClaytonTimes[i]);
+        for (String individualClaytonTime : individualClaytonTimes) {
+            if (individualClaytonTime != null && !(individualClaytonTime.equalsIgnoreCase("Nan"))
+                    && !(individualClaytonTime.equalsIgnoreCase(""))) {
+                allAvailableTimes.add(individualClaytonTime);
             }
         }
 
         // Add all in-person availabilities from individualIPTimes to allAvailableTimes
-        for (int i = 0; i < individualIPTimes.length; i++) {
-            if (individualIPTimes[i] != null && !(individualIPTimes[i].equalsIgnoreCase("Nan"))
-                    && !(individualIPTimes[i].equalsIgnoreCase(""))) {
-                allAvailableTimes.add(individualIPTimes[i]);
+        for (String individualIPTime : individualIPTimes) {
+            if (individualIPTime != null && !(individualIPTime.equalsIgnoreCase("Nan"))
+                    && !(individualIPTime.equalsIgnoreCase(""))) {
+                allAvailableTimes.add(individualIPTime);
             }
         }
 
         // Add all online availabilities from individualOnlineTimes to allAvailableTimes
-        for (int i = 0; i < individualOnlineTimes.length; i++) {
-            if (individualOnlineTimes[i] != null && !(individualOnlineTimes[i].equalsIgnoreCase("Nan"))
-                    && !(individualOnlineTimes[i].equalsIgnoreCase(""))) {
-                allAvailableTimes.add(individualOnlineTimes[i]);
+        for (String individualOnlineTime : individualOnlineTimes) {
+            if (individualOnlineTime != null && !(individualOnlineTime.equalsIgnoreCase("Nan"))
+                    && !(individualOnlineTime.equalsIgnoreCase(""))) {
+                allAvailableTimes.add(individualOnlineTime);
             }
         }
 
@@ -109,6 +126,12 @@ public class Mentor {
         if (isPhotoVideoConsentTrue.equalsIgnoreCase("yes")) this.isPhotoVideoConsentTrue = true;
         else this.isPhotoVideoConsentTrue = false;
 
+        this.tellUsAboutYourself = tellUsAboutYourself;
+        this.previousPodType = previousPodType;
+        this.indigenousExperience = indigenousExperience;
+        this.neuroDivergentExperience = neuroDivergentExperience;
+        this.otherLanguages = otherLanguages;
+        this.howDidYouHearAboutUs = howDidYouHearAboutUs;
     }
 
     //Todo: Migrate logic to output class
@@ -116,7 +139,7 @@ public class Mentor {
     public String toString() {
         return "Mentor [name=" + firstName + " " + lastName + "  " + "Preferred Name=" +
                 preferredName + "Age=" + age + "  " + "Phone Number=" + phoneNumber + "  " +
-                "Email=" + email + "  " + "Pronouns=" + pronouns + "  " + "Position=" +
+                "Email=" + preferredEmail + "  " + "Pronouns=" + pronouns + "  " + "Position=" +
                 position() + "]";
     }
 
@@ -154,6 +177,70 @@ public class Mentor {
     /* ###################################################################
     Getters and setters
     ################################################################### */
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
+    }
+
+    public String getAvailabilityComments() {
+        return availabilityComments;
+    }
+
+    public void setAvailabilityComments(String availabilityComments) {
+        this.availabilityComments = availabilityComments;
+    }
+
+    public String getTellUsAboutYourself() {
+        return tellUsAboutYourself;
+    }
+
+    public void setTellUsAboutYourself(String tellUsAboutYourself) {
+        this.tellUsAboutYourself = tellUsAboutYourself;
+    }
+
+    public String getPreviousPodType() {
+        return previousPodType;
+    }
+
+    public void setPreviousPodType(String previousPodType) {
+        this.previousPodType = previousPodType;
+    }
+
+    public String getIndigenousExperience() {
+        return indigenousExperience;
+    }
+
+    public void setIndigenousExperience(String indigenousExperience) {
+        this.indigenousExperience = indigenousExperience;
+    }
+
+    public String getNeuroDivergentExperience() {
+        return neuroDivergentExperience;
+    }
+
+    public void setNeuroDivergentExperience(String neuroDivergentExperience) {
+        this.neuroDivergentExperience = neuroDivergentExperience;
+    }
+
+    public String getOtherLanguages() {
+        return otherLanguages;
+    }
+
+    public void setOtherLanguages(String otherLanguages) {
+        this.otherLanguages = otherLanguages;
+    }
+
+    public String getHowDidYouHearAboutUs() {
+        return howDidYouHearAboutUs;
+    }
+
+    public void setHowDidYouHearAboutUs(String howDidYouHearAboutUs) {
+        this.howDidYouHearAboutUs = howDidYouHearAboutUs;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -195,12 +282,12 @@ public class Mentor {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPreferredEmail() {
+        return preferredEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPreferredEmail(String preferredEmail) {
+        this.preferredEmail = preferredEmail;
     }
 
     public String getPronouns() {
@@ -259,19 +346,19 @@ public class Mentor {
         this.emergencyContactNumber = emergencyContactNumber;
     }
 
-    public boolean getIsReadingMentor() {
+    public boolean isReadingMentor() {
         return isReadingMentor;
     }
 
-    public void setIsReadingMentor(boolean isReadingMentor) {
+    public void setReadingMentor(boolean isReadingMentor) {
         this.isReadingMentor = isReadingMentor;
     }
 
-    public boolean getIsMathMentor() {
+    public boolean isMathMentor() {
         return isMathMentor;
     }
 
-    public void setIsMathMentor(boolean isMathMentor) {
+    public void setMathMentor(boolean isMathMentor) {
         this.isMathMentor = isMathMentor;
     }
 
@@ -299,19 +386,19 @@ public class Mentor {
         this.availabilityClayton = availabilityClayton;
     }
 
-    public boolean getIsReturning() {
+    public boolean isReturning() {
         return isReturning;
     }
 
-    public void setIsReturning(boolean isReturning) {
+    public void setReturning(boolean isReturning) {
         this.isReturning = isReturning;
     }
 
-    public boolean getIsPhotoVideoConsentTrue() {
+    public boolean isPhotoVideoConsentTrue() {
         return isPhotoVideoConsentTrue;
     }
 
-    public void setIsPhotoVideoConsentTrue(boolean isPhotoVideoConsentTrue) {
+    public void setPhotoVideoConsentTrue(boolean isPhotoVideoConsentTrue) {
         this.isPhotoVideoConsentTrue = isPhotoVideoConsentTrue;
     }
 
