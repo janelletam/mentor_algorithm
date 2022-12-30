@@ -1,3 +1,12 @@
+/*
+Todo: write an algorithm that removes all the commas in between two quotation marks.
+
+- Loop through and use nexIndex to find the each pair of quotation marks
+- Get substring and removes all the commas in between
+
+ */
+
+
 package com.company;
 
 import java.io.*;

@@ -10,7 +10,7 @@ public class Mentor {
     private String preferredName;
     private String lastName;
 
-    private int age;
+    private String age;
     private String pronouns;
     private String preferredEmail;
     private String gmail;
@@ -58,7 +58,7 @@ public class Mentor {
         this.firstName = firstName;
         this.preferredName = preferredName;
         this.lastName = lastName;
-        this.age = Integer.parseInt(age);
+        this.age = age;
         this.pronouns = pronouns;
 
         this.preferredEmail = preferredEmail;
@@ -144,7 +144,7 @@ public class Mentor {
     }
 
     public boolean isValid() {
-        return (age >= 15 && isAvailable());
+        return (Integer.parseInt(age) >= 15 && isAvailable());
     }
 
     // Mentor is not available if they have not selected any times
@@ -267,11 +267,11 @@ public class Mentor {
     }
 
     public int getAge() {
-        return age;
+        return Integer.parseInt(age);
     }
 
     public void setAge(int age) {
-        this.age = age;
+        this.age = (""+age);
     }
 
     public String getPhoneNumber() {
