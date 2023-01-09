@@ -160,6 +160,19 @@ public class CSVReader {
     private static String[] getAllValues(String s){
         String[] response = new String[MAX_ATTRIBUTES_LENGTH];
 
+        //change all commas inside \" to be @
+
+        boolean insideApost = false;
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) == '"'){
+                insideApost = !insideApost;
+            }
+
+            if(s.charAt(i) == ',' && insideApost){
+                s = s.substring(0,i) + "@" + s.substring(i+1);
+            }
+        }
+
         //deal with emergency contact name and tell us about yourself first
         int firstIndex = s.indexOf("\"");
 
@@ -168,32 +181,7 @@ public class CSVReader {
             return response;
         }
 
-        int secondIndex = s.indexOf("\"",firstIndex+1);
-
-
-        response[EMERGENCY_CONTACT_NAME_INDEX] = s.substring(firstIndex+1, secondIndex);
-
-        int thirdIndex = s.indexOf("\"", secondIndex+1);
-        int fourthIndex = s.indexOf("\"",thirdIndex+1);
-
-        response[TELL_US_ABOUT_YOURSELF_INDEX] = s.substring(thirdIndex+1, fourthIndex);
-
-
-        //rest of the variables
-        String[] firstSetResponses = s.substring(0, (firstIndex-1)).split(",");
-        for(int i = 0; i < firstSetResponses.length; i++){
-            response[i] = firstSetResponses[i];
-        }
-
-        String[] secondSetResponses = s.substring(secondIndex+2, (thirdIndex-1)).split(",");//second index is ", second index + 1 is ",", so must start at second index+2
-        for(int i = 0; i < secondSetResponses.length; i++){
-            response[i+EMERGENCY_CONTACT_NAME_INDEX+1] = secondSetResponses[i];
-        }
-
-        String[] thirdSetResponses = s.substring(fourthIndex+2).split(",");
-        for(int i = 0; i < thirdSetResponses.length; i++){
-            response[i+TELL_US_ABOUT_YOURSELF_INDEX+1] = thirdSetResponses[i];
-        }
+        response = s.split(",");
 
         return response;
 
