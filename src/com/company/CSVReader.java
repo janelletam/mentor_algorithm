@@ -16,6 +16,8 @@ public class CSVReader {
     static BufferedReader bufferedReader;
     static StringTokenizer tokenizer;
 
+    //Todo: Clean up code - see if we can combine functions
+
     // Read Mentors
     public static ArrayList<Mentor> readMentorsFromCSV(String fileName) throws IOException {
         ArrayList<Mentor> listOfMentors = new ArrayList<>();
@@ -42,6 +44,32 @@ public class CSVReader {
     }
 
     // Read Pods
+    public static ArrayList<LastTermMentor> readLastTermMentorsCSV(String fileName) throws IOException {
+        ArrayList<LastTermMentor> listOfLastTermMentors = new ArrayList<>();
+        Path pathToFile = Paths.get(fileName);
+        bufferedReader = Files.newBufferedReader(pathToFile,
+                StandardCharsets.US_ASCII);
+
+        String line = nextLine();
+        while (!line.equals("null")) { //!!!
+
+            // Use string.split to load a string array with the values from
+            // each line of the file, using a comma as the delimiter
+            String[] attributes = line.split(",");
+            LastTermMentor lastTermMentor = createLastTermMentor(attributes);
+
+            // adding Pod into ArrayList
+            listOfLastTermMentors.add(lastTermMentor);
+
+            // Read next line before looping. If end of file reached, line would be null
+            line = nextLine();
+        }
+
+        bufferedReader.close();
+        return listOfLastTermMentors;
+    }
+
+    // Read Returning Mentors
     public static ArrayList<Pod> readPodsFromCSV(String fileName) throws IOException {
         ArrayList<Pod> listOfPods = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
@@ -66,7 +94,6 @@ public class CSVReader {
         bufferedReader.close();
         return listOfPods;
     }
-
     private static Mentor createMentor(String[] attributes) {
         String firstName = attributes[0];
         String preferredName = attributes[1];
@@ -129,6 +156,15 @@ public class CSVReader {
 
         // Create and return Pod with these attributes
         return new Pod(time, podName, isReading, isMath, isIP, isOnline, isClayton);
+    }
+
+    private static LastTermMentor createLastTermMentor(String[] attributes) {
+        String firstName = attributes[0];
+        String lastName = attributes[1];
+        String podName = attributes[2];
+
+        // Create and return Pod with these attributes
+        return new LastTermMentor(firstName, lastName, podName);
     }
 
     static String next() throws IOException {

@@ -34,6 +34,8 @@ public class Mentor {
     private boolean isReturning;
     private boolean isPhotoVideoConsentTrue;
 
+    private String additionalNotesAboutMentor;
+
     // Our own variable
     private ArrayList<String> allAvailableTimes;
 
@@ -123,23 +125,37 @@ public class Mentor {
     }
 
     //Todo: Migrate logic to output class
+
+
     @Override
     public String toString() {
-        return "Mentor [name=" + firstName + " " + lastName + "  " + "Preferred Name=" +
-                preferredName + "Age=" + age + "  " + "Phone Number=" + phoneNumber + "  " +
-                "Email=" + email + "  " + "Pronouns=" + pronouns + "  " + "Position=" +
-                position() + "]";
+        return firstName + ',' + preferredName + ',' + lastName + ',' +
+                age + ',' + pronouns + ',' + email + ',' + phoneNumber + ',' + school + ',' + yearsAttended + ',' + major + ',' +
+                emergencyContactName + ";" + emergencyContactNumber + ";" + emergencyContactEmail + ',' +
+                isReturning + ',' + isPhotoVideoConsentTrue + ',' + additionalNotesAboutMentor + ',' +
+                isReadingMentor + ',' + isMathMentor + ',' + availabilityOnline + ',' + availabilityInPersonSchool + ',' +
+                availabilityInPersonCommunityCentre + ',' + availabilityClayton;
+    }
+
+    public static String printMentorOutputFieldOrder() {
+        return "First Name" + ',' + "Preferred Name" + ',' + "Last Name" + ',' +
+                "Age" + ',' + "Pronouns" + ',' + "Email" + ',' + "Phone Number" + ',' + "School" + ',' + "Years Attended" + ',' + "Major (if applicable)" + ',' +
+                "Emergency Contact" + ',' +
+                "Returning Mentor" + ',' + "Photo Video Consent" + ',' + "Additional Notes About Mentor" + ',' +
+                "Reading Mentor" + ',' + "Math Mentor" + ',' + "Online Availability" + ',' + "In Person School Availability" + ',' +
+                "In Person Community Centre Availability" + ',' + "Clayton Availability";
     }
 
     public boolean isValid() {
-        return (age >= 15 && isAvailable());
+        return (age >= 15);
     }
 
     // Mentor is not available if they have not selected any times
     public boolean isAvailable() {
         return (!((availabilityClayton.equalsIgnoreCase("NaN") || availabilityClayton.equalsIgnoreCase("")) &&
                 (availabilityOnline.equalsIgnoreCase("NaN") || availabilityOnline.equalsIgnoreCase("")) &&
-                (availabilityInPersonSchool.equalsIgnoreCase("NaN") || availabilityInPersonSchool.equalsIgnoreCase(""))));
+                (availabilityInPersonSchool.equalsIgnoreCase("NaN") || availabilityInPersonSchool.equalsIgnoreCase("")) &&
+                (availabilityInPersonCommunityCentre.equalsIgnoreCase("NaN") || availabilityInPersonCommunityCentre.equalsIgnoreCase(""))));
     }
 
     // Determine if the mentor has indicated availability for an in-person program.
@@ -152,6 +168,17 @@ public class Mentor {
                 return true;
             }
         }
+        for (int i = 0; i < availabilityInPersonCommunityCentre.length(); i++) {
+            char thisChar = availabilityInPersonCommunityCentre.charAt(i);
+            if (thisChar == ';') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasOnline() {
+        if (availabilityOnline.length() != 0) return true;
         return false;
     }
 
@@ -341,4 +368,13 @@ public class Mentor {
     public ArrayList<String> getAllAvailableTimes() {
         return allAvailableTimes;
     }
+
+    public String getAdditionalNotesAboutMentor() {
+        return additionalNotesAboutMentor;
+    }
+
+    public void setAdditionalNotesAboutMentor(String additionalNotesAboutMentor) {
+        this.additionalNotesAboutMentor = additionalNotesAboutMentor;
+    }
+
 }
