@@ -1,7 +1,9 @@
 package com.company;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,13 +19,12 @@ public class CSVReader {
     // Read Mentors
     public static ArrayList<Mentor> readMentorsFromCSV(String fileName) throws IOException {
         ArrayList<Mentor> listOfMentors = new ArrayList<>();
-        Path pathToFile = Paths.get(fileName);
-        bufferedReader = Files.newBufferedReader(pathToFile,
-                StandardCharsets.US_ASCII);
+
+        bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName),"utf-8"));
 
         String line = nextLine();
-        while (!line.equals("null")) { //!!!
-
+        while (!line.equals("null")) {
+            //!!!
             // Use string.split to load a string array with the values from
             // each line of the file, using a comma as the delimiter
             String[] attributes = line.split(",");
@@ -82,7 +83,7 @@ public class CSVReader {
         //Todo: Join these fields together
         String emergencyContactName;
         int i = 0;
-        if (attributes.length == 20) {
+        if (attributes.length == 2) {
             emergencyContactName = attributes[10] + attributes[11];
             i = 1;
         } else {
@@ -95,17 +96,19 @@ public class CSVReader {
         String isReadingMentor = attributes[13 + i];
 
         String availabilityOnline = attributes[14 + i];
-        String availabilityInPerson = attributes[15 + i];
-        String availabilityClayton = attributes[16 + i];
+        String availabilityInPersonSchool = attributes[15 + i];
+        String availabilityInPersonCommunityCentre = attributes[16 + i];
+        String availabilityClayton = attributes[17 + i];
 
-        String isReturning = attributes[17 + i];
-        String isPhotoVideoConsentTrue = attributes[18 + i];
+        String isReturning = attributes[18 + i];
+        String isPhotoVideoConsentTrue = attributes[19 + i];
 
         // Create and return Mentor with these attributes
         return new Mentor(firstName, preferredName, lastName, age, phoneNumber, email, pronouns,
                 school, yearsAttended, major, emergencyContactName, emergencyContactEmail,
                 emergencyContactNumber, isReadingMentor, availabilityOnline,
-                availabilityInPerson, availabilityClayton, isReturning, isPhotoVideoConsentTrue);
+                availabilityInPersonSchool, availabilityInPersonCommunityCentre, availabilityClayton,
+                isReturning, isPhotoVideoConsentTrue);
     }
 
     private static Pod createPod(String[] attributes) {

@@ -27,7 +27,8 @@ public class Mentor {
     private boolean isMathMentor;
 
     private String availabilityOnline;
-    private String availabilityInPerson;
+    private String availabilityInPersonSchool;
+    private String availabilityInPersonCommunityCentre;
     private String availabilityClayton;
 
     private boolean isReturning;
@@ -41,8 +42,8 @@ public class Mentor {
                   String yearsAttended, String major, String emergencyContactName,
                   String emergencyContactEmail, String emergencyContactNumber,
                   String isReadingMentor, String availabilityOnline,
-                  String availabilityInPerson, String availabilityClayton,
-                  String isReturning, String isPhotoVideoConsentTrue) {
+                  String availabilityInPersonSchool, String availabilityInPersonCommunityCentre,
+                  String availabilityClayton, String isReturning, String isPhotoVideoConsentTrue) {
         this.firstName = firstName;
         this.preferredName = preferredName;
         this.lastName = lastName;
@@ -68,38 +69,48 @@ public class Mentor {
         }
 
         this.availabilityOnline = availabilityOnline;
-        this.availabilityInPerson = availabilityInPerson;
+        this.availabilityInPersonSchool = availabilityInPersonSchool;
+        this.availabilityInPersonCommunityCentre = availabilityInPersonCommunityCentre;
         this.availabilityClayton = availabilityClayton;
 
         // NOTE: Need space after ";" b/c we later compare the characters of these fields with our list of Pods
         // Space interferes with this comparison
         allAvailableTimes = new ArrayList<>();
         String[] individualClaytonTimes = availabilityClayton.split("; ");
-        String[] individualIPTimes = availabilityInPerson.split("; ");
+        String[] individualIPSchoolTimes = availabilityInPersonSchool.split("; ");
+        String[] individualIPCommunityCentreTimes = availabilityInPersonCommunityCentre.split("; ");
         String[] individualOnlineTimes = availabilityOnline.split("; ");
 
         // Prioritize Clayton > IP > Earlier Online Times > Later Online Times
         // Add all Clayton availabilities from individualClaytonTimes to allAvailableTimes
-        for (int i = 0; i < individualClaytonTimes.length; i++) {
-            if (individualClaytonTimes[i] != null && !(individualClaytonTimes[i].equalsIgnoreCase("Nan"))
-                    && !(individualClaytonTimes[i].equalsIgnoreCase(""))) {
-                allAvailableTimes.add(individualClaytonTimes[i]);
+        for (String individualClaytonTime : individualClaytonTimes) {
+            if (individualClaytonTime != null && !(individualClaytonTime.equalsIgnoreCase("Nan"))
+                    && !(individualClaytonTime.equalsIgnoreCase(""))) {
+                allAvailableTimes.add(individualClaytonTime);
             }
         }
 
-        // Add all in-person availabilities from individualIPTimes to allAvailableTimes
-        for (int i = 0; i < individualIPTimes.length; i++) {
-            if (individualIPTimes[i] != null && !(individualIPTimes[i].equalsIgnoreCase("Nan"))
-                    && !(individualIPTimes[i].equalsIgnoreCase(""))) {
-                allAvailableTimes.add(individualIPTimes[i]);
+        // Add all in-person availabilities from individualIPSchoolTimes to allAvailableTimes
+        for (String individualIPSchoolTime : individualIPSchoolTimes) {
+            if (individualIPSchoolTime != null && !(individualIPSchoolTime.equalsIgnoreCase("Nan"))
+                    && !(individualIPSchoolTime.equalsIgnoreCase(""))) {
+                allAvailableTimes.add(individualIPSchoolTime);
+            }
+        }
+
+        // Add all in-person availabilities from individualIPCommunityCentreTimes to allAvailableTimes
+        for (String individualIPCommunityCentreTime : individualIPCommunityCentreTimes) {
+            if (individualIPCommunityCentreTime != null && !(individualIPCommunityCentreTime.equalsIgnoreCase("Nan"))
+                    && !(individualIPCommunityCentreTime.equalsIgnoreCase(""))) {
+                allAvailableTimes.add(individualIPCommunityCentreTime);
             }
         }
 
         // Add all online availabilities from individualOnlineTimes to allAvailableTimes
-        for (int i = 0; i < individualOnlineTimes.length; i++) {
-            if (individualOnlineTimes[i] != null && !(individualOnlineTimes[i].equalsIgnoreCase("Nan"))
-                    && !(individualOnlineTimes[i].equalsIgnoreCase(""))) {
-                allAvailableTimes.add(individualOnlineTimes[i]);
+        for (String individualOnlineTime : individualOnlineTimes) {
+            if (individualOnlineTime != null && !(individualOnlineTime.equalsIgnoreCase("Nan"))
+                    && !(individualOnlineTime.equalsIgnoreCase(""))) {
+                allAvailableTimes.add(individualOnlineTime);
             }
         }
 
@@ -128,15 +139,15 @@ public class Mentor {
     public boolean isAvailable() {
         return (!((availabilityClayton.equalsIgnoreCase("NaN") || availabilityClayton.equalsIgnoreCase("")) &&
                 (availabilityOnline.equalsIgnoreCase("NaN") || availabilityOnline.equalsIgnoreCase("")) &&
-                (availabilityInPerson.equalsIgnoreCase("NaN") || availabilityInPerson.equalsIgnoreCase(""))));
+                (availabilityInPersonSchool.equalsIgnoreCase("NaN") || availabilityInPersonSchool.equalsIgnoreCase(""))));
     }
 
     // Determine if the mentor has indicated availability for an in-person program.
     // In-person pods are harder to fill than online pods, so they should be placed in an
     // in-person program.
     public boolean hasInPerson() {
-        for (int i = 0; i < availabilityInPerson.length(); i++) {
-            char thisChar = availabilityInPerson.charAt(i);
+        for (int i = 0; i < availabilityInPersonSchool.length(); i++) {
+            char thisChar = availabilityInPersonSchool.charAt(i);
             if (thisChar == ';') {
                 return true;
             }
@@ -259,19 +270,19 @@ public class Mentor {
         this.emergencyContactNumber = emergencyContactNumber;
     }
 
-    public boolean getIsReadingMentor() {
+    public boolean isReadingMentor() {
         return isReadingMentor;
     }
 
-    public void setIsReadingMentor(boolean isReadingMentor) {
+    public void setReadingMentor(boolean isReadingMentor) {
         this.isReadingMentor = isReadingMentor;
     }
 
-    public boolean getIsMathMentor() {
+    public boolean isMathMentor() {
         return isMathMentor;
     }
 
-    public void setIsMathMentor(boolean isMathMentor) {
+    public void setMathMentor(boolean isMathMentor) {
         this.isMathMentor = isMathMentor;
     }
 
@@ -283,12 +294,20 @@ public class Mentor {
         this.availabilityOnline = availabilityOnline;
     }
 
-    public String getAvailabilityInPerson() {
-        return availabilityInPerson;
+    public String getAvailabilityInPersonSchool() {
+        return availabilityInPersonSchool;
     }
 
-    public void setAvailabilityInPerson(String availabilityInPerson) {
-        this.availabilityInPerson = availabilityInPerson;
+    public void setAvailabilityInPersonSchool(String availabilityInPersonSchool) {
+        this.availabilityInPersonSchool = availabilityInPersonSchool;
+    }
+
+    public String getAvailabilityInPersonCommunityCentre() {
+        return availabilityInPersonCommunityCentre;
+    }
+
+    public void setAvailabilityInPersonCommunityCentre(String availabilityInPersonCommunityCentre) {
+        this.availabilityInPersonCommunityCentre = availabilityInPersonCommunityCentre;
     }
 
     public String getAvailabilityClayton() {
@@ -299,19 +318,19 @@ public class Mentor {
         this.availabilityClayton = availabilityClayton;
     }
 
-    public boolean getIsReturning() {
+    public boolean isReturning() {
         return isReturning;
     }
 
-    public void setIsReturning(boolean isReturning) {
+    public void setReturning(boolean isReturning) {
         this.isReturning = isReturning;
     }
 
-    public boolean getIsPhotoVideoConsentTrue() {
+    public boolean isPhotoVideoConsentTrue() {
         return isPhotoVideoConsentTrue;
     }
 
-    public void setIsPhotoVideoConsentTrue(boolean isPhotoVideoConsentTrue) {
+    public void setPhotoVideoConsentTrue(boolean isPhotoVideoConsentTrue) {
         this.isPhotoVideoConsentTrue = isPhotoVideoConsentTrue;
     }
 

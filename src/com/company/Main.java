@@ -18,6 +18,10 @@ public class Main {
     static final int ONE_PREFERENCE = 1;
     static final int POD_MAX_SIZE = 8;
 
+    static final String MENTOR_CSV_FILE_PATH = "src/com/company/Winter 2023 - LBN Mentor Registration-export-data-11-01-2023-10_17_56_PM.csv";
+    static final String POD_CSV_FILE_PATH = "src/com/company/allPods.csv";
+    static final String OUTPUT_FILE_PATH = "src/com/company/output.txt";
+
     public static void main(String[] args) throws IOException {
         // Step 0: Initialization - Create multiple ArrayLists of mentors before sort
         initialMentorList = new ArrayList<>();
@@ -33,15 +37,14 @@ public class Main {
         System.out.println("Finished initialization");
 
         // Step 0: Read from CSV files to initialize all mentors and pods
-        initialMentorList = CSVReader.readMentorsFromCSV("src/com/company/allMentors.csv");
+        initialMentorList = CSVReader.readMentorsFromCSV(MENTOR_CSV_FILE_PATH);
         System.out.println("Finished reading from mentor input");
 
-        allPods = CSVReader.readPodsFromCSV("src/com/company/allPods.csv");
+        allPods = CSVReader.readPodsFromCSV(POD_CSV_FILE_PATH);
         System.out.println("Finished reading from pod input");
 
-        // Step 1: First Check Validity of Volunteers
-        for (int i = 0; i < initialMentorList.size(); i++) {
-            Mentor currentMentor = initialMentorList.get(i);
+        // Step 1: First check validity of Mentors
+        for (Mentor currentMentor : initialMentorList) {
             if (currentMentor.isValid()) {
                 goodList.add(currentMentor);
             } else {
@@ -52,21 +55,21 @@ public class Main {
         // Step 2: Put returning mentors first at the beginning of the list, then add new mentors
         goodList = sortArrayListByReturning(goodList);
 
-        // Step 3: Initialize all the possible pods. Each pod should hold an ArrayList of mentors
-        for (int i = 0; i < allPods.size(); i++) {
-            output.put(allPods.get(i), new ArrayList<Mentor>());
+        // Step 3: Initialize all the possible Pods. Each Pod should hold an ArrayList of Mentors
+        for (Pod pod : allPods) {
+            output.put(pod, new ArrayList<>());
         }
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // Important: The initialization of Mentor already placed all the available Clayton and in person times in front.
+        // Important: The initialization of Mentor already placed all the available Clayton and IP times in front.
         // Therefore, the IP and Clayton availabilities will be prioritized
 
         // Step 4: Place the returning Mentors who only have 1 preference
         for (int i = 0; i < goodList.size(); i++) {
             Mentor currentMentor = goodList.get(i);
-            if (currentMentor.getAllAvailableTimes().size() == ONE_PREFERENCE && currentMentor.getIsReturning()) {
+            if (currentMentor.getAllAvailableTimes().size() == ONE_PREFERENCE && currentMentor.isReturning()) {
                 placeMentorInPod(currentMentor);
-                // Current mentor has been removed from goodList, so a new Mentor has replaced their previous index spot
+                // Current Mentor has been removed from goodList, so a new Mentor has replaced their previous index spot
                 i--;
             }
         }
@@ -75,140 +78,98 @@ public class Main {
         for (int i = 0; i < goodList.size(); i++) {
             Mentor currentMentor = goodList.get(i);
             placeMentorInPod(currentMentor);
-            // Current mentor has been removed from goodList, so a new Mentor has replaced their previous index spot
+            // Current Mentor has been removed from goodList, so a new Mentor has replaced their previous index spot
             i--;
         }
 
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("D:\\work-and-ECs\\lms-developer\\algorithms\\src\\com\\company\\output.txt")));
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_FILE_PATH)));
 
         //Todo: Create separate output class to separate logic
 
         // Step 6: Output of Program
-        for (Pod pod : output.keySet()
-        ) {
+        for (Pod pod : output.keySet()) {
             out.println();
             out.println(pod.toString());
-            for (int i = 0; i < output.get(pod).size(); i++) {
-                out.println(output.get(pod).get(i));
+            for (Mentor thisMentor : output.get(pod)) {
+                out.println(thisMentor);
             }
             out.println();
         }
 
-        out.println();
-        out.println("\nMentor Wait List:");
-        for (int i = 0; i < mentorWaitList.size(); i++) {
-            out.println(mentorWaitList.get(i));
+        out.println("\n\nMentor Wait List:");
+        for (Mentor waitListedMentor : mentorWaitList) {
+            out.println(waitListedMentor);
         }
 
-        out.println();
-        out.println("\nTo be manually reviewed:");
-        for (int i = 0; i < toBeManuallyReviewed.size(); i++) {
-            out.println(toBeManuallyReviewed.get(i));
+        out.println("\n\nTo Be Manually Reviewed:");
+        for (Mentor toBeReviewedMentor : toBeManuallyReviewed) {
+            out.println(toBeReviewedMentor);
         }
 
         out.close();
     }
 
-    public static ArrayList<Mentor> sortArrayListByReturning(ArrayList<Mentor> currentList) {
+    public static ArrayList<Mentor> sortArrayListByReturning(ArrayList<Mentor> initialMentorList) {
         ArrayList<Mentor> sortedMentorList = new ArrayList<>();
 
-        // Place all the returning mentors in the order that they applied at the front of the ArrayList
-        // (so returning mentors who apply sooner get priority)
-        // Place all the new mentors in the order that they applied after the last returning mentor
-        // (so mew mentors who apply sooner get priority)
+        // Place all the returning Mentors in the order that they applied at the front of the ArrayList
+        // (so returning Mentors who apply sooner get priority)
+        // Place all the new Mentors in the order that they applied after the last returning Mentor
+        // (so mew Mentors who apply sooner get priority)
 
         int lastReturningMentorIndex = 0;
 
-        for (int i = 0; i < currentList.size(); i++) {
-            Mentor currentMentor = currentList.get(i);
-            // Add returning mentors to front of list
-            if (currentMentor.getIsReturning()) {
+        for (Mentor currentMentor : initialMentorList) {
+            // Add returning Mentors to front of list
+            if (currentMentor.isReturning()) {
                 sortedMentorList.add(lastReturningMentorIndex, currentMentor);
                 lastReturningMentorIndex++;
             }
-            // Add new mentors to end of list
+            // Add new Mentors to end of list
             else sortedMentorList.add(currentMentor);
         }
 
         return sortedMentorList;
     }
 
-    public static boolean placeMentorInPod(Mentor currentMentor) {
-        // Match availability to name of pod
+    public static void placeMentorInPod(Mentor currentMentor) {
+        // Match availability to name of Pod
         ArrayList<Pod> possiblePods = new ArrayList<>();
 
-        for (int i = 0; i < allPods.size(); i++) {
-            for (int j = 0; j < currentMentor.getAllAvailableTimes().size(); j++) {
-                System.out.println(currentMentor.getAllAvailableTimes().get(j));
-                if (allPods.get(i).getTime().equalsIgnoreCase(currentMentor.getAllAvailableTimes().get(j))
-                        && ((allPods.get(i).isReading() && currentMentor.getIsReadingMentor())
-                        || (allPods.get(i).isMath() && currentMentor.getIsMathMentor()))) {
-                    possiblePods.add(allPods.get(i));
+        for (Pod thisPod : allPods) {
+            for (String thisAvailableTime : currentMentor.getAllAvailableTimes()) {
+                System.out.println(thisAvailableTime);
+                if (thisPod.getTime().equalsIgnoreCase(thisAvailableTime)
+                        && (thisPod.isReading() && currentMentor.isReadingMentor())
+                        || (thisPod.isMath() && currentMentor.isMathMentor())) {
+                    possiblePods.add(thisPod);
                 }
             }
         }
 
-        // If there are no possible pods the mentor can be placed in,
+        // If there are no possible Pods the Mentor can be placed in,
         // add the Mentor to the toBeManuallyReviewed list
         if (possiblePods.size() == 0) {
             toBeManuallyReviewed.add(currentMentor);
             goodList.remove(currentMentor);
-            return false;
+            return;
         }
 
         // Iterate through all the possible pods until Mentor is placed
-        for (int j = 0; j < possiblePods.size(); j++) {
-            ArrayList<Mentor> currentTimeField = output.get(possiblePods.get(j));
-            if (currentTimeField.size() < POD_MAX_SIZE) {
-                currentTimeField.add(currentMentor);
+        for (Pod thisPod : possiblePods) {
+            ArrayList<Mentor> podList = output.get(thisPod);
+            if (podList.size() < POD_MAX_SIZE) {
+                podList.add(currentMentor);
                 goodList.remove(currentMentor);
                 // Current mentor has been removed from goodList, so a new Mentor has replaced their
                 // previous index spot
-                return true;
+                return;
             }
         }
 
         // No spots for Mentor, so add them to the mentorWaitList
         mentorWaitList.add(currentMentor);
         goodList.remove(currentMentor);
-        return false;
     }
-
-//    public static ArrayList<Mentor> isPhotoVideoConsent(ArrayList<Mentor> currentList){
-//        ArrayList<Mentor> list = new ArrayList<>();
-//
-//        for(int i = 0; i < currentList.size(); i++){
-//            Mentor thisMen = currentList.get(i);
-//            if(thisMen.isReturning()){
-//                list.add(0,thisMen);
-//            }
-//            else{
-//                list.add(thisMen);
-//            }
-//        }
-//        return list;
-//
-//    }
-
-    /*
-        for (int i = 0; i < goodList.size(); i++) {
-            Mentor currentMentor = goodList.get(i);
-            ArrayList<String> currentMentorAvailability = currentMentor.getAllAvailableTimes();
-
-            for (int j = 0; j < currentMentorAvailability.size(); j++) {
-                String thisAvailableTime = currentMentorAvailability.get(j);
-
-                if (!output.containsKey(thisAvailableTime)) {
-                    output.put(thisAvailableTime, new ArrayList<Mentor>());
-                }
-//                if(!MathOutPut.containsKey(thisAvailableTime)){
-//                    MathOutPut.put(thisAvailableTime,new ArrayList<Mentor>());
-//                }
-//                if(!ReadingOutPut.containsKey(thisAvailableTime)){
-//                    ReadingOutPut.put(thisAvailableTime,new ArrayList<Mentor>());
-//                }
-            }
-        }
-*/
 
 }
