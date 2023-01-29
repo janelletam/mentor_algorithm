@@ -23,7 +23,7 @@ public class Main {
     static final int ONE_PREFERENCE = 1;
     static final int POD_MAX_SIZE = 8;
 
-    static final String MENTOR_CSV_FILE_PATH = "src/com/company/Winter 2023 - LBN Mentor Registration-export-data-11-01-2023-10_17_56_PM.csv";
+    static final String MENTOR_CSV_FILE_PATH = "src/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv";
     static final String POD_CSV_FILE_PATH = "src/com/company/allPods.csv";
     static final String LAST_TERM_MENTORS_FILE_PATH = "src/com/company/Fall 2022 Registration Data.csv";
     static final String OUTPUT_FILE_PATH = "src/com/company/";
@@ -124,7 +124,11 @@ public class Main {
         }
 
         classContactList.append("\n\nTotal number of applicants in the first wave: " + initialMentorList.size());
-        classContactList.append("\nTotal number of placed mentors (qualified): " + calculateNumberOfPlacedMentors());
+
+        classContactList.append("\n\nTotal number of mentors in In-Person Programs: " + calculateNumberOfPlacedMentors());
+        classContactList.append("\nTotal number of mentors in Online Programs: " + calculateNumberOfPlacedMentors());
+
+        classContactList.append("\n\nTotal number of placed mentors (qualified): " + calculateNumberOfPlacedMentors());
         classContactList.append("\nTotal number of mentors that need manual review: " + toBeManuallyReviewed.size());
         classContactList.append("\nTotal number of waitlisted mentors: " + mentorWaitList.size());
         classContactList.append("\n\nTotal number of mentor spots left: " + numberOfOpenSpots);
