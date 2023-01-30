@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baf74b33-6585-4b97-a8c4-7be8b268a2be" name="Default Changelist" comment="Type: subject - should be ~50 chars (this length)&#10;# fix: → fix for a bug&#9;&#9;&#9;&#9;     |&#10;# feat: → introduces new feature for user&#9;     |&#10;# docs: → changes to the documentation&#9;     |&#10;# style: → formatting; missing semicolons; does not affect actual function&#10;# refactor → refactors production code&#9;     |&#10;# test: → test adds missing tests; refactors tests &#10;&#10;Multi-line description of commit -&gt; explain what &amp; why&#10;&#10;Footer → Fix issue #[]">
-      <change afterPath="$PROJECT_DIR$/src/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" afterDir="false" />
+    <list default="true" id="baf74b33-6585-4b97-a8c4-7be8b268a2be" name="Default Changelist" comment="Add summary and a few other features">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated-Class-Contact-List-2023-01-12.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated-Class-Contact-List-2023-01-28.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated-Class-Contact-List-2023-01-28.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Winter 2023 - LBN Mentor Registration-export-data-11-01-2023-10_17_56_PM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/Winter 2023 - LBN Mentor Registration-export-data-11-01-2023-10_17_56_PM.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/allPods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/allPods.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Generated-Class-Contact-List-2023-01-12.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/~$Generated-Class-Contact-List-2023-01-28.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Winter 2023 - LBN Mentor Registration-export-data-11-01-2023-10_17_56_PM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Winter 2023 - LBN Mentor Registration-export-data-11-01-2023-10_17_56_PM.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/allPods.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/allPods.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +141,14 @@
       <option name="presentableId" value="Default" />
       <updated>1670546323724</updated>
     </task>
+    <task id="LOCAL-00001" summary="Add summary and a few other features">
+      <created>1675014480203</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675014480203</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,6 +162,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add summary and a few other features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add summary and a few other features" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

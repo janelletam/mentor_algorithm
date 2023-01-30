@@ -123,10 +123,13 @@ public class Main {
             classContactList.append("\n" + thisPod);
         }
 
-        classContactList.append("\n\nTotal number of applicants in the first wave: " + initialMentorList.size());
+        classContactList.append("\n\nTotal number of applicants: " + initialMentorList.size());
 
-        classContactList.append("\n\nTotal number of mentors in In-Person Programs: " + calculateNumberOfPlacedMentors());
-        classContactList.append("\nTotal number of mentors in Online Programs: " + calculateNumberOfPlacedMentors());
+        classContactList.append("\n\nTotal number of mentors in In-Person Programs: " + calculateNumberOfIPMentors());
+        classContactList.append("\nTotal number of mentors in Online Programs: " + calculateNumberOfOnlineMentors());
+        classContactList.append("\nTotal number of mentors in Clayton Programs: " + calculateNumberOfClaytonMentors());
+
+
 
         classContactList.append("\n\nTotal number of placed mentors (qualified): " + calculateNumberOfPlacedMentors());
         classContactList.append("\nTotal number of mentors that need manual review: " + toBeManuallyReviewed.size());
@@ -302,4 +305,29 @@ public class Main {
 
         return numberOfPlacedMentors;
     }
+
+    public static int calculateNumberOfIPMentors() {
+        int numberOfIPMentors = 0;
+        for (Pod thisPod : output.keySet()) {
+            if (thisPod.isIP()) numberOfIPMentors = numberOfIPMentors + output.get(thisPod).size();
+        }
+        return numberOfIPMentors;
+    }
+
+    public static int calculateNumberOfOnlineMentors() {
+        int numberOfOnlineMentors = 0;
+        for (Pod thisPod : output.keySet()) {
+            if (thisPod.isOnline()) numberOfOnlineMentors = numberOfOnlineMentors + output.get(thisPod).size();
+        }
+        return numberOfOnlineMentors;
+    }
+
+    public static int calculateNumberOfClaytonMentors() {
+        int numberOfClaytonMentors = 0;
+        for (Pod thisPod : output.keySet()) {
+            if (thisPod.isClayton()) numberOfClaytonMentors = numberOfClaytonMentors + output.get(thisPod).size();
+        }
+        return numberOfClaytonMentors;
+    }
+
 }
