@@ -23,7 +23,7 @@ public class Main {
     static final int ONE_PREFERENCE = 1;
     static final int POD_MAX_SIZE = 8;
 
-    static final String MENTOR_CSV_FILE_PATH = "src/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv";
+    static final String MENTOR_CSV_FILE_PATH = "src/com/company/USE - USE GMAIL - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv";
     static final String POD_CSV_FILE_PATH = "src/com/company/allPods.csv";
     static final String LAST_TERM_MENTORS_FILE_PATH = "src/com/company/Fall 2022 Registration Data.csv";
     static final String OUTPUT_FILE_PATH = "src/com/company/";
@@ -136,7 +136,7 @@ public class Main {
         classContactList.append("\nTotal number of waitlisted mentors: " + mentorWaitList.size());
         classContactList.append("\n\nTotal number of mentor spots left: " + numberOfOpenSpots);
 
-        for (Pod pod: output.keySet()) {
+        for (Pod pod : output.keySet()) {
             classContactList.append("\n\n---------------------------------------------------");
             classContactList.append("\n" + pod.toString());
             classContactList.append("\n" + Mentor.printMentorOutputFieldOrder());
@@ -157,6 +157,42 @@ public class Main {
         classContactList.append("\n" + Mentor.printMentorOutputFieldOrder());
         for (Mentor toBeReviewedMentor : toBeManuallyReviewed) {
             classContactList.append("\n" + toBeReviewedMentor);
+        }
+
+        classContactList.append("\n\n---------------------------------------------------");
+        classContactList.append("\nReading Mentors Contact Information:");
+        classContactList.append("\n" + Mentor.printContactInfoFieldOrder());
+        for (Pod pod : output.keySet()) {
+            if (pod.isReading()) {
+                for (Mentor thisMentor : output.get(pod)) {
+                    classContactList.append("\n" + thisMentor.printContactInfo());
+                }
+            }
+        }
+
+        classContactList.append("\n\n---------------------------------------------------");
+        classContactList.append("\nMath Mentors Contact Information:");
+        classContactList.append("\n" + Mentor.printContactInfoFieldOrder());
+        for (Pod pod : output.keySet()) {
+            if (pod.isMath()) {
+                for (Mentor thisMentor : output.get(pod)) {
+                    classContactList.append("\n" + thisMentor.printContactInfo());
+                }
+            }
+        }
+
+        classContactList.append("\n\n---------------------------------------------------");
+        classContactList.append("\nWaitlisted Mentors Contact Information:");
+        classContactList.append("\n" + Mentor.printContactInfoFieldOrder());
+        for (Mentor waitListedMentor : mentorWaitList) {
+            classContactList.append("\n" + waitListedMentor.printContactInfo());
+        }
+
+        classContactList.append("\n\n---------------------------------------------------");
+        classContactList.append("\nTo be Manually Reviewed Contact Information:");
+        classContactList.append("\n" + Mentor.printContactInfoFieldOrder());
+        for (Mentor toBeReviewedMentor : toBeManuallyReviewed) {
+            classContactList.append("\n" + toBeReviewedMentor.printContactInfo());
         }
 
         System.out.println(OUTPUT_FILE_PATH + OUTPUT_FILE_NAME + getCurrentDate() + ".csv");
@@ -230,6 +266,7 @@ public class Main {
                             goodList.remove(currentMentor);
                             lastTermMentorList.remove(lastTermMentor);
                             currentMentor.setAdditionalNotesAboutMentor(LAST_TERM_MENTOR);
+                            currentMentor.setPod(thisPod.getPodName());
 
                             // Current mentor has been removed from goodList, so a new Mentor has replaced their
                             // previous index spot
@@ -247,6 +284,7 @@ public class Main {
             if (podList.size() < POD_MAX_SIZE) {
                 podList.add(currentMentor);
                 goodList.remove(currentMentor);
+                currentMentor.setPod(thisPod.getPodName());
                 // Current mentor has been removed from goodList, so a new Mentor has replaced their
                 // previous index spot
                 return;

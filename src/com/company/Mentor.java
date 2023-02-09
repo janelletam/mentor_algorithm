@@ -13,6 +13,7 @@ public class Mentor {
     private int age;
     private String phoneNumber;
     private String email;
+    private String gmail;
     private String pronouns;
     private String school;
     private String yearsAttended;
@@ -35,12 +36,13 @@ public class Mentor {
     private boolean isPhotoVideoConsentTrue;
 
     private String additionalNotesAboutMentor;
+    private String pod;
 
     // Our own variable
     private ArrayList<String> allAvailableTimes;
 
     public Mentor(String firstName, String preferredName, String lastName, String age,
-                  String phoneNumber, String email, String pronouns, String school,
+                  String phoneNumber, String email, String gmail, String pronouns, String school,
                   String yearsAttended, String major, String emergencyContactName,
                   String emergencyContactEmail, String emergencyContactNumber,
                   String isReadingMentor, String availabilityOnline,
@@ -52,6 +54,7 @@ public class Mentor {
         this.age = Integer.parseInt(age);
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.gmail = gmail;
         this.pronouns = pronouns;
         this.school = school;
         this.yearsAttended = yearsAttended;
@@ -144,6 +147,18 @@ public class Mentor {
                 "Returning Mentor" + ',' + "Photo Video Consent" + ',' + "Additional Notes About Mentor" + ',' +
                 "Reading Mentor" + ',' + "Math Mentor" + ',' + "Online Availability" + ',' + "In Person School Availability" + ',' +
                 "In Person Community Centre Availability" + ',' + "Clayton Availability";
+    }
+
+    public String printContactInfo() {
+        return firstName + ',' + preferredName + ',' + lastName + ',' +
+                email + ',' + gmail + ',' + phoneNumber + ',' + isReadingMentor + ','
+                + isMathMentor + ',' + pod;
+    }
+
+    public static String printContactInfoFieldOrder() {
+        return "First Name" + ',' + "Preferred Name" + ',' + "Last Name" + ',' +
+                "Email" + ',' + "Gmail" + ',' + "Phone Number" + ',' + "Reading Mentor" + ','
+                + "MathMentor" + ',' + "Pod";
     }
 
     public boolean isValid() {
@@ -239,6 +254,14 @@ public class Mentor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
     }
 
     public String getPronouns() {
@@ -377,4 +400,11 @@ public class Mentor {
         this.additionalNotesAboutMentor = additionalNotesAboutMentor;
     }
 
+    public String getPod() {
+        return pod;
+    }
+
+    public void setPod(String pod) {
+        this.pod = pod;
+    }
 }
