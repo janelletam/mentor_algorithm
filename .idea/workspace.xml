@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baf74b33-6585-4b97-a8c4-7be8b268a2be" name="Default Changelist" comment="Add summary and a few other features">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated-Class-Contact-List-2023-01-28.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated-Class-Contact-List-2023-01-28.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/~$Generated-Class-Contact-List-2023-01-28.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/newAlgo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/newMentor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +30,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Iee8xOYC99lzX606GyIO0rlX1n" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -97,14 +95,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/company" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\work-and-ECs\lms-developer\algorithms\src\com\company" />
@@ -140,6 +142,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670546323724</updated>
+      <workItem from="1684295606297" duration="894000" />
     </task>
     <task id="LOCAL-00001" summary="Add summary and a few other features">
       <created>1675014480203</created>
@@ -151,6 +154,9 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -161,7 +167,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add summary and a few other features" />
