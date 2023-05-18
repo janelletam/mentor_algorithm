@@ -15,6 +15,7 @@ public class CSVReader {
 
     static BufferedReader bufferedReader;
     static StringTokenizer tokenizer;
+    static final int NUM_OF_ATTRIBUTES_PLUS_ONE = 22;
 
     //Todo: Clean up code - see if we can combine functions
 
@@ -102,36 +103,37 @@ public class CSVReader {
         String age = attributes[3];
         String phoneNumber = attributes[4];
         String email = attributes[5];
-        String pronouns = attributes[6];
-        String school = attributes[7];
-        String yearsAttended = attributes[8];
-        String major = attributes[9];
+        String gmail = attributes [6];
+        String pronouns = attributes[7];
+        String school = attributes[8];
+        String yearsAttended = attributes[9];
+        String major = attributes[10];
 
         //Todo: Join these fields together
         String emergencyContactName;
         int i = 0;
-        if (attributes.length == 2) {
-            emergencyContactName = attributes[10] + attributes[11];
+        if (attributes.length == NUM_OF_ATTRIBUTES_PLUS_ONE) {
+            emergencyContactName = attributes[11] + attributes[12];
             i = 1;
         } else {
-            emergencyContactName = attributes[10];
+            emergencyContactName = attributes[11];
         }
 
-        String emergencyContactEmail = attributes[11 + i];
-        String emergencyContactNumber = attributes[12 + i];
+        String emergencyContactEmail = attributes[12 + i];
+        String emergencyContactNumber = attributes[13 + i];
 
-        String isReadingMentor = attributes[13 + i];
+        String isReadingMentor = attributes[14 + i];
 
-        String availabilityOnline = attributes[14 + i];
-        String availabilityInPersonSchool = attributes[15 + i];
-        String availabilityInPersonCommunityCentre = attributes[16 + i];
-        String availabilityClayton = attributes[17 + i];
+        String availabilityOnline = attributes[15 + i];
+        String availabilityInPersonSchool = attributes[16 + i];
+        String availabilityInPersonCommunityCentre = attributes[17 + i];
+        String availabilityClayton = attributes[18 + i];
 
-        String isReturning = attributes[18 + i];
-        String isPhotoVideoConsentTrue = attributes[19 + i];
+        String isReturning = attributes[19 + i];
+        String isPhotoVideoConsentTrue = attributes[20 + i];
 
         // Create and return Mentor with these attributes
-        return new Mentor(firstName, preferredName, lastName, age, phoneNumber, email, pronouns,
+        return new Mentor(firstName, preferredName, lastName, age, phoneNumber, email, gmail, pronouns,
                 school, yearsAttended, major, emergencyContactName, emergencyContactEmail,
                 emergencyContactNumber, isReadingMentor, availabilityOnline,
                 availabilityInPersonSchool, availabilityInPersonCommunityCentre, availabilityClayton,
