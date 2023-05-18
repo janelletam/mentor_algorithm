@@ -6,22 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="baf74b33-6585-4b97-a8c4-7be8b268a2be" name="Default Changelist" comment="Type: subject - should be ~50 chars (this length)&#10;# fix: → fix for a bug&#9;&#9;&#9;&#9;     |&#10;# feat: → introduces new feature for user&#9;     |&#10;# docs: → changes to the documentation&#9;     |&#10;# style: → formatting; missing semicolons; does not affect actual function&#10;# refactor → refactors production code&#9;     |&#10;# test: → test adds missing tests; refactors tests &#10;&#10;Multi-line description of commit -&gt; explain what &amp; why&#10;&#10;Footer → Fix issue #[]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/CSVReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/CSVReader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated-Class-Contact-List-2023-01-25.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated-Class-Contact-List-2023-01-25.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated-Class-Contact-List-2023-01-28.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated-Class-Contact-List-2023-01-28.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Mentor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/Mentor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithms/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/CSVReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/CSVReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Generated-Class-Contact-List-2023-01-25.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Generated-Class-Contact-List-2023-01-25.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Generated-Class-Contact-List-2023-01-28.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Generated-Class-Contact-List-2023-01-28.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Mentor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Mentor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated Class Contact List" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Generated Class Contact List" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="decouple-data" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -166,7 +157,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feat/separated-lists-of-mentors" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
