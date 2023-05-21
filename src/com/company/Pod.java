@@ -10,6 +10,7 @@ public class Pod {
     private boolean isOnline;
     private boolean isClayton;
 
+    int numOfMentors;
     public Pod(String podName, String time, boolean isReading, boolean isMath,
                boolean isIP, boolean isOnline, boolean isClayton) {
         this.podName = podName;
@@ -19,6 +20,8 @@ public class Pod {
         this.isIP = isIP;
         this.isOnline = isOnline;
         this.isClayton = isClayton;
+
+        numOfMentors = 0;
     }
 
     @Override

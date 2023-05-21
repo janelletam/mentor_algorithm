@@ -1,20 +1,13 @@
 package com.company;
 import java.util.*;
-import java.io.*;
 
-public class newMentor{
+public class termMentor extends Mentor{
 
     // All fields below are from application form
     // NOTE: To count total number of availabilities, use getAllAvailableTimes().size()
 
-    private String firstName;
-    private String preferredName;
-    private String lastName;
-
-    private String phoneNumber;
-    //Todo: Join these fields together
-
     private String programPreference;
+
     private String MWT9to11OL;
     private String MWT5to6OL;
     private String TT9to11Surrey;
@@ -22,15 +15,17 @@ public class newMentor{
     private String TT4to6Mosaic;
 
     // Our own variable
-    private ArrayList<String> allAvailableTimes;
+    HashMap<String, Integer> allAvailableTimes;
+
+    Pod termPod;
 
 
     //"Submission Date","First Name (Legal)","Preferred First Name (if different from legal name)","Last Name (Legal)","Phone Number","Program Preference Options","Online - Mondays, Wednesdays & Thursdays 9:40 - 11:10 am","Online - Mondays, Wednesdays & Thursdays 5:10 - 6:40 pm","In-Person at Surrey City Centre Library - Tuesdays & Thursdays 9:30 - 11:00 am","In-Person at Sunset Community Centre - Tuesdays & Thursdays 4:30 - 6:00 pm","In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm"
 
-    public newMentor(String submissionDate, String firstName, String preferredName, String lastName,
+    public termMentor(String submissionDate, String firstName, String lastName, String email,
                   String phoneNumber, String programPreference, String MWT9to11OL, String MWT5to6OL, String TT9to11Surrey, String TT4to6Sunset, String TT4to6Mosaic ) {
+        super(firstName,lastName,email,phoneNumber);
         this.firstName = firstName;
-        this.preferredName = preferredName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.programPreference = programPreference;
@@ -42,30 +37,16 @@ public class newMentor{
 
         // In the application form, users can choose to be either a Reading Mentor or a Math Mentor or both
         // Prioritize Reading Mentors b/c there are more reading pods
-    }
 
-    public String getFirstName() {
-        return firstName;
-    }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 
-    public String getPreferredName() {
-        return preferredName;
-    }
+        allAvailableTimes.put("MWT9to11OL", Integer.parseInt(MWT9to11OL));
+        allAvailableTimes.put("MWT5to6OL", Integer.parseInt(MWT5to6OL));
+        allAvailableTimes.put("TT9to11Surrey", Integer.parseInt(TT9to11Surrey));
+        allAvailableTimes.put("TT4to6Sunset", Integer.parseInt(TT4to6Sunset));
+        allAvailableTimes.put("TT4to6Mosaic", Integer.parseInt(TT4to6Mosaic));
 
-    public void setPreferredName(String preferredName) {
-        this.preferredName = preferredName;
-    }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getProgramPreference() {
@@ -112,8 +93,4 @@ public class newMentor{
         this.TT4to6Mosaic = TT4to6Mosaic;
     }
 
-    @Override
-    public int equals(newMentor ) {
-        return o1.phoneNumber.equals(o2.phoneNumber);
-    }
 }

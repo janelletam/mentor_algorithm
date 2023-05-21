@@ -1,8 +1,7 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
+
 
 public class newAlgo {
 
@@ -15,117 +14,87 @@ public class newAlgo {
         -   Last term mentor List: List of Volunteer that are in LBN last term
         -   Pod List: list of pods that are available this term
      */
-    static ArrayList<newMentor> allMentors = new ArrayList<>();
+    static ArrayList<termMentor> allMentors = new ArrayList<>();
     static ArrayList<LastTermMentor> lastTermVolunteer = new ArrayList<>();
     static ArrayList<Pod> allPods = new ArrayList<>();
-    static HashMap<Pod,ArrayList<newMentor>> sortedList = new HashMap<>();
-    static HashSet<newMentor> blackList = new HashSet<>();
+    static ArrayList<Mentor> blackList = new ArrayList<>();
+
+    static final int maxNumOfPplPerPod = 10;
+    /*
+    Output lists:
+        - Sorted List
+        - List to be manually reviewed
+
+     */
     public static void main(String[] args) {
-        //input all the mentors in the allMentors class
-        //input all the pods
-
-        //input blackList
-
-        newMentor a = new newMentor();
-        if(a.equals)
-
-
-
-        for (int i = 0; i < allPods.size(); i++) {
-            sortedList.put(allPods.get(i),new ArrayList<>());
+        //reads in all the input
+        for (int i = 0; i < allMentors.size(); i++) {
+            for (int j = i; j < allMentors.size(); j++) {
+                if (allMentors.get(i).equals(allMentors.get(j))) {
+                    allMentors.remove(j);
+                    j--;
+                }
+            }
         }
 
         for (int i = 0; i < allMentors.size(); i++) {
-            newMentor thisMentor = allMentors.get(i);
-            if(blackList.contains(thisMentor)){
-                continue;
-            }
-
-            boolean added = false;
-            if(Integer.parseInt(thisMentor.getMWT5to6OL()) == 1){
-                if(sortedList.get().size() >= 8){ //can be added
-                    sortedList.get().add(thisMentor);
-                    added = true;
+            for (int j = i; j < blackList.size(); j++) {
+                if (allMentors.get(i).equals(blackList.get(j))) {
+                    allMentors.remove(j);
+                    j--;
                 }
             }
-            else if(Integer.parseInt(thisMentor.getMWT9to11OL()) == 1){
-                if(sortedList.get().size() >= 8){ //can be added
-                    sortedList.get().add(thisMentor);
-                    added = true;
+        }
+
+        ArrayList<termMentor> sortedMentors = new ArrayList<>();
+        for (int i = 0; i < allMentors.size(); i++) {
+            for (int j = 0; j < lastTermVolunteer.size(); j++) {
+                if (allMentors.get(i).equals(lastTermVolunteer.get(j))) {
+                    sortedMentors.add(0,allMentors.get(i));
+                } else {
+                    sortedMentors.add(allMentors.get(i));
                 }
             }
+        }
 
-            if(added){
-                continue;
-            }
+        for (int i = 0; i < allMentors.size(); i++) {
+            placeMentorInPod(sortedMentors.get(i));
+        }
 
-            if(Integer.parseInt(thisMentor.getTT4to6Mosaic()) == 2){
-                if(sortedList.get().size() >= 8){ //can be added
-                    sortedList.get().add(thisMentor);
-                    added = true;
-                }
-            }
-            else if(Integer.parseInt(thisMentor.getTT4to6Sunset()) == 2){
-                if(sortedList.get().size() >= 8){ //can be added
-                    sortedList.get().add(thisMentor);
-                    added = true;
-                }
-            }
-            else if(Integer.parseInt(thisMentor.getTT9to11Surrey()) == 2){
-                if(sortedList.get().size() >= 8){ //can be added
-                    sortedList.get().add(thisMentor);
-                    added = true;
+
+    }
+
+
+    public static void placeMentorInPod(termMentor currentMentor) {// Match availability to name of Pod
+
+        for (Pod thisPod : allPods) {
+            if (currentMentor.allAvailableTimes.get(thisPod).equals((Integer) 1)) {
+                if (thisPod.numOfMentors < maxNumOfPplPerPod) {
+                    currentMentor.termPod = thisPod;
+                    thisPod.numOfMentors++;
+                    return;
                 }
             }
+        }
 
-
-            if(added){
-                break;
+        for (Pod thisPod : allPods) {
+            if (currentMentor.allAvailableTimes.get(thisPod).equals((Integer) 2)) {
+                if (thisPod.numOfMentors < maxNumOfPplPerPod) {
+                    currentMentor.termPod = thisPod;
+                    thisPod.numOfMentors++;
+                    return;
+                }
             }
+        }
 
-            for (int i = 0; i < allMentors.size(); i++) {
-                newMentor thisMentor = allMentors.get(i);
-                if(blackList.contains(thisMentor)){
-                    continue;
+        for (Pod thisPod : allPods) {
+            if (currentMentor.allAvailableTimes.get(thisPod).equals((Integer) 3)) {
+                if (thisPod.numOfMentors < maxNumOfPplPerPod) {
+                    currentMentor.termPod = thisPod;
+                    thisPod.numOfMentors++;
+                    return;
                 }
-
-                boolean added = false;
-                if(Integer.parseInt(thisMentor.getMWT5to6OL()) == 2){
-                    if(sortedList.get().size() >= 8){ //can be added
-                        sortedList.get().add(thisMentor);
-                        added = true;
-                    }
-                }
-                else if(Integer.parseInt(thisMentor.getMWT9to11OL()) == 2){
-                    if(sortedList.get().size() >= 8){ //can be added
-                        sortedList.get().add(thisMentor);
-                        added = true;
-                    }
-                }
-
-                if(added){
-                    continue;
-                }
-
-                if(Integer.parseInt(thisMentor.getTT4to6Mosaic()) == 2){
-                    if(sortedList.get().size() >= 8){ //can be added
-                        sortedList.get().add(thisMentor);
-                        added = true;
-                    }
-                }
-                else if(Integer.parseInt(thisMentor.getTT4to6Sunset()) == 1){
-                    if(sortedList.get().size() >= 8){ //can be added
-                        sortedList.get().add(thisMentor);
-                        added = true;
-                    }
-                }
-                else if(Integer.parseInt(thisMentor.getTT9to11Surrey()) == 2){
-                    if(sortedList.get().size() >= 8){ //can be added
-                        sortedList.get().add(thisMentor);
-                        added = true;
-                    }
-                }
-
+            }
         }
     }
 
