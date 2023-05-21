@@ -2,7 +2,7 @@ package com.company;
 import java.util.*;
 import java.io.*;
 
-public class newMentor {
+public class newMentor{
 
     // All fields below are from application form
     // NOTE: To count total number of availabilities, use getAllAvailableTimes().size()
@@ -110,5 +110,10 @@ public class newMentor {
 
     public void setTT4to6Mosaic(String TT4to6Mosaic) {
         this.TT4to6Mosaic = TT4to6Mosaic;
+    }
+
+    @Override
+    public int equals(newMentor ) {
+        return o1.phoneNumber.equals(o2.phoneNumber);
     }
 }
