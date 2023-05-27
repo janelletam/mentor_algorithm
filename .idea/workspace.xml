@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baf74b33-6585-4b97-a8c4-7be8b268a2be" name="Default Changelist" comment="Test?">
+    <list default="true" id="baf74b33-6585-4b97-a8c4-7be8b268a2be" name="Default Changelist" comment="Update May 20th">
+      <change afterPath="$PROJECT_DIR$/src/com/company/updates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Pod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Pod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/newAlgo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/newAlgo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/newMentor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/newMentor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +103,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Timothy Lin/IdeaProjects/programmingTemplates&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -145,7 +148,10 @@
       <updated>1670546323724</updated>
       <workItem from="1684295606297" duration="1625000" />
       <workItem from="1684459456296" duration="2761000" />
-      <workItem from="1684642739652" duration="714000" />
+      <workItem from="1684642739652" duration="6572000" />
+      <workItem from="1684819320508" duration="567000" />
+      <workItem from="1684902779704" duration="167000" />
+      <workItem from="1685153138117" duration="1040000" />
     </task>
     <task id="LOCAL-00001" summary="Add summary and a few other features">
       <created>1675014480203</created>
@@ -168,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684296893606</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update May 20th">
+      <created>1684643472585</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684643472585</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +201,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add summary and a few other features" />
     <MESSAGE value="Added newMentor class (for mentors with pod preferences, newAlgo class for algo with pod preference and blacklist)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added newMentor class (for mentors with pod preferences, newAlgo class for algo with pod preference and blacklist)." />
+    <MESSAGE value="Update May 20th" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update May 20th" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

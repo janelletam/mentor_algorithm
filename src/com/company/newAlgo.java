@@ -19,6 +19,11 @@ public class newAlgo {
     static ArrayList<Pod> allPods = new ArrayList<>();
     static ArrayList<Mentor> blackList = new ArrayList<>();
 
+    static ArrayList<updates> changes = new ArrayList<>();
+
+    static ArrayList<Mentor> waitlist = new ArrayList<>();
+
+
     static final int maxNumOfPplPerPod = 10;
     /*
     Output lists:
@@ -36,7 +41,7 @@ public class newAlgo {
                 }
             }
         }
-
+        //blacklist
         for (int i = 0; i < allMentors.size(); i++) {
             for (int j = i; j < blackList.size(); j++) {
                 if (allMentors.get(i).equals(blackList.get(j))) {
@@ -45,7 +50,7 @@ public class newAlgo {
                 }
             }
         }
-
+        //put all last term mentors first
         ArrayList<termMentor> sortedMentors = new ArrayList<>();
         for (int i = 0; i < allMentors.size(); i++) {
             for (int j = 0; j < lastTermVolunteer.size(); j++) {
@@ -57,16 +62,47 @@ public class newAlgo {
             }
         }
 
-        for (int i = 0; i < allMentors.size(); i++) {
+        for (int i = 0; i < sortedMentors.size(); i++) {
             placeMentorInPod(sortedMentors.get(i));
         }
+
+        for (int i = 0; i < sortedMentors.size(); i++) {
+            if(sortedMentors.get(i).termPod == null){
+                waitlist.add(sortedMentors.get(i));
+                sortedMentors.remove(i);
+                i--;
+            }
+        }
+
+        for (int i = 0; i < changes.size(); i++) {
+            updates thisUpdate = changes.get(i);
+            if(thisUpdate.id == 1){
+                for (int j = 0; j < sortedMentors.size(); j++) {
+                    if(sortedMentors.get(i).equals(thisUpdate.currM)){
+                        sortedMentors.remove(i);
+                        i--;
+                    }
+                }
+            }
+            else{
+                for (int j = 0; j < sortedMentors.size(); j++) {
+                    if(sortedMentors.get(i).equals(thisUpdate.currM)){
+                        termMentor thisT = sortedMentors.get(i);
+                        thisT.termPod = thisUpdate.changedPod;
+                        sortedMentors.remove(i);
+                        sortedMentors.add(i,thisT);
+                    }
+                }
+            }
+        }
+
 
 
     }
 
 
     public static void placeMentorInPod(termMentor currentMentor) {// Match availability to name of Pod
-
+        //if mentor has first priority, put them there
         for (Pod thisPod : allPods) {
             if (currentMentor.allAvailableTimes.get(thisPod).equals((Integer) 1)) {
                 if (thisPod.numOfMentors < maxNumOfPplPerPod) {
@@ -77,6 +113,7 @@ public class newAlgo {
             }
         }
 
+        //second priority
         for (Pod thisPod : allPods) {
             if (currentMentor.allAvailableTimes.get(thisPod).equals((Integer) 2)) {
                 if (thisPod.numOfMentors < maxNumOfPplPerPod) {
@@ -87,6 +124,7 @@ public class newAlgo {
             }
         }
 
+        //third priority
         for (Pod thisPod : allPods) {
             if (currentMentor.allAvailableTimes.get(thisPod).equals((Integer) 3)) {
                 if (thisPod.numOfMentors < maxNumOfPplPerPod) {

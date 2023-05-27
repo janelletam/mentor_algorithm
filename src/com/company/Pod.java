@@ -24,6 +24,10 @@ public class Pod {
         numOfMentors = 0;
     }
 
+    public Pod(String podName){
+        this.podName = podName;
+    }
+
     @Override
     public String toString() {
         return "Pod: " + podName + " | " + time;
