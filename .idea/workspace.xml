@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baf74b33-6585-4b97-a8c4-7be8b268a2be" name="Default Changelist" comment="Type: subject - should be ~50 chars (this length)&#10;# fix: → fix for a bug&#9;&#9;&#9;&#9;     |&#10;# feat: → introduces new feature for user&#9;     |&#10;# docs: → changes to the documentation&#9;     |&#10;# style: → formatting; missing semicolons; does not affect actual function&#10;# refactor → refactors production code&#9;     |&#10;# test: → test adds missing tests; refactors tests &#10;&#10;Multi-line description of commit -&gt; explain what &amp; why&#10;&#10;Footer → Fix issue #[]">
+      <change afterPath="$PROJECT_DIR$/src/com/company/OpenCSVReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithms/com/company/Generated Class Contact List" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Generated Class Contact List" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/CSVReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/CSVReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Mentor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Mentor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,11 +103,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/company" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/opencsv-5.7.1.jar" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -115,6 +118,11 @@
       <recent name="D:\work-and-ECs\lms-developer\algorithms\src\com\company\resources" />
       <recent name="D:\work-and-ECs\lms-developer\algorithms" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle --build-file" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -197,12 +205,12 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>87</line>
+          <line>88</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/CSVReader.java</url>
-          <line>42</line>
+          <line>41</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class CSVReader {
-
     static BufferedReader bufferedReader;
     static StringTokenizer tokenizer;
     static final int NUM_OF_ATTRIBUTES_PLUS_ONE = 22;
@@ -200,5 +199,4 @@ public class CSVReader {
         return s.trim();
 
     }
-
 }

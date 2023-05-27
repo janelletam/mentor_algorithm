@@ -1,28 +1,53 @@
 package com.company;
 
+import com.opencsv.bean.CsvBindByName;
+
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 
 public class Mentor {
     // All fields below are from application form
     // NOTE: To count total number of availabilities, use getAllAvailableTimes().size()
 
+    @CsvBindByName (column = "First Name (Legal)")
     private String firstName;
+
+    @CsvBindByName (column = "Preferred First Name (if different from legal name)")
     private String preferredName;
+
+    @CsvBindByName (column = "Last Name (Legal)")
     private String lastName;
 
+    private String dateOfBirth;
     private int age;
+
     private String phoneNumber;
     private String email;
     private String gmail;
     private String pronouns;
+    private String languages;
     private String school;
-    private String yearsAttended;
-    private String major;
+    private String programCompleted;
+    private String returnInTheFuture;
 
     //Todo: Join these fields together
     private String emergencyContactName;
     private String emergencyContactEmail;
     private String emergencyContactNumber;
+
+    private String whyDoYouWantToVolunteer;
+    private String experienceWithIndigenous;
+    private String explainExperienceWithIndigenous;
+    private String experienceWithNeurodivergent;
+
+    private boolean isPhotoVideoPermissionTrue;
+
+    private String moodleUsername;
+    private String moodleEmail;
+
+    private boolean isReturning;
+    private String previousPosition;
 
     private boolean isReadingMentor;
     private boolean isMathMentor;
@@ -32,36 +57,50 @@ public class Mentor {
     private String availabilityInPersonCommunityCentre;
     private String availabilityClayton;
 
-    private boolean isReturning;
-    private boolean isPhotoVideoConsentTrue;
-
     private String additionalNotesAboutMentor;
     private String pod;
 
     // Our own variable
     private ArrayList<String> allAvailableTimes;
 
-    public Mentor(String firstName, String preferredName, String lastName, String age,
-                  String phoneNumber, String email, String gmail, String pronouns, String school,
-                  String yearsAttended, String major, String emergencyContactName,
-                  String emergencyContactEmail, String emergencyContactNumber,
-                  String isReadingMentor, String availabilityOnline,
-                  String availabilityInPersonSchool, String availabilityInPersonCommunityCentre,
-                  String availabilityClayton, String isReturning, String isPhotoVideoConsentTrue) {
+    public Mentor(String firstName, String preferredName, String lastName, String dateOfBirth,
+                  String phoneNumber, String email, String gmail, String pronouns, String languages,
+                  String school, String programCompleted, String returnInTheFuture,
+                  String emergencyContactName, String emergencyContactEmail, String emergencyContactNumber,
+                  String whyDoYouWantToVolunteer, String experienceWithIndigenous,
+                  String explainExperienceWithIndigenous, String experienceWithNeurodivergent,
+                  String isPhotoVideoConsentTrue, String moodleUsername, String moodleEmail,
+                  String isReturning, String previousPosition, String isReadingMentor,
+                  String availabilityOnline, String availabilityInPersonSchool, String availabilityInPersonCommunityCentre,
+                  String availabilityClayton) {
         this.firstName = firstName;
         this.preferredName = preferredName;
         this.lastName = lastName;
-        this.age = Integer.parseInt(age);
+        this.dateOfBirth = dateOfBirth;
+
+        age = Period.between(dateOfBirth, LocalDate.now()).getYears();
+
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.gmail = gmail;
         this.pronouns = pronouns;
+        this.languages = languages;
         this.school = school;
-        this.yearsAttended = yearsAttended;
-        this.major = major;
+        this.programCompleted = programCompleted;
+        this.returnInTheFuture = returnInTheFuture;
+
         this.emergencyContactName = emergencyContactName;
         this.emergencyContactEmail = emergencyContactEmail;
         this.emergencyContactNumber = emergencyContactNumber;
+
+        this.whyDoYouWantToVolunteer = whyDoYouWantToVolunteer;
+        this.experienceWithIndigenous = experienceWithIndigenous;
+        this.explainExperienceWithIndigenous = explainExperienceWithIndigenous;
+        this.experienceWithNeurodivergent = experienceWithNeurodivergent;
+
+        this.moodleUsername = moodleUsername;
+        this.moodleEmail = moodleEmail;
+        this.previousPosition = previousPosition;
 
         // In the application form, users can choose to be either a Reading Mentor or a Math Mentor or both
         // Prioritize Reading Mentors b/c there are more reading pods
@@ -122,29 +161,34 @@ public class Mentor {
         if (isReturning.equalsIgnoreCase("yes")) this.isReturning = true;
         else this.isReturning = false;
 
-        if (isPhotoVideoConsentTrue.equalsIgnoreCase("yes")) this.isPhotoVideoConsentTrue = true;
-        else this.isPhotoVideoConsentTrue = false;
+        if (isPhotoVideoConsentTrue.equalsIgnoreCase("yes")) this.isPhotoVideoPermissionTrue = true;
+        else this.isPhotoVideoPermissionTrue = false;
 
     }
 
     //Todo: Migrate logic to output class
 
-
     @Override
     public String toString() {
         return firstName + ',' + preferredName + ',' + lastName + ',' +
-                age + ',' + pronouns + ',' + email + ',' + phoneNumber + ',' + school + ',' + yearsAttended + ',' + major + ',' +
+                age + ',' + phoneNumber + ',' + email + ',' + gmail + ',' + pronouns + ',' + languages + ',' +
+                school + ',' + programCompleted + ',' + returnInTheFuture + ',' +
                 emergencyContactName + ";" + emergencyContactNumber + ";" + emergencyContactEmail + ',' +
-                isReturning + ',' + isPhotoVideoConsentTrue + ',' + additionalNotesAboutMentor + ',' +
+                whyDoYouWantToVolunteer + ";" + experienceWithIndigenous + ";" + explainExperienceWithIndigenous + ',' + experienceWithNeurodivergent + ',' +
+                isPhotoVideoPermissionTrue + ',' + isReturning + ',' + additionalNotesAboutMentor + ',' +
                 isReadingMentor + ',' + isMathMentor + ',' + availabilityOnline + ',' + availabilityInPersonSchool + ',' +
                 availabilityInPersonCommunityCentre + ',' + availabilityClayton;
     }
 
     public static String printMentorOutputFieldOrder() {
         return "First Name" + ',' + "Preferred Name" + ',' + "Last Name" + ',' +
-                "Age" + ',' + "Pronouns" + ',' + "Email" + ',' + "Phone Number" + ',' + "School" + ',' + "Years Attended" + ',' + "Major (if applicable)" + ',' +
-                "Emergency Contact" + ',' +
-                "Returning Mentor" + ',' + "Photo Video Consent" + ',' + "Additional Notes About Mentor" + ',' +
+                "Age" + ',' + "Phone Number" + ',' + "Email" + ',' + "Gmail" + ',' + "Pronouns" + "Languages" + ',' + "School" + ',' +
+                "Did you complete this program" + ',' + "If you are not currently enrolled in school, do you plan to return in the future? (Yes or No)" + ',' +
+                "Emergency Contact (First Name, Last Name)" + ',' + "Emergency Contact (Email Address)" + ',' + "Emergency Contact (Phone Number)" + ',' +
+                "Why do you want to volunteer with us? (Related Experience)" + ',' + "Do you have any experience working with Indigenous populations/individuals?" + ',' + "Please explain your experience working with Indigenous populations/individuals." + ',' +
+                "Do you have any experience working with neurodivergent populations/individuals (ie. ASD, ADHD, learning disabilities)?" + ',' +
+                "Photo Video Consent" + ',' + "Moodle Account Username" + ',' + "Moodle Account Email" + ',' + "Returning Mentor" + ',' +
+                "Previous Position" + ',' +"Additional Notes About Mentor" + ',' +
                 "Reading Mentor" + ',' + "Math Mentor" + ',' + "Online Availability" + ',' + "In Person School Availability" + ',' +
                 "In Person Community Centre Availability" + ',' + "Clayton Availability";
     }
@@ -272,6 +316,14 @@ public class Mentor {
         this.pronouns = pronouns;
     }
 
+    public String getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String languages) {
+        this.languages = languages;
+    }
+
     public String getSchool() {
         return school;
     }
@@ -280,20 +332,20 @@ public class Mentor {
         this.school = school;
     }
 
-    public String getYearsAttended() {
-        return yearsAttended;
+    public String getProgramCompleted() {
+        return programCompleted;
     }
 
-    public void setYearsAttended(String yearsAttended) {
-        this.yearsAttended = yearsAttended;
+    public void setProgramCompleted(String programCompleted) {
+        this.programCompleted = programCompleted;
     }
 
-    public String getMajor() {
-        return major;
+    public String getReturnInTheFuture() {
+        return returnInTheFuture;
     }
 
-    public void setMajor(String major) {
-        this.major = major;
+    public void setReturnInTheFuture(String returnInTheFuture) {
+        this.returnInTheFuture = returnInTheFuture;
     }
 
     public String getEmergencyContactName() {
@@ -376,12 +428,68 @@ public class Mentor {
         this.isReturning = isReturning;
     }
 
-    public boolean isPhotoVideoConsentTrue() {
-        return isPhotoVideoConsentTrue;
+    public boolean isPhotoVideoPermissionTrue() {
+        return isPhotoVideoPermissionTrue;
     }
 
-    public void setPhotoVideoConsentTrue(boolean isPhotoVideoConsentTrue) {
-        this.isPhotoVideoConsentTrue = isPhotoVideoConsentTrue;
+    public void setPhotoVideoPermissionTrue(boolean isPhotoVideoConsentTrue) {
+        this.isPhotoVideoPermissionTrue = isPhotoVideoConsentTrue;
+    }
+
+    public String getWhyDoYouWantToVolunteer() {
+        return whyDoYouWantToVolunteer;
+    }
+
+    public void setWhyDoYouWantToVolunteer(String whyDoYouWantToVolunteer) {
+        this.whyDoYouWantToVolunteer = whyDoYouWantToVolunteer;
+    }
+
+    public String getExperienceWithIndigenous() {
+        return experienceWithIndigenous;
+    }
+
+    public void setExperienceWithIndigenous(String experienceWithIndigenous) {
+        this.experienceWithIndigenous = experienceWithIndigenous;
+    }
+
+    public String getExplainExperienceWithIndigenous() {
+        return explainExperienceWithIndigenous;
+    }
+
+    public void setExplainExperienceWithIndigenous(String explainExperienceWithIndigenous) {
+        this.explainExperienceWithIndigenous = explainExperienceWithIndigenous;
+    }
+
+    public String getExperienceWithNeurodivergent() {
+        return experienceWithNeurodivergent;
+    }
+
+    public void setExperienceWithNeurodivergent(String experienceWithNeurodivergent) {
+        this.experienceWithNeurodivergent = experienceWithNeurodivergent;
+    }
+
+    public String getMoodleUsername() {
+        return moodleUsername;
+    }
+
+    public void setMoodleUsername(String moodleUsername) {
+        this.moodleUsername = moodleUsername;
+    }
+
+    public String getMoodleEmail() {
+        return moodleEmail;
+    }
+
+    public void setMoodleEmail(String moodleEmail) {
+        this.moodleEmail = moodleEmail;
+    }
+
+    public String getPreviousPosition() {
+        return previousPosition;
+    }
+
+    public void setPreviousPosition(String previousPosition) {
+        this.previousPosition = previousPosition;
     }
 
     public void setAllAvailableTimes(ArrayList<String> allAvailableTimes) {

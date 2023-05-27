@@ -35,6 +35,7 @@ public class Main {
     static final String LAST_TERM_MENTOR = "Same pod as last term";
 
     public static void main(String[] args) throws IOException {
+
         // Step 0: Initialization - Create multiple ArrayLists of mentors before sort
         initialMentorList = new ArrayList<>();
         toBeManuallyReviewed = new ArrayList<>();
