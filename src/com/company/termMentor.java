@@ -25,9 +25,6 @@ public class termMentor extends Mentor{
     public termMentor(String submissionDate, String firstName, String lastName, String email,
                   String phoneNumber, String programPreference, String MWT9to11OL, String MWT5to6OL, String TT9to11Surrey, String TT4to6Sunset, String TT4to6Mosaic ) {
         super(firstName,lastName,email,phoneNumber);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
         this.programPreference = programPreference;
         this.MWT9to11OL = MWT9to11OL;
         this.MWT5to6OL = MWT5to6OL;

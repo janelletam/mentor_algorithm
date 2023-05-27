@@ -4,6 +4,16 @@ import java.util.*;
 
 
 public class newAlgo {
+    /*
+    Next Steps:
+    - Input
+    - Restructuring the Mentor classes
+    - Output
+    - Debugging
+    - Integration
+     */
+
+
 
     /*
     Input lists:
@@ -31,8 +41,19 @@ public class newAlgo {
         - List to be manually reviewed
 
      */
+
+
+    static final String MENTOR_CSV_FILE_PATH = "src/com/company/USE - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv";
+    static final String POD_CSV_FILE_PATH = "src/com/company/allPods.csv";
+    static final String LAST_TERM_MENTORS_FILE_PATH = "src/com/company/Fall 2022 Registration Data.csv";
+    static final String OUTPUT_FILE_PATH = "src/com/company/";
+    static final String OUTPUT_FILE_NAME = "Generated-Class-Contact-List-";
+
+
     public static void main(String[] args) {
         //reads in all the input
+
+
         for (int i = 0; i < allMentors.size(); i++) {
             for (int j = i; j < allMentors.size(); j++) {
                 if (allMentors.get(i).equals(allMentors.get(j))) {
