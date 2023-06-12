@@ -23,8 +23,8 @@ public class Main {
     static final int ONE_PREFERENCE = 1;
     static final int POD_MAX_SIZE = 8;
 
-    static final String MENTOR_CSV_FILE_PATH = "src/com/company/USE - USE GMAIL - Winter 2023 - LBN Mentor Registration-export-data-14-01-2023-08_42_32_PM.csv";
-    static final String POD_CSV_FILE_PATH = "src/com/company/allPods.csv";
+    static final String MENTOR_CSV_FILE_PATH = "src/com/company/LBN_Mentor_Application_Form_(Su2023-06-12_18_52_13.csv";
+    static final String POD_CSV_FILE_PATH = "src/com/company/allPods - Summer 2023.csv";
     static final String LAST_TERM_MENTORS_FILE_PATH = "src/com/company/Fall 2022 Registration Data.csv";
     static final String OUTPUT_FILE_PATH = "src/com/company/";
     static final String OUTPUT_FILE_NAME = "Generated-Class-Contact-List-";

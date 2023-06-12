@@ -118,13 +118,14 @@ public class Mentor {
     public Mentor(String firstName, String preferredName, String lastName, String dateOfBirth,
                   String phoneNumber, String email, String gmail, String pronouns, String languages,
                   String school, String programCompleted, String returnInTheFuture,
-                  String emergencyContactName, String emergencyContactEmail, String emergencyContactNumber,
+                  String emergencyContactFirstName, String emergencyContactLastName,
+                  String emergencyContactEmail, String emergencyContactNumber,
                   String whyDoYouWantToVolunteer, String experienceWithIndigenous,
                   String explainExperienceWithIndigenous, String experienceWithNeurodivergent,
                   String isPhotoVideoConsentTrue, String moodleUsername, String moodleEmail,
                   String isReturning, String previousPosition, String isReadingMentor,
                   String OnlineMWTMorn, String OnlineMWTAfternoon, String IPSurreyMorn,
-                  String IPSunsetAfternoon, String IPMosaicAfternoon) {
+                  String IPSunsetAfternoon, String IPMosaicAfternoon, String additionalNotesAboutMentor) {
         this.firstName = firstName;
         this.preferredName = preferredName;
         this.lastName = lastName;
@@ -173,6 +174,8 @@ public class Mentor {
         this.IPSurreyMorn = IPSurreyMorn;
         this.IPSunsetAfternoon = IPSunsetAfternoon;
         this.IPMosaicAfternoon = IPMosaicAfternoon;
+
+        this.additionalNotesAboutMentor = additionalNotesAboutMentor;
         /*
         // NOTE: Need space after ";" b/c we later compare the characters of these fields with our list of Pods
         // Space interferes with this comparison
@@ -249,7 +252,7 @@ public class Mentor {
                 "Previous Position" + ',' +"Additional Notes About Mentor" + ',' +
                 "Reading Mentor" + ',' + "Math Mentor" + ',' + "Online - Mondays, Wednesdays & Thursdays 9:40 - 11:10 am" + ',' + "Online - Mondays, Wednesdays & Thursdays 5:10 - 6:40 pm" + ',' +
                 "In-Person at Surrey City Centre Library - Tuesdays & Thursdays 9:30 - 11:00 am" + ',' + "In-Person at Sunset Community Centre - Tuesdays & Thursdays 4:50 - 6:15pm"
-                + "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm";
+                + "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm" + "Additional Comments on Availability";
     }
 
     public String printContactInfo() {

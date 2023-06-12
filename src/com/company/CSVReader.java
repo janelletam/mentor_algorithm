@@ -99,13 +99,19 @@ public class CSVReader {
         String preferredName = attributes[1];
         String lastName = attributes[2];
 
-        String age = attributes[3];
+        String dateOfBirth = attributes[3];
         String phoneNumber = attributes[4];
         String email = attributes[5];
         String gmail = attributes [6];
         String pronouns = attributes[7];
-        String school = attributes[8];
-        String yearsAttended = attributes[9];
+        String languages = attributes[8];
+        String school = attributes[9];
+        String programCompleted = attributes[10];
+        String returnInTheFuture = attributes[11];
+        String emergencyContactFirstName = attributes[12];
+        String emergencyContactLastName = attributes[13];
+
+/*        String yearsAttended = attributes[9];
         String major = attributes[10];
 
         //Todo: Join these fields together
@@ -116,27 +122,41 @@ public class CSVReader {
             i = 1;
         } else {
             emergencyContactName = attributes[11];
-        }
+        }*/
 
-        String emergencyContactEmail = attributes[12 + i];
-        String emergencyContactNumber = attributes[13 + i];
+        String emergencyContactEmail = attributes[14];
+        String emergencyContactNumber = attributes[15];
+        String whyDoYouWantToVolunteer = attributes[16];
+        String experienceWithIndigenous = attributes[17];
+        String explainExperienceWithIndigenous = attributes[18];
+        String experienceWithNeurodivergent = attributes[19];
 
-        String isReadingMentor = attributes[14 + i];
+        String isPhotoVideoConsentTrue = attributes[20];
+        String moodleUsername = attributes[21];
+        String moodleEmail = attributes[22];
+        String isReturning = attributes[23];
+        String previousPosition = attributes[24];
+        String isReadingMentor = attributes[25];
+        String OnlineMWTMorn = attributes[26];
+        String OnlineMWTAfternoon = attributes[27];
+        String IPSurreyMorn = attributes[28];
+        String IPSunsetAfternoon = attributes[29];
+        String IPMosaicAfternoon = attributes[30];
+        String additionalNotesAboutMentor = attributes[31];
 
-        String availabilityOnline = attributes[15 + i];
-        String availabilityInPersonSchool = attributes[16 + i];
-        String availabilityInPersonCommunityCentre = attributes[17 + i];
-        String availabilityClayton = attributes[18 + i];
-
-        String isReturning = attributes[19 + i];
-        String isPhotoVideoConsentTrue = attributes[20 + i];
 
         // Create and return Mentor with these attributes
-        return new Mentor(firstName, preferredName, lastName, age, phoneNumber, email, gmail, pronouns,
-                school, yearsAttended, major, emergencyContactName, emergencyContactEmail,
-                emergencyContactNumber, isReadingMentor, availabilityOnline,
-                availabilityInPersonSchool, availabilityInPersonCommunityCentre, availabilityClayton,
-                isReturning, isPhotoVideoConsentTrue);
+        return new Mentor(firstName, preferredName, lastName, dateOfBirth,
+                phoneNumber, email, gmail, pronouns, languages,
+                school, programCompleted, returnInTheFuture,
+                emergencyContactFirstName, emergencyContactLastName,
+                emergencyContactEmail, emergencyContactNumber,
+                whyDoYouWantToVolunteer, experienceWithIndigenous,
+                explainExperienceWithIndigenous, experienceWithNeurodivergent,
+                isPhotoVideoConsentTrue, moodleUsername, moodleEmail,
+                isReturning, previousPosition, isReadingMentor,
+                OnlineMWTMorn, OnlineMWTAfternoon, IPSurreyMorn,
+                IPSunsetAfternoon, IPMosaicAfternoon, additionalNotesAboutMentor);
     }
 
     private static Pod createPod(String[] attributes) {
@@ -146,17 +166,15 @@ public class CSVReader {
         boolean isMath = false;
         boolean isIP = false;
         boolean isOnline = false;
-        boolean isClayton = false;
 
         // If any of the variables from the file are 1 (meaning true), make the pod's variables also true
         if (attributes[2].equals("1")) isReading = true;
         if (attributes[3].equals("1")) isMath = true;
         if (attributes[4].equals("1")) isIP = true;
         if (attributes[5].equals("1")) isOnline = true;
-        if (attributes[6].equals("1")) isClayton = true;
 
         // Create and return Pod with these attributes
-        return new Pod(time, podName, isReading, isMath, isIP, isOnline, isClayton);
+        return new Pod(time, podName, isReading, isMath, isIP, isOnline);
     }
 
     private static LastTermMentor createLastTermMentor(String[] attributes) {

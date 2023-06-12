@@ -8,17 +8,15 @@ public class Pod {
     private boolean isMath;
     private boolean isIP;
     private boolean isOnline;
-    private boolean isClayton;
 
     public Pod(String podName, String time, boolean isReading, boolean isMath,
-               boolean isIP, boolean isOnline, boolean isClayton) {
+               boolean isIP, boolean isOnline) {
         this.podName = podName;
         this.time = time;
         this.isReading = isReading;
         this.isMath = isMath;
         this.isIP = isIP;
         this.isOnline = isOnline;
-        this.isClayton = isClayton;
     }
 
     @Override
@@ -75,13 +73,5 @@ public class Pod {
 
     public void setOnline(boolean online) {
         isOnline = online;
-    }
-
-    public boolean isClayton() {
-        return isClayton;
-    }
-
-    public void setClayton(boolean clayton) {
-        isClayton = clayton;
     }
 }
