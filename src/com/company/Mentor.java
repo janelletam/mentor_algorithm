@@ -19,44 +19,96 @@ public class Mentor {
     @CsvBindByName (column = "Last Name (Legal)")
     private String lastName;
 
+    @CsvBindByName (column = "Date of Birth")
     private String dateOfBirth;
     private int age;
 
+    @CsvBindByName (column = "Phone Number")
     private String phoneNumber;
+
+    @CsvBindByName (column = "Preferred Email Address (for all LBN communications)")
     private String email;
+
+    @CsvBindByName (column = "Gmail Address (must contain the word \"gmail,\" as our materials are shared through Google Drive)")
     private String gmail;
+
+    @CsvBindByName (column = "Pronouns")
     private String pronouns;
+
+    @CsvBindByName (column = "Do you speak any other languages? Please list them below.")
     private String languages;
+
+    @CsvBindByName (column = "School Name")
     private String school;
+
+    @CsvBindByName (column = "Did you complete this program")
     private String programCompleted;
+
+    @CsvBindByName (column = "If you are not currently enrolled in school, do you plan to return in the future?")
     private String returnInTheFuture;
 
     //Todo: Join these fields together
+    @CsvBindByName (column = "Emergency Contact First Name")
+    private String emergencyContactFirstName;
+
+    @CsvBindByName (column = "Emergency Contact Last Name")
+    private String emergencyContactLastName;
+
     private String emergencyContactName;
+
+    @CsvBindByName (column = "Emergency Contact Email")
     private String emergencyContactEmail;
+
+    @CsvBindByName (column = "Emergency Contact Number")
     private String emergencyContactNumber;
 
+    @CsvBindByName (column = "Please tell us a bit about yourself. Why do you want to volunteer with us? Please share any experience you have which is relevant to the position for which you are applying.")
     private String whyDoYouWantToVolunteer;
+
+    @CsvBindByName (column = "Do you have any experience working with Indigenous populations/individuals?")
     private String experienceWithIndigenous;
+
+    @CsvBindByName (column = "Please explain.")
     private String explainExperienceWithIndigenous;
+
+    @CsvBindByName (column = "Do you have any experience working with neurodivergent populations/individuals (ie. ASD, ADHD, learning disabilities)? If so, please describe them.")
     private String experienceWithNeurodivergent;
 
+    @CsvBindByName (column = "LBN would like the opportunity to take photos and videos of participants for our newsletters or for stories about LBN. Do you (and your parent/guardian, if you are under 18) consent to your inclusion in photos and videos of sessions?")
     private boolean isPhotoVideoPermissionTrue;
 
+    @CsvBindByName (column = "Username")
     private String moodleUsername;
+
+    @CsvBindByName (column = "Email")
     private String moodleEmail;
 
+    @CsvBindByName (column = "Have you previously volunteered with us before?")
     private boolean isReturning;
+
+    @CsvBindByName (column = "What was your previous position?")
     private String previousPosition;
 
+    @CsvBindByName (column = "Program Preference Options")
     private boolean isReadingMentor;
     private boolean isMathMentor;
 
-    private String availabilityOnline;
-    private String availabilityInPersonSchool;
-    private String availabilityInPersonCommunityCentre;
-    private String availabilityClayton;
+    @CsvBindByName (column = "Online - Mondays, Wednesdays & Thursdays 9:40 - 11:10 am")
+    private String OnlineMWTMorn;
 
+    @CsvBindByName (column = "Online - Mondays, Wednesdays & Thursdays 5:10 - 6:40 pm")
+    private String OnlineMWTAfternoon;
+
+    @CsvBindByName (column = "In-Person at Surrey City Centre Library - Tuesdays & Thursdays 9:30 - 11:00 am")
+    private String IPSurreyMorn;
+
+    @CsvBindByName (column = "In-Person at Sunset Community Centre - Tuesdays & Thursdays 4:50 - 6:15pm")
+    private String IPSunsetAfternoon;
+
+    @CsvBindByName (column = "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm")
+    private String IPMosaicAfternoon;
+
+    @CsvBindByName (column = "Additional Comments on Availability")
     private String additionalNotesAboutMentor;
     private String pod;
 
@@ -71,14 +123,15 @@ public class Mentor {
                   String explainExperienceWithIndigenous, String experienceWithNeurodivergent,
                   String isPhotoVideoConsentTrue, String moodleUsername, String moodleEmail,
                   String isReturning, String previousPosition, String isReadingMentor,
-                  String availabilityOnline, String availabilityInPersonSchool, String availabilityInPersonCommunityCentre,
-                  String availabilityClayton) {
+                  String OnlineMWTMorn, String OnlineMWTAfternoon, String IPSurreyMorn,
+                  String IPSunsetAfternoon, String IPMosaicAfternoon) {
         this.firstName = firstName;
         this.preferredName = preferredName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
 
-        age = Period.between(dateOfBirth, LocalDate.now()).getYears();
+        // TODO: Write function to convert date of birth to age
+        // age = Period.between(dateOfBirth, LocalDate.now()).getYears();
 
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -89,7 +142,10 @@ public class Mentor {
         this.programCompleted = programCompleted;
         this.returnInTheFuture = returnInTheFuture;
 
-        this.emergencyContactName = emergencyContactName;
+        this.emergencyContactFirstName = emergencyContactFirstName;
+        this.emergencyContactLastName = emergencyContactLastName;
+        this.emergencyContactName = (new StringBuilder()).append(getEmergencyContactFirstName()).append(getEmergencyContactLastName()).toString();
+
         this.emergencyContactEmail = emergencyContactEmail;
         this.emergencyContactNumber = emergencyContactNumber;
 
@@ -112,18 +168,19 @@ public class Mentor {
             this.isMathMentor = true;
         }
 
-        this.availabilityOnline = availabilityOnline;
-        this.availabilityInPersonSchool = availabilityInPersonSchool;
-        this.availabilityInPersonCommunityCentre = availabilityInPersonCommunityCentre;
-        this.availabilityClayton = availabilityClayton;
-
+        this.OnlineMWTMorn = OnlineMWTMorn;
+        this.OnlineMWTAfternoon = OnlineMWTAfternoon;
+        this.IPSurreyMorn = IPSurreyMorn;
+        this.IPSunsetAfternoon = IPSunsetAfternoon;
+        this.IPMosaicAfternoon = IPMosaicAfternoon;
+        /*
         // NOTE: Need space after ";" b/c we later compare the characters of these fields with our list of Pods
         // Space interferes with this comparison
         allAvailableTimes = new ArrayList<>();
-        String[] individualClaytonTimes = availabilityClayton.split("; ");
-        String[] individualIPSchoolTimes = availabilityInPersonSchool.split("; ");
-        String[] individualIPCommunityCentreTimes = availabilityInPersonCommunityCentre.split("; ");
-        String[] individualOnlineTimes = availabilityOnline.split("; ");
+        String[] individualClaytonTimes = IPSunsetAfternoon.split("; ");
+        String[] individualIPSchoolTimes = OnlineMWTAfternoon.split("; ");
+        String[] individualIPCommunityCentreTimes = IPSurreyMorn.split("; ");
+        String[] individualOnlineTimes = OnlineMWTMorn.split("; ");
 
         // Prioritize Clayton > IP > Earlier Online Times > Later Online Times
         // Add all Clayton availabilities from individualClaytonTimes to allAvailableTimes
@@ -158,6 +215,7 @@ public class Mentor {
             }
         }
 
+         */
         if (isReturning.equalsIgnoreCase("yes")) this.isReturning = true;
         else this.isReturning = false;
 
@@ -176,8 +234,8 @@ public class Mentor {
                 emergencyContactName + ";" + emergencyContactNumber + ";" + emergencyContactEmail + ',' +
                 whyDoYouWantToVolunteer + ";" + experienceWithIndigenous + ";" + explainExperienceWithIndigenous + ',' + experienceWithNeurodivergent + ',' +
                 isPhotoVideoPermissionTrue + ',' + isReturning + ',' + additionalNotesAboutMentor + ',' +
-                isReadingMentor + ',' + isMathMentor + ',' + availabilityOnline + ',' + availabilityInPersonSchool + ',' +
-                availabilityInPersonCommunityCentre + ',' + availabilityClayton;
+                isReadingMentor + ',' + isMathMentor + ',' + OnlineMWTMorn + ',' + OnlineMWTAfternoon + ',' +
+                IPSurreyMorn + ',' + IPSunsetAfternoon + ',' + IPMosaicAfternoon;
     }
 
     public static String printMentorOutputFieldOrder() {
@@ -189,8 +247,9 @@ public class Mentor {
                 "Do you have any experience working with neurodivergent populations/individuals (ie. ASD, ADHD, learning disabilities)?" + ',' +
                 "Photo Video Consent" + ',' + "Moodle Account Username" + ',' + "Moodle Account Email" + ',' + "Returning Mentor" + ',' +
                 "Previous Position" + ',' +"Additional Notes About Mentor" + ',' +
-                "Reading Mentor" + ',' + "Math Mentor" + ',' + "Online Availability" + ',' + "In Person School Availability" + ',' +
-                "In Person Community Centre Availability" + ',' + "Clayton Availability";
+                "Reading Mentor" + ',' + "Math Mentor" + ',' + "Online - Mondays, Wednesdays & Thursdays 9:40 - 11:10 am" + ',' + "Online - Mondays, Wednesdays & Thursdays 5:10 - 6:40 pm" + ',' +
+                "In-Person at Surrey City Centre Library - Tuesdays & Thursdays 9:30 - 11:00 am" + ',' + "In-Person at Sunset Community Centre - Tuesdays & Thursdays 4:50 - 6:15pm"
+                + "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm";
     }
 
     public String printContactInfo() {
@@ -211,24 +270,24 @@ public class Mentor {
 
     // Mentor is not available if they have not selected any times
     public boolean isAvailable() {
-        return (!((availabilityClayton.equalsIgnoreCase("NaN") || availabilityClayton.equalsIgnoreCase("")) &&
-                (availabilityOnline.equalsIgnoreCase("NaN") || availabilityOnline.equalsIgnoreCase("")) &&
-                (availabilityInPersonSchool.equalsIgnoreCase("NaN") || availabilityInPersonSchool.equalsIgnoreCase("")) &&
-                (availabilityInPersonCommunityCentre.equalsIgnoreCase("NaN") || availabilityInPersonCommunityCentre.equalsIgnoreCase(""))));
+        return (!((IPSunsetAfternoon.equalsIgnoreCase("NaN") || IPSunsetAfternoon.equalsIgnoreCase("")) &&
+                (OnlineMWTMorn.equalsIgnoreCase("NaN") || OnlineMWTMorn.equalsIgnoreCase("")) &&
+                (OnlineMWTAfternoon.equalsIgnoreCase("NaN") || OnlineMWTAfternoon.equalsIgnoreCase("")) &&
+                (IPSurreyMorn.equalsIgnoreCase("NaN") || IPSurreyMorn.equalsIgnoreCase(""))));
     }
 
     // Determine if the mentor has indicated availability for an in-person program.
     // In-person pods are harder to fill than online pods, so they should be placed in an
     // in-person program.
     public boolean hasInPerson() {
-        for (int i = 0; i < availabilityInPersonSchool.length(); i++) {
-            char thisChar = availabilityInPersonSchool.charAt(i);
+        for (int i = 0; i < OnlineMWTAfternoon.length(); i++) {
+            char thisChar = OnlineMWTAfternoon.charAt(i);
             if (thisChar == ';') {
                 return true;
             }
         }
-        for (int i = 0; i < availabilityInPersonCommunityCentre.length(); i++) {
-            char thisChar = availabilityInPersonCommunityCentre.charAt(i);
+        for (int i = 0; i < IPSurreyMorn.length(); i++) {
+            char thisChar = IPSurreyMorn.charAt(i);
             if (thisChar == ';') {
                 return true;
             }
@@ -237,7 +296,7 @@ public class Mentor {
     }
 
     public boolean hasOnline() {
-        if (availabilityOnline.length() != 0) return true;
+        if (OnlineMWTMorn.length() != 0) return true;
         return false;
     }
 
@@ -348,6 +407,30 @@ public class Mentor {
         this.returnInTheFuture = returnInTheFuture;
     }
 
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getEmergencyContactFirstName() {
+        return emergencyContactFirstName;
+    }
+
+    public void setEmergencyContactFirstName(String emergencyContactFirstName) {
+        this.emergencyContactFirstName = emergencyContactFirstName;
+    }
+
+    public String getEmergencyContactLastName() {
+        return emergencyContactLastName;
+    }
+
+    public void setEmergencyContactLastName(String emergencyContactLastName) {
+        this.emergencyContactLastName = emergencyContactLastName;
+    }
+
     public String getEmergencyContactName() {
         return emergencyContactName;
     }
@@ -388,36 +471,44 @@ public class Mentor {
         this.isMathMentor = isMathMentor;
     }
 
-    public String getAvailabilityOnline() {
-        return availabilityOnline;
+    public String getOnlineMWTMorn() {
+        return OnlineMWTMorn;
     }
 
-    public void setAvailabilityOnline(String availabilityOnline) {
-        this.availabilityOnline = availabilityOnline;
+    public void setOnlineMWTMorn(String onlineMWTMorn) {
+        this.OnlineMWTMorn = onlineMWTMorn;
     }
 
-    public String getAvailabilityInPersonSchool() {
-        return availabilityInPersonSchool;
+    public String getOnlineMWTAfternoon() {
+        return OnlineMWTAfternoon;
     }
 
-    public void setAvailabilityInPersonSchool(String availabilityInPersonSchool) {
-        this.availabilityInPersonSchool = availabilityInPersonSchool;
+    public void setOnlineMWTAfternoon(String onlineMWTAfternoon) {
+        this.OnlineMWTAfternoon = onlineMWTAfternoon;
     }
 
-    public String getAvailabilityInPersonCommunityCentre() {
-        return availabilityInPersonCommunityCentre;
+    public String getIPSurreyMorn() {
+        return IPSurreyMorn;
     }
 
-    public void setAvailabilityInPersonCommunityCentre(String availabilityInPersonCommunityCentre) {
-        this.availabilityInPersonCommunityCentre = availabilityInPersonCommunityCentre;
+    public void setIPSurreyMorn(String IPSurreyMorn) {
+        this.IPSurreyMorn = IPSurreyMorn;
     }
 
-    public String getAvailabilityClayton() {
-        return availabilityClayton;
+    public String getIPSunsetAfternoon() {
+        return IPSunsetAfternoon;
     }
 
-    public void setAvailabilityClayton(String availabilityClayton) {
-        this.availabilityClayton = availabilityClayton;
+    public void setIPSunsetAfternoon(String IPSunsetAfternoon) {
+        this.IPSunsetAfternoon = IPSunsetAfternoon;
+    }
+
+    public String getIPMosaicAfternoon() {
+        return IPMosaicAfternoon;
+    }
+
+    public void setIPMosaicAfternoon(String IPMosaicAfternoon) {
+        this.IPMosaicAfternoon = IPMosaicAfternoon;
     }
 
     public boolean isReturning() {
