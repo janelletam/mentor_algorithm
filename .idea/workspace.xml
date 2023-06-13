@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baf74b33-6585-4b97-a8c4-7be8b268a2be" name="Default Changelist" comment="added changes list and waitlist" />
+    <list default="true" id="baf74b33-6585-4b97-a8c4-7be8b268a2be" name="Default Changelist" comment="added changes list and waitlist">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/LastTermMentor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/LastTermMentor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Mentor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Mentor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/newAlgo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/newAlgo.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +23,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="newAlgo" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -102,6 +112,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -145,7 +156,8 @@
       <workItem from="1684642739652" duration="6572000" />
       <workItem from="1684819320508" duration="567000" />
       <workItem from="1684902779704" duration="167000" />
-      <workItem from="1685153138117" duration="1678000" />
+      <workItem from="1685153138117" duration="3640000" />
+      <workItem from="1686670508959" duration="2685000" />
     </task>
     <task id="LOCAL-00001" summary="Add summary and a few other features">
       <created>1675014480203</created>
@@ -193,7 +205,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="newAlgo" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

@@ -7,8 +7,6 @@ public class LastTermMentor extends Mentor{
         lastTermPod = podName;
     }
 
-
-
     public String getPodName() {
         return lastTermPod;
     }

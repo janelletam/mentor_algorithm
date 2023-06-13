@@ -1,6 +1,9 @@
 package com.company;
 
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.io.*;
+import java.time.*;
 
 
 public class newAlgo {
@@ -39,7 +42,6 @@ public class newAlgo {
     Output lists:
         - Sorted List
         - List to be manually reviewed
-
      */
 
 
@@ -50,7 +52,7 @@ public class newAlgo {
     static final String OUTPUT_FILE_NAME = "Generated-Class-Contact-List-";
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //reads in all the input
 
 
@@ -117,8 +119,73 @@ public class newAlgo {
             }
         }
 
+        //output
+
+        classContactListOutput(sortedMentors);
 
 
+    }
+
+    public static void classContactListOutput(ArrayList<termMentor> sorted) throws IOException {
+        StringBuilder classContactList = new StringBuilder();
+
+        classContactList.append("GENERATED CLASS CONTACT LIST: " + getCurrentTime());
+
+        // Step 7: Print Class Contact List Summary
+        classContactList.append("\n\n---------------------------------------------------");
+        classContactList.append("\nCLASS CONTACT LIST SUMMARY");
+        classContactList.append("\nFilled pods: ");
+        for (Pod thisPod : generateListOfFilledPods()) {
+            classContactList.append("\n" + thisPod.getPodName());
+        }
+
+        classContactList.append("\n\nPods that still need mentors: ");
+        for (String thisPod : generateListOfNotFilledPods()) {
+            classContactList.append("\n" + thisPod);
+        }
+
+        classContactList.append("\n\nTotal number of applicants: " + allMentors.size());
+
+        classContactList.append("\n\nTotal number of mentors in In-Person Programs: " + calculateNumberOfIPMentors());
+        classContactList.append("\nTotal number of mentors in Online Programs: " + calculateNumberOfOnlineMentors());
+//        classContactList.append("\nTotal number of mentors in Clayton Programs: " + calculateNumberOfClaytonMentors());
+
+
+
+        classContactList.append("\n\nTotal number of placed mentors (qualified): " + calculateNumberOfPlacedMentors());
+        classContactList.append("\nTotal number of waitlisted mentors: " + waitlist.size());
+//        classContactList.append("\n\nTotal number of mentor spots left: " + numberOfOpenSpots);
+
+        for (Pod pod: allPods) {
+            classContactList.append("\n\n---------------------------------------------------");
+            classContactList.append("\n" + pod.toString());
+            classContactList.append("\n" + Mentor.printMentorOutputFieldOrder());
+            for (termMentor thisMentor : sorted) {
+                if(thisMentor.termPod.equals(pod)) {
+                    classContactList.append("\n" + thisMentor.toString());
+                }
+            }
+        }
+
+        classContactList.append("\n\n---------------------------------------------------");
+        classContactList.append("\nMentor Wait List:");
+        classContactList.append("\n" + Mentor.printMentorOutputFieldOrder());
+        for (Mentor waitListedMentor : waitlist) {
+            classContactList.append("\n" + waitListedMentor);
+        }
+
+//        classContactList.append("\n\n---------------------------------------------------");
+//        classContactList.append("\nTo Be Manually Reviewed:");
+//        classContactList.append("\n" + Mentor.printMentorOutputFieldOrder());
+//        for (Mentor toBeReviewedMentor : toBeManuallyReviewed) {
+//            classContactList.append("\n" + toBeReviewedMentor);
+//        }
+
+        System.out.println(OUTPUT_FILE_PATH + OUTPUT_FILE_NAME + getCurrentDate() + ".csv");
+        File file = new File(OUTPUT_FILE_PATH + OUTPUT_FILE_NAME + getCurrentDate() + ".csv");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.append(classContactList);
+        }
     }
 
 
@@ -155,6 +222,65 @@ public class newAlgo {
                 }
             }
         }
+    }
+
+
+
+    public static String getCurrentTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
+    }
+
+    public static String getCurrentDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
+    }
+
+    // Collect Data
+    public static ArrayList<Pod> generateListOfFilledPods() {
+        ArrayList<Pod> listOfFilledPods = new ArrayList<>();
+        for (Pod thisPod : allPods) {
+            if (thisPod.numOfMentors == maxNumOfPplPerPod) {
+                listOfFilledPods.add(thisPod);
+            };
+        }
+
+        return listOfFilledPods;
+    }
+
+    public static ArrayList<String> generateListOfNotFilledPods() {
+        ArrayList<String> listOfNotFilledPods = new ArrayList<>();
+        for (Pod thisPod : allPods) {
+            if (thisPod.numOfMentors < maxNumOfPplPerPod) {
+
+                listOfNotFilledPods.add(thisPod.getPodName() + " | " + thisPod.getTime() + " | " +
+                        (maxNumOfPplPerPod - thisPod.numOfMentors) + " Spots");
+            };
+        }
+
+        return listOfNotFilledPods;
+    }
+
+    public static int calculateNumberOfPlacedMentors(ArrayList<termMentor> a) {
+        return a.size();
+    }
+
+    public static int calculateNumberOfIPMentors(ArrayList<termMentor> a) {
+        int numberOfIPMentors = 0;
+        for (termMentor t : a) {
+            if (t.termPod.isIP()) numberOfIPMentors++;
+        }
+        return numberOfIPMentors;
+    }
+
+    public static int calculateNumberOfOnlineMentors(ArrayList<termMentor> a) {
+        int numberOfOnlineMentors = 0;
+        for (termMentor t : a) {
+            if (t.termPod.isIP()) numberOfOnlineMentors++;
+        }
+        return numberOfOnlineMentors;
     }
 
 

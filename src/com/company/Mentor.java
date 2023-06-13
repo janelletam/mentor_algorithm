@@ -50,4 +50,13 @@ public class Mentor {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
+
+    public static String printMentorOutputFieldOrder() {
+        return "First Name" + ',' + "Preferred Name" + ',' + "Last Name" + ',' +
+                "Age" + ',' + "Pronouns" + ',' + "Email" + ',' + "Phone Number" + ',' + "School" + ',' + "Years Attended" + ',' + "Major (if applicable)" + ',' +
+                "Emergency Contact" + ',' +
+                "Returning Mentor" + ',' + "Photo Video Consent" + ',' + "Additional Notes About Mentor" + ',' +
+                "Reading Mentor" + ',' + "Math Mentor" + ',' + "Online Availability" + ',' + "In Person School Availability" + ',' +
+                "In Person Community Centre Availability" + ',' + "Clayton Availability";
+    }
 }
