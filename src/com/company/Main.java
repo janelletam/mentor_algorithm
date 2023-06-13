@@ -25,7 +25,7 @@ public class Main {
 
     static final String MENTOR_CSV_FILE_PATH = "src/com/company/LBN_Mentor_Application_Form_(Su2023-06-12_18_52_13.csv";
     static final String POD_CSV_FILE_PATH = "src/com/company/allPods - Summer 2023.csv";
-    static final String LAST_TERM_MENTORS_FILE_PATH = "src/com/company/Fall 2022 Registration Data.csv";
+    static final String LAST_TERM_MENTORS_FILE_PATH = "src/com/company/Winter 2023 Registration Data - Sheet1.csv";
     static final String OUTPUT_FILE_PATH = "src/com/company/";
     static final String OUTPUT_FILE_NAME = "Generated-Class-Contact-List-";
 
@@ -128,8 +128,6 @@ public class Main {
 
         classContactList.append("\n\nTotal number of mentors in In-Person Programs: " + calculateNumberOfIPMentors());
         classContactList.append("\nTotal number of mentors in Online Programs: " + calculateNumberOfOnlineMentors());
-        classContactList.append("\nTotal number of mentors in Clayton Programs: " + calculateNumberOfClaytonMentors());
-
 
 
         classContactList.append("\n\nTotal number of placed mentors (qualified): " + calculateNumberOfPlacedMentors());
@@ -360,13 +358,4 @@ public class Main {
         }
         return numberOfOnlineMentors;
     }
-
-    public static int calculateNumberOfClaytonMentors() {
-        int numberOfClaytonMentors = 0;
-        for (Pod thisPod : output.keySet()) {
-            if (thisPod.isClayton()) numberOfClaytonMentors = numberOfClaytonMentors + output.get(thisPod).size();
-        }
-        return numberOfClaytonMentors;
-    }
-
 }
