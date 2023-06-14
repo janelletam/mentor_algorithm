@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5078138-ff54-4859-bb78-8e4b6685979d" name="Default Changelist" comment="Type: subject - should be ~50 chars (this length)&#10;# fix: → fix for a bug&#9;&#9;&#9;&#9;     |&#10;# feat: → introduces new feature for user&#9;     |&#10;# docs: → changes to the documentation&#9;     |&#10;# style: → formatting; missing semicolons; does not affect actual function&#10;# refactor → refactors production code&#9;     |&#10;# test: → test adds missing tests; refactors tests &#10;&#10;Multi-line description of commit -&gt; explain what &amp; why&#10;&#10;Footer → Fix issue #[]">
+    <list default="true" id="e5078138-ff54-4859-bb78-8e4b6685979d" name="Default Changelist" comment="added output function to CCL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
@@ -97,14 +97,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/opencsv-5.7.1.jar" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\work-and-ECs\lms-developer\algorithms\src\com\company" />
@@ -178,7 +175,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add summary and a few other features" />
@@ -201,7 +197,7 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>88</line>
+          <line>115</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

@@ -5,6 +5,7 @@ import com.opencsv.bean.CsvBindByName;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Mentor {
     // All fields below are from application form
@@ -113,7 +114,8 @@ public class Mentor {
     private String pod;
 
     // Our own variable
-    private ArrayList<String> allAvailableTimes;
+    HashMap<String, Integer> allAvailableTimes;
+
 
     public Mentor(String firstName, String preferredName, String lastName, String dateOfBirth,
                   String phoneNumber, String email, String gmail, String pronouns, String languages,
@@ -176,6 +178,12 @@ public class Mentor {
         this.IPMosaicAfternoon = IPMosaicAfternoon;
 
         this.additionalNotesAboutMentor = additionalNotesAboutMentor;
+
+        allAvailableTimes.put("MWT9to11OL", Integer.parseInt(MWT9to11OL));
+        allAvailableTimes.put("MWT5to6OL", Integer.parseInt(MWT5to6OL));
+        allAvailableTimes.put("TT9to11Surrey", Integer.parseInt(TT9to11Surrey));
+        allAvailableTimes.put("TT4to6Sunset", Integer.parseInt(TT4to6Sunset));
+        allAvailableTimes.put("TT4to6Mosaic", Integer.parseInt(TT4to6Mosaic));
         /*
         // NOTE: Need space after ";" b/c we later compare the characters of these fields with our list of Pods
         // Space interferes with this comparison

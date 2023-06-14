@@ -15,6 +15,12 @@ public class Main {
     //Todo: Each term, update availability list
     static ArrayList<Pod> allPods;
     static ArrayList<LastTermMentor> lastTermMentorList;
+
+    static ArrayList<Mentor> blackList;
+
+
+
+    //output match the pods to the list of mentors in the pod
     static LinkedHashMap<Pod, ArrayList<Mentor>> output;
     static ArrayList<Mentor> mentorWaitList;
 
@@ -46,6 +52,10 @@ public class Main {
 
         // List of all the mentors from last term
         lastTermMentorList = new ArrayList<>();
+
+        //black list
+        blackList = new ArrayList<>();
+
 
         allPods = new ArrayList<>();
         output = new LinkedHashMap<>();
@@ -80,9 +90,26 @@ public class Main {
             output.put(pod, new ArrayList<>());
         }
 
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // Important: The initialization of Mentor already placed all the available Clayton and IP times in front.
-        // Therefore, the IP and Clayton availabilities will be prioritized
+        //Step 3.5: remove duplicates
+        for (int i = 0; i < initialMentorList.size(); i++) {
+            for (int j = i; j < initialMentorList.size(); j++) {
+                if (initialMentorList.get(i).equals(initialMentorList.get(j))) {
+                    initialMentorList.remove(j);
+                    j--;
+                }
+            }
+        }
+        //blacklist
+        for (int i = 0; i < initialMentorList.size(); i++) {
+            for (int j = i; j < blackList.size(); j++) {
+                if (initialMentorList.get(i).equals(blackList.get(j))) {
+                    initialMentorList.remove(j);
+                    j--;
+                }
+            }
+        }
+
+
 
         // Step 4: Place the returning Mentors who only have 1 preference
         for (int i = 0; i < goodList.size(); i++) {
@@ -101,6 +128,34 @@ public class Main {
             // Current Mentor has been removed from goodList, so a new Mentor has replaced their previous index spot
             i--;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //Todo: Create separate output class to separate logic
 
@@ -225,75 +280,144 @@ public class Main {
     }
 
     public static void placeMentorInPod(Mentor currentMentor) {// Match availability to name of Pod
-        ArrayList<Pod> possiblePods = new ArrayList<>();
-
+        //if mentor has first priority, put them there
         for (Pod thisPod : allPods) {
-            for (String thisAvailableTime : currentMentor.getAllAvailableTimes()) {
-                System.out.println(thisAvailableTime);
-                if (thisPod.getTime().equalsIgnoreCase(thisAvailableTime)
-                        && ((thisPod.isReading() && currentMentor.isReadingMentor())
-                        || (thisPod.isMath() && currentMentor.isMathMentor()))) {
-                    possiblePods.add(thisPod);
+            if (currentMentor.getAllAvailableTimes().get(thisPod).equals((Integer) 1)) {
+                if (thisPod. < POD_MAX_SIZE) {
+                    ArrayList<Mentor> t = output.get(thisPod);
+                    t.add(currentMentor);
+                    output.put(thisPod,t);
+                    currentMentor.termPod = thisPod;
+                    thisPod.numOfMentors++;
+                    return;
                 }
             }
         }
 
-        // If there are no possible Pods the Mentor can be placed in,
-        // add the Mentor to the toBeManuallyReviewed list
-        if (possiblePods.size() == 0) {
-            toBeManuallyReviewed.add(currentMentor);
-            currentMentor.setAdditionalNotesAboutMentor(NO_POSSIBLE_PODS);
-            goodList.remove(currentMentor);
-            return;
-        }
-
-        // If current Mentor is returning, then go through the entire last term mentor list to see if they were in
-        // a pod from last term. See if first names and last names match.
-        // If so, check to see if the mentor's previous pod is in the list of Possible Pods
-        // If yes and there is room in the pod, add mentor to their previous pod
-        if (currentMentor.isReturning()) {
-            for (LastTermMentor lastTermMentor : lastTermMentorList) {
-                if (lastTermMentor.getFirstName().equalsIgnoreCase(currentMentor.getFirstName()) &&
-                        lastTermMentor.getLastName().equalsIgnoreCase(currentMentor.getLastName())) {
-
-                    // Iterate through all the possible pods until Mentor is placed
-                    for (Pod thisPod : possiblePods) {
-                        ArrayList<Mentor> podList = output.get(thisPod);
-
-                        if (podList.size() < POD_MAX_SIZE && thisPod.getPodName().equalsIgnoreCase(lastTermMentor.getPodName())) {
-                            podList.add(currentMentor);
-                            goodList.remove(currentMentor);
-                            lastTermMentorList.remove(lastTermMentor);
-                            currentMentor.setAdditionalNotesAboutMentor(LAST_TERM_MENTOR);
-                            currentMentor.setPod(thisPod.getPodName());
-
-                            // Current mentor has been removed from goodList, so a new Mentor has replaced their
-                            // previous index spot
-                            return;
-                        }
-                    }
+        //second priority
+        for (Pod thisPod : allPods) {
+            if (currentMentor.getAllAvailableTimes().get(thisPod).equals((Integer) 2)) {
+                if (thisPod.numOfMentors < POD_MAX_SIZE) {
+                    ArrayList<Mentor> t = output.get(thisPod);
+                    t.add(currentMentor);
+                    output.put(thisPod,t);
+                    currentMentor.termPod = thisPod;
+                    thisPod.numOfMentors++;
+                    return;
                 }
             }
         }
 
-        // Iterate through all the possible pods until Mentor is placed
-        for (Pod thisPod : possiblePods) {
-            ArrayList<Mentor> podList = output.get(thisPod);
-
-            if (podList.size() < POD_MAX_SIZE) {
-                podList.add(currentMentor);
-                goodList.remove(currentMentor);
-                currentMentor.setPod(thisPod.getPodName());
-                // Current mentor has been removed from goodList, so a new Mentor has replaced their
-                // previous index spot
-                return;
+        //third priority
+        for (Pod thisPod : allPods) {
+            if (currentMentor.getAllAvailableTimes().get(thisPod).equals((Integer) 3)) {
+                if (thisPod.numOfMentors < POD_MAX_SIZE) {
+                    ArrayList<Mentor> t = output.get(thisPod);
+                    t.add(currentMentor);
+                    output.put(thisPod,t);
+                    currentMentor.termPod = thisPod;
+                    thisPod.numOfMentors++;
+                    return;
+                }
             }
         }
 
-        // No spots for Mentor, so add them to the mentorWaitList
-        mentorWaitList.add(currentMentor);
-        currentMentor.setAdditionalNotesAboutMentor(possiblePods.toString());
-        goodList.remove(currentMentor);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        ArrayList<Pod> possiblePods = new ArrayList<>();
+//
+//        for (Pod thisPod : allPods) {
+//            for (String thisAvailableTime : currentMentor.getAllAvailableTimes()) {
+//                System.out.println(thisAvailableTime);
+//                if (thisPod.getTime().equalsIgnoreCase(thisAvailableTime)
+//                        && ((thisPod.isReading() && currentMentor.isReadingMentor())
+//                        || (thisPod.isMath() && currentMentor.isMathMentor()))) {
+//                    possiblePods.add(thisPod);
+//                }
+//            }
+//        }
+//
+//        // If there are no possible Pods the Mentor can be placed in,
+//        // add the Mentor to the toBeManuallyReviewed list
+//        if (possiblePods.size() == 0) {
+//            toBeManuallyReviewed.add(currentMentor);
+//            currentMentor.setAdditionalNotesAboutMentor(NO_POSSIBLE_PODS);
+//            goodList.remove(currentMentor);
+//            return;
+//        }
+//
+//        // If current Mentor is returning, then go through the entire last term mentor list to see if they were in
+//        // a pod from last term. See if first names and last names match.
+//        // If so, check to see if the mentor's previous pod is in the list of Possible Pods
+//        // If yes and there is room in the pod, add mentor to their previous pod
+//        if (currentMentor.isReturning()) {
+//            for (LastTermMentor lastTermMentor : lastTermMentorList) {
+//                if (lastTermMentor.getFirstName().equalsIgnoreCase(currentMentor.getFirstName()) &&
+//                        lastTermMentor.getLastName().equalsIgnoreCase(currentMentor.getLastName())) {
+//
+//                    // Iterate through all the possible pods until Mentor is placed
+//                    for (Pod thisPod : possiblePods) {
+//                        ArrayList<Mentor> podList = output.get(thisPod);
+//
+//                        if (podList.size() < POD_MAX_SIZE && thisPod.getPodName().equalsIgnoreCase(lastTermMentor.getPodName())) {
+//                            podList.add(currentMentor);
+//                            goodList.remove(currentMentor);
+//                            lastTermMentorList.remove(lastTermMentor);
+//                            currentMentor.setAdditionalNotesAboutMentor(LAST_TERM_MENTOR);
+//                            currentMentor.setPod(thisPod.getPodName());
+//
+//                            // Current mentor has been removed from goodList, so a new Mentor has replaced their
+//                            // previous index spot
+//                            return;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        // Iterate through all the possible pods until Mentor is placed
+//        for (Pod thisPod : possiblePods) {
+//            ArrayList<Mentor> podList = output.get(thisPod);
+//
+//            if (podList.size() < POD_MAX_SIZE) {
+//                podList.add(currentMentor);
+//                goodList.remove(currentMentor);
+//                currentMentor.setPod(thisPod.getPodName());
+//                // Current mentor has been removed from goodList, so a new Mentor has replaced their
+//                // previous index spot
+//                return;
+//            }
+//        }
+//
+//        // No spots for Mentor, so add them to the mentorWaitList
+//        mentorWaitList.add(currentMentor);
+//        currentMentor.setAdditionalNotesAboutMentor(possiblePods.toString());
+//        goodList.remove(currentMentor);
     }
 
     public static String getCurrentTime() {
