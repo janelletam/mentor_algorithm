@@ -169,7 +169,7 @@ public class CSVReader {
         String IPSurreyMorn = attributes[28];
         String IPSunsetAfternoon = attributes[29];
         String IPMosaicAfternoon = attributes[30];
-        String additionalNotesAboutMentor = attributes[31];
+        String additionalCommentsOnAvailability = attributes[31];
 
 
         // Create and return Mentor with these attributes
@@ -183,7 +183,7 @@ public class CSVReader {
                 isPhotoVideoConsentTrue, moodleUsername, moodleEmail,
                 isReturning, previousPosition, isReadingMentor,
                 OnlineMWTMorn, OnlineMWTAfternoon, IPSurreyMorn,
-                IPSunsetAfternoon, IPMosaicAfternoon, additionalNotesAboutMentor);
+                IPSunsetAfternoon, IPMosaicAfternoon, additionalCommentsOnAvailability);
     }
 
     private static Pod createPod(String[] attributes) {

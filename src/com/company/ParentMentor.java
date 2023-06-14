@@ -11,6 +11,9 @@ public class ParentMentor {
         this.lastName = lastName;
     }
 
+    public ParentMentor() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

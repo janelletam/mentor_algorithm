@@ -21,6 +21,10 @@ public class Pod {
         numOfMentors = 0;
     }
 
+    public Pod() {
+
+    }
+
     @Override
     public String toString() {
         return getTime();

@@ -170,7 +170,7 @@ public class Mentor extends ParentMentor {
 
         // In the application form, users can choose to be either a Reading Mentor or a Math Mentor or both
         // Prioritize Reading Mentors b/c there are more reading pods
-        if (isReadingMentor.equalsIgnoreCase("Reading Mentor") || isReadingMentor.equalsIgnoreCase("Reading Mentor; Math Mentor")) {
+        if (isReadingMentor.equalsIgnoreCase("Reading Mentor") || isReadingMentor.equalsIgnoreCase("Reading Mentor\nMath Mentor")) {
             this.isReadingMentor = true;
             this.isMathMentor = false;
         } else {
@@ -241,6 +241,9 @@ public class Mentor extends ParentMentor {
         if (isPhotoVideoConsentTrue.equalsIgnoreCase("yes")) this.isPhotoVideoPermissionTrue = true;
         else this.isPhotoVideoPermissionTrue = false;
 
+    }
+
+    public Mentor() {
     }
 
     //Todo: Migrate logic to output class

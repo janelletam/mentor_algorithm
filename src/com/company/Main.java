@@ -1,5 +1,8 @@
 package com.company;
 
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
+
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -44,7 +47,7 @@ public class Main {
     static final int ONE_PREFERENCE = 1;
     static final int POD_MAX_SIZE = 8;
 
-    static final String MENTOR_CSV_FILE_PATH = "src/com/company/LBN_Mentor_Application_Form_(Su2023-06-12_18_52_13.csv";
+    static final String MENTOR_CSV_FILE_PATH = "src/com/company/LBN_Mentor_Application_Form_(Su2023-06-14_01_16_02.csv";
     static final String LAST_TERM_MENTORS_FILE_PATH = "src/com/company/Winter 2023 Registration Data - Sheet1.csv";
     static final String BLACK_LIST_FILE_PATH = "src/com/company/Summer 2023 Mentor Blacklist.csv";
     static final String POD_CSV_FILE_PATH = "src/com/company/allPods - Summer 2023.csv";
@@ -65,7 +68,14 @@ public class Main {
         System.out.println("Finished initialization");
 
         // Step 0: Read from CSV files to initialize all mentors and pods
-        initialMentorList = CSVReader.readMentorsFromCSV(MENTOR_CSV_FILE_PATH);
+        Reader reader = new BufferedReader(new FileReader(MENTOR_CSV_FILE_PATH));
+        CsvToBean<Mentor> csvReader = new CsvToBeanBuilder(reader)
+                .withType(Mentor.class)
+                .withSeparator(',')
+                .withIgnoreLeadingWhiteSpace(true)
+                .withIgnoreEmptyLine(true)
+                .build();
+        List<Mentor> testMentorList = csvReader.parse();
         System.out.println("Finished reading from mentor input");
 
         lastTermMentorList = CSVReader.readLastTermMentorsCSV(LAST_TERM_MENTORS_FILE_PATH);
