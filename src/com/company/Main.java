@@ -10,11 +10,14 @@ public class Main {
     /*
     Input lists:
         The following lists are the inputs
-        -   Volunteer List: A list of all the volunteers who have applied
+        -   Initial Mentor List: A list of all the volunteers who have applied
         -   Black List: List of Volunteers who are blocked from the program
         -   Changes List: List of Volunteers who later moved to a new Pod/ were removed from the program
-        -   Last term mentor List: List of Volunteer that are in LBN last term
-        -   Pod List: list of pods that are available this term
+        -   Last term mentor List: List of Volunteers that were in LBN last term
+        -   Pod List: list of Pods that are available this term
+
+    Internal Lists:
+        - Good List: List of Volunteers who are valid (meet age requirements, not on black list)
 
     Output lists:
         - Sorted List
@@ -26,6 +29,7 @@ public class Main {
     static ArrayList<Mentor> initialMentorList = new ArrayList<>();
     static ArrayList<Mentor> goodList = new ArrayList<>();
     static ArrayList<Mentor> toBeManuallyReviewed = new ArrayList<>();
+    static ArrayList<ParentMentor> blackList = new ArrayList<>();
 
     // List of all the pods being run this term & their times
     static ArrayList<Pod> allPods = new ArrayList<>();
@@ -41,12 +45,14 @@ public class Main {
     static final int POD_MAX_SIZE = 8;
 
     static final String MENTOR_CSV_FILE_PATH = "src/com/company/LBN_Mentor_Application_Form_(Su2023-06-12_18_52_13.csv";
-    static final String POD_CSV_FILE_PATH = "src/com/company/allPods - Summer 2023.csv";
     static final String LAST_TERM_MENTORS_FILE_PATH = "src/com/company/Winter 2023 Registration Data - Sheet1.csv";
+    static final String BLACK_LIST_FILE_PATH = "src/com/company/Summer 2023 Mentor Blacklist.csv";
+    static final String POD_CSV_FILE_PATH = "src/com/company/allPods - Summer 2023.csv";
     static final String OUTPUT_FILE_PATH = "src/com/company/";
     static final String OUTPUT_FILE_NAME = "Generated-Class-Contact-List-";
 
     static final String AGE_NOT_VALID = "Age not valid";
+    static final String BLACK_LIST = "Volunteer matches name on Blacklist";
     static final String NO_POSSIBLE_PODS = "No possible pods the Mentor can be placed in. " +
             "Mentor may not have indicated availability or their preferences may not match any pods.";
     static final String LAST_TERM_MENTOR = "Same pod as last term";
@@ -58,11 +64,14 @@ public class Main {
         initialMentorList = CSVReader.readMentorsFromCSV(MENTOR_CSV_FILE_PATH);
         System.out.println("Finished reading from mentor input");
 
-        allPods = CSVReader.readPodsFromCSV(POD_CSV_FILE_PATH);
-        System.out.println("Finished reading from pod input");
-
         lastTermMentorList = CSVReader.readLastTermMentorsCSV(LAST_TERM_MENTORS_FILE_PATH);
         System.out.println("Finished reading from last term mentors input");
+
+        blackList = CSVReader.readBlackListFromCSV(BLACK_LIST_FILE_PATH);
+        System.out.println("Finished reading from Blacklist mentors input");
+
+        allPods = CSVReader.readPodsFromCSV(POD_CSV_FILE_PATH);
+        System.out.println("Finished reading from pod input");
 
         // Step 0: Remove duplicates
         for (int i = 0; i < initialMentorList.size(); i++) {
@@ -74,13 +83,25 @@ public class Main {
             }
         }
 
-        // Step 1: First check validity of Mentors
+        // Step 1: First check validity of Mentors (age valid, make sure they are not in blacklist)
         for (Mentor currentMentor : initialMentorList) {
-            if (currentMentor.isValid()) {
+            if (currentMentor.isAgeValid()) {
                 goodList.add(currentMentor);
             } else {
                 toBeManuallyReviewed.add(currentMentor);
                 currentMentor.setAdditionalNotesAboutMentor(AGE_NOT_VALID);
+            }
+        }
+
+        // Blacklist
+        for (int i = 0; i < initialMentorList.size(); i++) {
+            for (int j = i; j < blackList.size(); j++) {
+                if (initialMentorList.get(i).equals(blackList.get(j))) {
+                    initialMentorList.remove(initialMentorList.get(i));
+                    toBeManuallyReviewed.add(initialMentorList.get(i));
+                    initialMentorList.get(i).setAdditionalNotesAboutMentor(BLACK_LIST);
+                    j--;
+                }
             }
         }
 

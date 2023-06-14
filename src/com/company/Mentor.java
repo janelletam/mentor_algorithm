@@ -2,12 +2,10 @@ package com.company;
 
 import com.opencsv.bean.CsvBindByName;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Mentor {
+public class Mentor extends ParentMentor {
     // All fields below are from application form
     // NOTE: To count total number of availabilities, use getAllAvailableTimes().size()
 
@@ -127,6 +125,7 @@ public class Mentor {
                   String isReturning, String previousPosition, String isReadingMentor,
                   String OnlineMWTMorn, String OnlineMWTAfternoon, String IPSurreyMorn,
                   String IPSunsetAfternoon, String IPMosaicAfternoon, String additionalNotesAboutMentor) {
+        super(firstName,lastName);
         this.firstName = firstName;
         this.preferredName = preferredName;
         this.lastName = lastName;
@@ -231,14 +230,6 @@ public class Mentor {
     //Todo: Migrate logic to output class
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Mentor mentor = (Mentor) o;
-        return Objects.equals(firstName, mentor.firstName) && Objects.equals(lastName, mentor.lastName) && Objects.equals(email, mentor.email) && Objects.equals(phoneNumber, mentor.phoneNumber);
-    }
-
-    @Override
     public String toString() {
         return firstName + ',' + preferredName + ',' + lastName + ',' +
                 age + ',' + phoneNumber + ',' + email + ',' + gmail + ',' + pronouns + ',' + languages + ',' +
@@ -276,7 +267,7 @@ public class Mentor {
                 + "MathMentor" + ',' + "Pod";
     }
 
-    public boolean isValid() {
+    public boolean isAgeValid() {
         return (age >= 15);
     }
 
