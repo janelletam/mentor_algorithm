@@ -1,120 +1,84 @@
 package com.company;
 
-import com.opencsv.bean.CsvBindByName;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Mentor extends ParentMentor {
     // All fields below are from application form
     // NOTE: To count total number of availabilities, use getAllAvailableTimes().size()
 
-    @CsvBindByName (column = "First Name (Legal)")
     private String firstName;
 
-    @CsvBindByName (column = "Preferred First Name (if different from legal name)")
+
     private String preferredName;
 
-    @CsvBindByName (column = "Last Name (Legal)")
     private String lastName;
 
-    @CsvBindByName (column = "Date of Birth")
     private String dateOfBirth;
     private int age;
 
-    @CsvBindByName (column = "Phone Number")
     private String phoneNumber;
 
-    @CsvBindByName (column = "Preferred Email Address (for all LBN communications)")
     private String email;
-
-    @CsvBindByName (column = "Gmail Address (must contain the word \"gmail,\" as our materials are shared through Google Drive)")
     private String gmail;
 
-    @CsvBindByName (column = "Pronouns")
     private String pronouns;
 
-    @CsvBindByName (column = "Do you speak any other languages? Please list them below.")
     private String languages;
 
-    @CsvBindByName (column = "School Name")
     private String school;
 
-    @CsvBindByName (column = "Did you complete this program")
     private String programCompleted;
 
-    @CsvBindByName (column = "If you are not currently enrolled in school, do you plan to return in the future?")
     private String returnInTheFuture;
 
-    //Todo: Join these fields together
-    @CsvBindByName (column = "Emergency Contact First Name")
     private String emergencyContactFirstName;
 
-    @CsvBindByName (column = "Emergency Contact Last Name")
     private String emergencyContactLastName;
 
     private String emergencyContactName;
 
-    @CsvBindByName (column = "Emergency Contact Email")
     private String emergencyContactEmail;
 
-    @CsvBindByName (column = "Emergency Contact Number")
     private String emergencyContactNumber;
 
-    @CsvBindByName (column = "Please tell us a bit about yourself. Why do you want to volunteer with us? Please share any experience you have which is relevant to the position for which you are applying.")
     private String whyDoYouWantToVolunteer;
 
-    @CsvBindByName (column = "Do you have any experience working with Indigenous populations/individuals?")
     private String experienceWithIndigenous;
 
-    @CsvBindByName (column = "Please explain.")
     private String explainExperienceWithIndigenous;
 
-    @CsvBindByName (column = "Do you have any experience working with neurodivergent populations/individuals (ie. ASD, ADHD, learning disabilities)? If so, please describe them.")
     private String experienceWithNeurodivergent;
-
-    @CsvBindByName (column = "LBN would like the opportunity to take photos and videos of participants for our newsletters or for stories about LBN. Do you (and your parent/guardian, if you are under 18) consent to your inclusion in photos and videos of sessions?")
     private boolean isPhotoVideoPermissionTrue;
 
-    @CsvBindByName (column = "Username")
     private String moodleUsername;
 
-    @CsvBindByName (column = "Email")
     private String moodleEmail;
-
-    @CsvBindByName (column = "Have you previously volunteered with us before?")
     private boolean isReturning;
 
-    @CsvBindByName (column = "What was your previous position?")
     private String previousPosition;
 
-    @CsvBindByName (column = "Program Preference Options")
     private boolean isReadingMentor;
     private boolean isMathMentor;
 
-    @CsvBindByName (column = "Online - Mondays, Wednesdays & Thursdays 9:40 - 11:10 am")
+
     private String OnlineMWTMorn;
 
-    @CsvBindByName (column = "Online - Mondays, Wednesdays & Thursdays 5:10 - 6:40 pm")
     private String OnlineMWTAfternoon;
 
-    @CsvBindByName (column = "In-Person at Surrey City Centre Library - Tuesdays & Thursdays 9:30 - 11:00 am")
     private String IPSurreyMorn;
 
-    @CsvBindByName (column = "In-Person at Sunset Community Centre - Tuesdays & Thursdays 4:50 - 6:15pm")
     private String IPSunsetAfternoon;
 
-    @CsvBindByName (column = "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm")
     private String IPMosaicAfternoon;
 
-    private static String TIMESLOT_0 = "Online - Mondays, Wednesdays & Thursdays 9:40 - 11:10 am";
-    private static String TIMESLOT_1 = "Online - Mondays, Wednesdays & Thursdays 5:10 - 6:40 pm";
+    private static String TIMESLOT_0 = "Online - Mondays & Wednesdays & Thursdays 9:40 - 11:10 am";
+    private static String TIMESLOT_1 = "Online - Mondays & Wednesdays & Thursdays 5:10 - 6:40 pm";
     private static String TIMESLOT_2 = "In-Person at Surrey City Centre Library - Tuesdays & Thursdays 9:30 - 11:00 am";
     private static String TIMESLOT_3 = "In-Person at Sunset Community Centre - Tuesdays & Thursdays 4:50 - 6:15pm";
     private static String TIMESLOT_4 = "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm";
 
-    @CsvBindByName (column = "Additional Comments on Availability")
     private String additionalCommentsOnAvailability;
 
     private String additionalNotesAboutMentor;
@@ -269,10 +233,11 @@ public class Mentor extends ParentMentor {
                 "Do you have any experience working with neurodivergent populations/individuals (ie. ASD, ADHD, learning disabilities)?" + ',' +
                 "Photo Video Consent" + ',' + "Moodle Account Username" + ',' + "Moodle Account Email" + ',' + "Returning Mentor" + ',' +
                 "Previous Position" + ',' +"Additional Notes About Mentor" + ',' +
-                "Reading Mentor" + ',' + "Math Mentor" + ',' + "Online - Mondays, Wednesdays & Thursdays 9:40 - 11:10 am" + ',' + "Online - Mondays, Wednesdays & Thursdays 5:10 - 6:40 pm" + ',' +
+                "Reading Mentor" + ',' + "Math Mentor" + ',' + "Online - Mondays & Wednesdays & Thursdays 9:40 - 11:10 am" + ',' + "Online - Mondays & Wednesdays & Thursdays 5:10 - 6:40 pm" + ',' +
                 "In-Person at Surrey City Centre Library - Tuesdays & Thursdays 9:30 - 11:00 am" + ',' + "In-Person at Sunset Community Centre - Tuesdays & Thursdays 4:50 - 6:15pm"
                 + "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm" + "Additional Comments on Availability";
     }
+
 
     public String printContactInfo() {
         return firstName + ',' + preferredName + ',' + lastName + ',' +

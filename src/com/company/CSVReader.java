@@ -20,7 +20,7 @@ public class CSVReader {
 
     // Read Mentors
     public static ArrayList<Mentor> readMentorsFromCSV(String fileName) throws IOException {
-        ArrayList<Mentor> listOfMentors = new ArrayList<>();
+        ArrayList<Mentor> listOfMentors = new ArrayList<Mentor>();
 
         bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName),"utf-8"));
 
@@ -45,7 +45,7 @@ public class CSVReader {
 
     // Read Returning Mentors
     public static ArrayList<LastTermMentor> readLastTermMentorsCSV(String fileName) throws IOException {
-        ArrayList<LastTermMentor> listOfLastTermMentors = new ArrayList<>();
+        ArrayList<LastTermMentor> listOfLastTermMentors = new ArrayList<LastTermMentor>();
         Path pathToFile = Paths.get(fileName);
         bufferedReader = Files.newBufferedReader(pathToFile,
                 StandardCharsets.US_ASCII);
@@ -71,7 +71,7 @@ public class CSVReader {
 
     // Read Blacklist Mentors
     public static ArrayList<ParentMentor> readBlackListFromCSV(String fileName) throws IOException {
-        ArrayList<ParentMentor> listOfBlackListMentors = new ArrayList<>();
+        ArrayList<ParentMentor> listOfBlackListMentors = new ArrayList<ParentMentor>();
         Path pathToFile = Paths.get(fileName);
         bufferedReader = Files.newBufferedReader(pathToFile,
                 StandardCharsets.US_ASCII);
@@ -97,7 +97,7 @@ public class CSVReader {
 
     // Read Pods
     public static ArrayList<Pod> readPodsFromCSV(String fileName) throws IOException {
-        ArrayList<Pod> listOfPods = new ArrayList<>();
+        ArrayList<Pod> listOfPods = new ArrayList<Pod>();
         Path pathToFile = Paths.get(fileName);
         bufferedReader = Files.newBufferedReader(pathToFile,
                 StandardCharsets.US_ASCII);
@@ -188,7 +188,7 @@ public class CSVReader {
 
     private static Pod createPod(String[] attributes) {
         String time = attributes[0];
-        String podName= attributes[1];
+        String podName= attributes[0];
         boolean isReading = false;
         boolean isMath = false;
         boolean isIP = false;

@@ -1,7 +1,5 @@
 package com.company;
 
-import com.opencsv.bean.CsvToBean;
-import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -62,21 +60,41 @@ public class Main {
 
     static final String FIRST_CHOICE = "First Choice";
     static final String SECOND_CHOICE = "Second Choice";
+
+    static final String THIRD_CHOICE = "Third Choice";
     static final String POSSIBLY = "Possibly";
+
 
     public static void main(String[] args) throws IOException {
         System.out.println("Finished initialization");
 
         // Step 0: Read from CSV files to initialize all mentors and pods
-        Reader reader = new BufferedReader(new FileReader(MENTOR_CSV_FILE_PATH));
-        CsvToBean<Mentor> csvReader = new CsvToBeanBuilder(reader)
-                .withType(Mentor.class)
-                .withSeparator(',')
-                .withIgnoreLeadingWhiteSpace(true)
-                .withIgnoreEmptyLine(true)
-                .build();
-        List<Mentor> testMentorList = csvReader.parse();
-        System.out.println("Finished reading from mentor input");
+        BufferedReader f = new BufferedReader(new FileReader("C:\\Users\\Timothy Lin\\IdeaProjects\\mentor_algorithm\\src\\com\\company\\out.txt"));
+        String a = f.readLine();
+
+        while (a!=null){
+            String[] arr = new String[42];
+            arr[0] = a;
+            for (int i = 1; i < 42; i++) {
+                arr[i] = f.readLine();
+            }
+
+            Mentor thisM = new Mentor(arr[1], arr[2], arr[3], arr[4],
+                    arr[5], arr[6], arr[7], arr[8], arr[9],
+                    arr[10], arr[11], arr[12],
+                    arr[13], arr[14],
+                    arr[15], arr[16],
+                    arr[17], arr[18],
+                    arr[19], arr[20],
+                    arr[21], arr[22], arr[23],
+                    arr[24], arr[25], arr[26],
+                    arr[27], arr[28], arr[29],
+                    arr[30], arr[31], arr[32]);
+
+            initialMentorList.add(thisM);
+            a = f.readLine();
+        }
+
 
         lastTermMentorList = CSVReader.readLastTermMentorsCSV(LAST_TERM_MENTORS_FILE_PATH);
         System.out.println("Finished reading from last term mentors input");
@@ -89,7 +107,7 @@ public class Main {
 
         // Step 0: Remove duplicates
         for (int i = 0; i < initialMentorList.size(); i++) {
-            for (int j = i; j < initialMentorList.size(); j++) {
+            for (int j = i+1; j < initialMentorList.size(); j++) {
                 if (initialMentorList.get(i).equals(initialMentorList.get(j))) {
                     initialMentorList.remove(j);
                     j--;
@@ -99,12 +117,14 @@ public class Main {
 
         // Step 1: First check validity of Mentors (age valid, make sure they are not in blacklist)
         for (Mentor currentMentor : initialMentorList) {
-            if (currentMentor.isAgeValid()) {
-                goodList.add(currentMentor);
-            } else {
-                toBeManuallyReviewed.add(currentMentor);
-                currentMentor.setAdditionalNotesAboutMentor(AGE_NOT_VALID);
-            }
+//            if (currentMentor.isAgeValid()) {
+//                goodList.add(currentMentor);
+//            } else {
+//                toBeManuallyReviewed.add(currentMentor);
+//                currentMentor.setAdditionalNotesAboutMentor(AGE_NOT_VALID);
+//            }
+            goodList.add(currentMentor);
+
         }
 
         // Blacklist
@@ -124,7 +144,8 @@ public class Main {
 
         // Step 3: Initialize all the possible Pods. Each Pod should hold an ArrayList of Mentors
         for (Pod pod : allPods) {
-            output.put(pod, new ArrayList<>());
+            ArrayList<Mentor> newArr = new ArrayList<>();
+            output.put(pod, newArr);
         }
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -136,6 +157,7 @@ public class Main {
             Mentor currentMentor = goodList.get(i);
             if (currentMentor.getAllAvailableTimes().size() == ONE_PREFERENCE && currentMentor.isReturning()) {
                 placeMentorInPod(currentMentor);
+                goodList.remove(i);
                 // Current Mentor has been removed from goodList, so a new Mentor has replaced their previous index spot
                 i--;
             }
@@ -145,6 +167,7 @@ public class Main {
         for (int i = 0; i < goodList.size(); i++) {
             Mentor currentMentor = goodList.get(i);
             placeMentorInPod(currentMentor);
+            goodList.remove(i);
             // Current Mentor has been removed from goodList, so a new Mentor has replaced their previous index spot
             i--;
         }
@@ -275,7 +298,10 @@ public class Main {
         ArrayList<Pod> possiblePods = new ArrayList<>();
 
         for (Pod thisPod : allPods) {
-            if (currentMentor.getAllAvailableTimes().get(thisPod.toString()).equals(FIRST_CHOICE)) {
+            if(currentMentor.getAllAvailableTimes().get(thisPod.toString()) == null){
+                continue;
+            }
+            if (currentMentor.getAllAvailableTimes().get(thisPod.toString()).equalsIgnoreCase(FIRST_CHOICE)) {
                 if (thisPod.numOfMentors < POD_MAX_SIZE) {
                     ArrayList<Mentor> t = output.get(thisPod);
                     t.add(currentMentor);
@@ -288,7 +314,10 @@ public class Main {
 
         //second priority
         for (Pod thisPod : allPods) {
-            if (currentMentor.getAllAvailableTimes().get(thisPod.toString()).equals(SECOND_CHOICE)) {
+            if(currentMentor.getAllAvailableTimes().get(thisPod.toString()) == null){
+                continue;
+            }
+            if (currentMentor.getAllAvailableTimes().get(thisPod.toString()).equalsIgnoreCase(SECOND_CHOICE)) {
                 if (thisPod.getNumOfMentors() < POD_MAX_SIZE) {
                     ArrayList<Mentor> t = output.get(thisPod);
                     t.add(currentMentor);
@@ -301,7 +330,10 @@ public class Main {
 
         //third priority
         for (Pod thisPod : allPods) {
-            if (currentMentor.getAllAvailableTimes().get(thisPod.toString()).equals((Integer) 3)) {
+            if(currentMentor.getAllAvailableTimes().get(thisPod.toString()) == null){
+                continue;
+            }
+            if (currentMentor.getAllAvailableTimes().get(thisPod.toString()).equalsIgnoreCase("Possibly")) {
                 if (thisPod.numOfMentors < POD_MAX_SIZE) {
                     ArrayList<Mentor> t = output.get(thisPod);
                     t.add(currentMentor);
@@ -340,7 +372,6 @@ public class Main {
         if (possiblePods.size() == 0) {
             toBeManuallyReviewed.add(currentMentor);
             currentMentor.setAdditionalNotesAboutMentor(NO_POSSIBLE_PODS);
-            goodList.remove(currentMentor);
             return;
         }
 

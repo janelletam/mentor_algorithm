@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5078138-ff54-4859-bb78-8e4b6685979d" name="Default Changelist" comment="Type: subject - should be ~50 chars (this length)&#10;# fix: → fix for a bug&#9;&#9;&#9;&#9;     |&#10;# feat: → introduces new feature for user&#9;     |&#10;# docs: → changes to the documentation&#9;     |&#10;# style: → formatting; missing semicolons; does not affect actual function&#10;# refactor → refactors production code&#9;     |&#10;# test: → test adds missing tests; refactors tests &#10;&#10;Multi-line description of commit -&gt; explain what &amp; why&#10;&#10;Footer → Fix issue #[]">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/OpenCSVReader.java" afterDir="false" />
+    <list default="true" id="e5078138-ff54-4859-bb78-8e4b6685979d" name="Default Changelist" comment="Attempted implementation of the new algorithm onto the original class. Added a blacklist and solve duplicate element at the beginning of the program. Modified new algorithm with respect to the output needed. However, the new algorithm works well with the new mentor class and has problem with put together with the original class. Since the classes are highly depend on the input, do you mind updating the pods in the mentor class and adding a &quot;termPod&quot; element - indicating which pod the mentor is placed in the current term.">
+      <change afterPath="$PROJECT_DIR$/src/com/company/LBN_Mentor_Application_Form_(Su2023-06-14_01_16_02.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/Summer 2023 Mentor Blacklist.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/Winter 2023 Registration Data - Sheet1.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/allPods - Summer 2023.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/CSVReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/CSVReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Mentor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Mentor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ParentMentor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ParentMentor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Pod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Pod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/newMentor.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +46,11 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/com/company/CSVReader.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/com/company/Mentor.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/com/company/Main.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/com/company/Fall 2022 Registration Data.csv" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/algorithms.iml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/com/company/allPods - Summer 2023.csv" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/com/company/CSVReader.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/com/company/Fall 2022 Registration Data.csv" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/com/company/Main.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/com/company/Mentor.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2Iee8xOYC99lzX606GyIO0rlX1n" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -113,16 +113,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/opencsv-5.7.1.jar" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "C:/Users/Timothy Lin/IdeaProjects/mentor_algorithm/src/com/company",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Timothy Lin\IdeaProjects\mentor_algorithm\src\com\company" />
       <recent name="D:\work-and-ECs\lms-developer\algorithms\src\com\company" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -134,7 +133,10 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle --build-file" />
+      <command value="mvn compile" />
+      <command value="mvn deploy" />
       <command value="mvn package" />
+      <command value="mvn exec:java -D exec.mainClass=com.company.Main" />
     </option>
   </component>
   <component name="RunManager">
@@ -195,7 +197,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add summary and a few other features" />
@@ -213,35 +214,19 @@
           <option name="timeStamp" value="37" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>135</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/CSVReader.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/CSVReader.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="65" />
+          <line>41</line>
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>77</line>
-          <option name="timeStamp" value="66" />
+          <line>167</line>
+          <option name="timeStamp" value="76" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/com/company/Pod.java</url>
-          <line>8</line>
-          <properties field="isIP" class="com.company.Pod" />
-          <option name="timeStamp" value="67" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
+          <line>371</line>
+          <option name="timeStamp" value="78" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
