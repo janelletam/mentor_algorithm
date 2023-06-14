@@ -3,6 +3,7 @@ package com.company;
 import com.opencsv.bean.CsvBindByName;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Mentor extends ParentMentor {
@@ -107,12 +108,20 @@ public class Mentor extends ParentMentor {
     @CsvBindByName (column = "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm")
     private String IPMosaicAfternoon;
 
+    private static String TIMESLOT_0 = "Online - Mondays, Wednesdays & Thursdays 9:40 - 11:10 am";
+    private static String TIMESLOT_1 = "Online - Mondays, Wednesdays & Thursdays 5:10 - 6:40 pm";
+    private static String TIMESLOT_2 = "In-Person at Surrey City Centre Library - Tuesdays & Thursdays 9:30 - 11:00 am";
+    private static String TIMESLOT_3 = "In-Person at Sunset Community Centre - Tuesdays & Thursdays 4:50 - 6:15pm";
+    private static String TIMESLOT_4 = "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm";
+
     @CsvBindByName (column = "Additional Comments on Availability")
+    private String additionalCommentsOnAvailability;
+
     private String additionalNotesAboutMentor;
     private String pod;
 
     // Our own variable
-    private ArrayList<String> allAvailableTimes;
+    private HashMap<String, String> allAvailableTimes;
 
     public Mentor(String firstName, String preferredName, String lastName, String dateOfBirth,
                   String phoneNumber, String email, String gmail, String pronouns, String languages,
@@ -124,7 +133,7 @@ public class Mentor extends ParentMentor {
                   String isPhotoVideoConsentTrue, String moodleUsername, String moodleEmail,
                   String isReturning, String previousPosition, String isReadingMentor,
                   String OnlineMWTMorn, String OnlineMWTAfternoon, String IPSurreyMorn,
-                  String IPSunsetAfternoon, String IPMosaicAfternoon, String additionalNotesAboutMentor) {
+                  String IPSunsetAfternoon, String IPMosaicAfternoon, String additionalCommentsOnAvailability) {
         super(firstName,lastName);
         this.firstName = firstName;
         this.preferredName = preferredName;
@@ -175,7 +184,14 @@ public class Mentor extends ParentMentor {
         this.IPSunsetAfternoon = IPSunsetAfternoon;
         this.IPMosaicAfternoon = IPMosaicAfternoon;
 
-        this.additionalNotesAboutMentor = additionalNotesAboutMentor;
+        this.additionalCommentsOnAvailability = additionalCommentsOnAvailability;
+
+        allAvailableTimes.put(TIMESLOT_0, OnlineMWTMorn);
+        allAvailableTimes.put(TIMESLOT_1, OnlineMWTAfternoon);
+        allAvailableTimes.put(TIMESLOT_2, IPSurreyMorn);
+        allAvailableTimes.put(TIMESLOT_3, IPSunsetAfternoon);
+        allAvailableTimes.put(TIMESLOT_4, IPMosaicAfternoon);
+
         /*
         // NOTE: Need space after ";" b/c we later compare the characters of these fields with our list of Pods
         // Space interferes with this comparison
@@ -236,7 +252,7 @@ public class Mentor extends ParentMentor {
                 school + ',' + programCompleted + ',' + returnInTheFuture + ',' +
                 emergencyContactName + ";" + emergencyContactNumber + ";" + emergencyContactEmail + ',' +
                 whyDoYouWantToVolunteer + ";" + experienceWithIndigenous + ";" + explainExperienceWithIndigenous + ',' + experienceWithNeurodivergent + ',' +
-                isPhotoVideoPermissionTrue + ',' + isReturning + ',' + additionalNotesAboutMentor + ',' +
+                isPhotoVideoPermissionTrue + ',' + isReturning + ',' + additionalCommentsOnAvailability + ',' +
                 isReadingMentor + ',' + isMathMentor + ',' + OnlineMWTMorn + ',' + OnlineMWTAfternoon + ',' +
                 IPSurreyMorn + ',' + IPSunsetAfternoon + ',' + IPMosaicAfternoon;
     }
@@ -586,11 +602,11 @@ public class Mentor extends ParentMentor {
         this.previousPosition = previousPosition;
     }
 
-    public void setAllAvailableTimes(ArrayList<String> allAvailableTimes) {
+    public void setAllAvailableTimes(HashMap<String, String> allAvailableTimes) {
         this.allAvailableTimes = allAvailableTimes;
     }
 
-    public ArrayList<String> getAllAvailableTimes() {
+    public HashMap<String, String> getAllAvailableTimes() {
         return allAvailableTimes;
     }
 

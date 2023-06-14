@@ -8,6 +8,7 @@ public class Pod {
     private boolean isMath;
     private boolean isIP;
     private boolean isOnline;
+    int numOfMentors;
 
     public Pod(String podName, String time, boolean isReading, boolean isMath,
                boolean isIP, boolean isOnline) {
@@ -17,11 +18,12 @@ public class Pod {
         this.isMath = isMath;
         this.isIP = isIP;
         this.isOnline = isOnline;
+        numOfMentors = 0;
     }
 
     @Override
     public String toString() {
-        return "Pod: " + podName + " | " + time;
+        return getTime();
     }
 
     /* ###################################################################
@@ -73,5 +75,13 @@ public class Pod {
 
     public void setOnline(boolean online) {
         isOnline = online;
+    }
+
+    public int getNumOfMentors() {
+        return numOfMentors;
+    }
+
+    public void setNumOfMentors(int numOfMentors) {
+        this.numOfMentors = numOfMentors;
     }
 }

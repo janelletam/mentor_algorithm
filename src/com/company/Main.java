@@ -57,6 +57,10 @@ public class Main {
             "Mentor may not have indicated availability or their preferences may not match any pods.";
     static final String LAST_TERM_MENTOR = "Same pod as last term";
 
+    static final String FIRST_CHOICE = "First Choice";
+    static final String SECOND_CHOICE = "Second Choice";
+    static final String POSSIBLY = "Possibly";
+
     public static void main(String[] args) throws IOException {
         System.out.println("Finished initialization");
 
@@ -261,15 +265,65 @@ public class Main {
         ArrayList<Pod> possiblePods = new ArrayList<>();
 
         for (Pod thisPod : allPods) {
-            for (String thisAvailableTime : currentMentor.getAllAvailableTimes()) {
-                System.out.println(thisAvailableTime);
-                if (thisPod.getTime().equalsIgnoreCase(thisAvailableTime)
-                        && ((thisPod.isReading() && currentMentor.isReadingMentor())
-                        || (thisPod.isMath() && currentMentor.isMathMentor()))) {
-                    possiblePods.add(thisPod);
+            if (currentMentor.getAllAvailableTimes().get(thisPod.toString()).equals(FIRST_CHOICE)) {
+                if (thisPod.numOfMentors < POD_MAX_SIZE) {
+                    ArrayList<Mentor> t = output.get(thisPod);
+                    t.add(currentMentor);
+                    output.put(thisPod,t);
+                    thisPod.numOfMentors++;
+                    return;
                 }
             }
         }
+
+        //second priority
+        for (Pod thisPod : allPods) {
+            if (currentMentor.getAllAvailableTimes().get(thisPod.toString()).equals(SECOND_CHOICE)) {
+                if (thisPod.getNumOfMentors() < POD_MAX_SIZE) {
+                    ArrayList<Mentor> t = output.get(thisPod);
+                    t.add(currentMentor);
+                    output.put(thisPod,t);
+                    thisPod.numOfMentors++;
+                    return;
+                }
+            }
+        }
+
+        //third priority
+        for (Pod thisPod : allPods) {
+            if (currentMentor.getAllAvailableTimes().get(thisPod.toString()).equals((Integer) 3)) {
+                if (thisPod.numOfMentors < POD_MAX_SIZE) {
+                    ArrayList<Mentor> t = output.get(thisPod);
+                    t.add(currentMentor);
+                    output.put(thisPod,t);
+                    thisPod.numOfMentors++;
+                    return;
+                }
+            }
+        }
+//
+//        for (Pod thisPod : allPods) {
+//            for (String thisAvailableTime : currentMentor.getAllAvailableTimes()) {
+//                System.out.println(thisAvailableTime);
+//                if (thisPod.getTime().equalsIgnoreCase(thisAvailableTime)
+//                        && ((thisPod.isReading() && currentMentor.isReadingMentor())
+//                        || (thisPod.isMath() && currentMentor.isMathMentor()))) {
+//                    possiblePods.add(thisPod);
+//                }
+//            }
+//        }
+
+
+//        for (Pod thisPod : allPods) {
+//            for (String thisAvailableTime : currentMentor.getAllAvailableTimes()) {
+//                System.out.println(thisAvailableTime);
+//                if (thisPod.getTime().equalsIgnoreCase(thisAvailableTime)
+//                        && ((thisPod.isReading() && currentMentor.isReadingMentor())
+//                        || (thisPod.isMath() && currentMentor.isMathMentor()))) {
+//                    possiblePods.add(thisPod);
+//                }
+//            }
+//        }
 
         // If there are no possible Pods the Mentor can be placed in,
         // add the Mentor to the toBeManuallyReviewed list
