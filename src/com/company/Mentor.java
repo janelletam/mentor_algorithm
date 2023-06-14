@@ -5,6 +5,7 @@ import com.opencsv.bean.CsvBindByName;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Mentor {
     // All fields below are from application form
@@ -228,6 +229,14 @@ public class Mentor {
     }
 
     //Todo: Migrate logic to output class
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mentor mentor = (Mentor) o;
+        return Objects.equals(firstName, mentor.firstName) && Objects.equals(lastName, mentor.lastName) && Objects.equals(email, mentor.email) && Objects.equals(phoneNumber, mentor.phoneNumber);
+    }
 
     @Override
     public String toString() {

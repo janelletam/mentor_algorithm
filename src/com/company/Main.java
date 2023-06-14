@@ -7,17 +7,34 @@ import java.util.*;
 
 public class Main {
 
-    static ArrayList<Mentor> initialMentorList;
-    static ArrayList<Mentor> goodList;
+    /*
+    Input lists:
+        The following lists are the inputs
+        -   Volunteer List: A list of all the volunteers who have applied
+        -   Black List: List of Volunteers who are blocked from the program
+        -   Changes List: List of Volunteers who later moved to a new Pod/ were removed from the program
+        -   Last term mentor List: List of Volunteer that are in LBN last term
+        -   Pod List: list of pods that are available this term
 
-    static ArrayList<Mentor> toBeManuallyReviewed;
+    Output lists:
+        - Sorted List
+        - To be Manually Reviewed List
+        - Wait List
+     */
 
-    //Todo: Each term, update availability list
-    static ArrayList<Pod> allPods;
-    static ArrayList<LastTermMentor> lastTermMentorList;
-    static LinkedHashMap<Pod, ArrayList<Mentor>> output;
-    static ArrayList<Mentor> mentorWaitList;
+    // Step 0: Initialization - Create multiple ArrayLists of mentors before sort
+    static ArrayList<Mentor> initialMentorList = new ArrayList<>();
+    static ArrayList<Mentor> goodList = new ArrayList<>();
+    static ArrayList<Mentor> toBeManuallyReviewed = new ArrayList<>();
 
+    // List of all the pods being run this term & their times
+    static ArrayList<Pod> allPods = new ArrayList<>();
+    // List of all the mentors from last term
+    static ArrayList<LastTermMentor> lastTermMentorList = new ArrayList<>();
+    // For Mentors who have indicated availability, but there are not spots for them
+    static ArrayList<Mentor> mentorWaitList = new ArrayList<>();
+
+    static LinkedHashMap<Pod, ArrayList<Mentor>> output = new LinkedHashMap<>();
     static int numberOfOpenSpots;
 
     static final int ONE_PREFERENCE = 1;
@@ -35,21 +52,6 @@ public class Main {
     static final String LAST_TERM_MENTOR = "Same pod as last term";
 
     public static void main(String[] args) throws IOException {
-
-        // Step 0: Initialization - Create multiple ArrayLists of mentors before sort
-        initialMentorList = new ArrayList<>();
-        toBeManuallyReviewed = new ArrayList<>();
-        goodList = new ArrayList<>();
-
-        // For Mentors who have indicated availability, but there are not spots for them
-        mentorWaitList = new ArrayList<>();
-
-        // List of all the mentors from last term
-        lastTermMentorList = new ArrayList<>();
-
-        allPods = new ArrayList<>();
-        output = new LinkedHashMap<>();
-
         System.out.println("Finished initialization");
 
         // Step 0: Read from CSV files to initialize all mentors and pods
@@ -61,6 +63,16 @@ public class Main {
 
         lastTermMentorList = CSVReader.readLastTermMentorsCSV(LAST_TERM_MENTORS_FILE_PATH);
         System.out.println("Finished reading from last term mentors input");
+
+        // Step 0: Remove duplicates
+        for (int i = 0; i < initialMentorList.size(); i++) {
+            for (int j = i; j < initialMentorList.size(); j++) {
+                if (initialMentorList.get(i).equals(initialMentorList.get(j))) {
+                    initialMentorList.remove(j);
+                    j--;
+                }
+            }
+        }
 
         // Step 1: First check validity of Mentors
         for (Mentor currentMentor : initialMentorList) {
@@ -81,8 +93,8 @@ public class Main {
         }
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // Important: The initialization of Mentor already placed all the available Clayton and IP times in front.
-        // Therefore, the IP and Clayton availabilities will be prioritized
+        // Important: The initialization of Mentor already placed all the available IP times in front.
+        // Therefore, the IP availabilities will be prioritized
 
         // Step 4: Place the returning Mentors who only have 1 preference
         for (int i = 0; i < goodList.size(); i++) {
