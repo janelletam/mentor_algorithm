@@ -121,7 +121,7 @@ public class Mentor extends ParentMentor {
     private String pod;
 
     // Our own variable
-    private HashMap<String, String> allAvailableTimes;
+    private HashMap<String, String> allAvailableTimes = new HashMap<>();
 
     public Mentor(String firstName, String preferredName, String lastName, String dateOfBirth,
                   String phoneNumber, String email, String gmail, String pronouns, String languages,
