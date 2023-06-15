@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5078138-ff54-4859-bb78-8e4b6685979d" name="Default Changelist" comment="Attempted implementation of the new algorithm onto the original class. Added a blacklist and solve duplicate element at the beginning of the program. Modified new algorithm with respect to the output needed. However, the new algorithm works well with the new mentor class and has problem with put together with the original class. Since the classes are highly depend on the input, do you mind updating the pods in the mentor class and adding a &quot;termPod&quot; element - indicating which pod the mentor is placed in the current term.">
-      <change afterPath="$PROJECT_DIR$/src/com/company/LBN_Mentor_Application_Form_(Su2023-06-14_01_16_02.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Summer 2023 Mentor Blacklist.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Winter 2023 Registration Data - Sheet1.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/allPods - Summer 2023.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/out.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e5078138-ff54-4859-bb78-8e4b6685979d" name="Default Changelist" comment="Update as of June 14th">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/CSVReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/CSVReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Mentor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Mentor.java" afterDir="false" />
     </list>
@@ -172,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675014480203</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Update as of June 14th">
+      <created>1686747233960</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1686747233960</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,7 +199,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add summary and a few other features" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add summary and a few other features" />
+    <MESSAGE value="Update as of June 14th" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update as of June 14th" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -225,7 +225,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>371</line>
+          <line>372</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
       </breakpoints>

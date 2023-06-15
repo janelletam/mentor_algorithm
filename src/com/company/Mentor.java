@@ -57,7 +57,7 @@ public class Mentor extends ParentMentor {
     private String moodleEmail;
     private boolean isReturning;
 
-    private String previousPosition;
+    private String previousPosition = "nan";
 
     private boolean isReadingMentor;
     private boolean isMathMentor;
@@ -81,7 +81,7 @@ public class Mentor extends ParentMentor {
 
     private String additionalCommentsOnAvailability;
 
-    private String additionalNotesAboutMentor;
+    private String additionalNotesAboutMentor = "nan";
     private String pod;
 
     // Our own variable
@@ -214,28 +214,37 @@ public class Mentor extends ParentMentor {
 
     @Override
     public String toString() {
-        return firstName + ',' + preferredName + ',' + lastName + ',' +
-                age + ',' + phoneNumber + ',' + email + ',' + gmail + ',' + pronouns + ',' + languages + ',' +
-                school + ',' + programCompleted + ',' + returnInTheFuture + ',' +
-                emergencyContactName + ";" + emergencyContactNumber + ";" + emergencyContactEmail + ',' +
-                whyDoYouWantToVolunteer + ";" + experienceWithIndigenous + ";" + explainExperienceWithIndigenous + ',' + experienceWithNeurodivergent + ',' +
-                isPhotoVideoPermissionTrue + ',' + isReturning + ',' + additionalCommentsOnAvailability + ',' +
-                isReadingMentor + ',' + isMathMentor + ',' + OnlineMWTMorn + ',' + OnlineMWTAfternoon + ',' +
-                IPSurreyMorn + ',' + IPSunsetAfternoon + ',' + IPMosaicAfternoon;
+        return firstName.replace(",",";") + ',' + preferredName.replace(",",";") + ',' + lastName.replace(",",";") + ',' +
+                age  + ',' + phoneNumber.replace(",",";")  + ',' + email.replace(",",";")  + ',' + gmail.replace(",",";")  + ',' + pronouns.replace(",",";")  + ',' + languages.replace(",",";")  + ',' +
+                school.replace(",",";")  + ',' + programCompleted.replace(",",";")  + ',' + returnInTheFuture.replace(",",";")  + ',' +
+                emergencyContactName.replace(",",";")  + "," + emergencyContactNumber.replace(",",";")  + "," + emergencyContactEmail.replace(",",";")  + ',' +
+                whyDoYouWantToVolunteer.replace(",",";")  + "," + experienceWithIndigenous.replace(",",";")  + "," + explainExperienceWithIndigenous.replace(",",";")  + ',' + experienceWithNeurodivergent.replace(",",";")  + ',' +
+                isPhotoVideoPermissionTrue + ',' + moodleUsername.replace(",",";")+","+ moodleEmail.replace(",",";") +"," +  toString(isReturning) + "," + previousPosition.replace(",",";") +',' + additionalNotesAboutMentor.replace(",",";")  + ',' +
+                isReadingMentor + ',' + toString(isMathMentor) + ',' + OnlineMWTMorn.replace(",",";")  + ',' + OnlineMWTAfternoon.replace(",",";")  + ',' +
+                IPSurreyMorn.replace(",",";")  + ',' + IPSunsetAfternoon.replace(",",";")  + ',' + IPMosaicAfternoon.replace(",",";") + "," + additionalCommentsOnAvailability.replace(",",";");
+    }
+
+    public String toString(boolean b){
+        if(b){
+            return "True";
+        }
+        else {
+            return "False";
+        }
     }
 
     public static String printMentorOutputFieldOrder() {
         return "First Name" + ',' + "Preferred Name" + ',' + "Last Name" + ',' +
-                "Age" + ',' + "Phone Number" + ',' + "Email" + ',' + "Gmail" + ',' + "Pronouns" + "Languages" + ',' + "School" + ',' +
-                "Did you complete this program" + ',' + "If you are not currently enrolled in school, do you plan to return in the future? (Yes or No)" + ',' +
-                "Emergency Contact (First Name, Last Name)" + ',' + "Emergency Contact (Email Address)" + ',' + "Emergency Contact (Phone Number)" + ',' +
+                "Age" + ',' + "Phone Number" + ',' + "Email" + ',' + "Gmail" + ',' + "Pronouns" + ","+ "Languages" + ',' + "School" + ',' +
+                "Did you complete this program" + ',' + "If you are not currently enrolled in school do you plan to return in the future? (Yes or No)" + ',' +
+                "Emergency Contact (First Name Last Name)" + ',' + "Emergency Contact (Email Address)" + ',' + "Emergency Contact (Phone Number)" + ',' +
                 "Why do you want to volunteer with us? (Related Experience)" + ',' + "Do you have any experience working with Indigenous populations/individuals?" + ',' + "Please explain your experience working with Indigenous populations/individuals." + ',' +
-                "Do you have any experience working with neurodivergent populations/individuals (ie. ASD, ADHD, learning disabilities)?" + ',' +
+                "Do you have any experience working with neurodivergent populations/individuals (ie. ASD ADHD learning disabilities)?" + ',' +
                 "Photo Video Consent" + ',' + "Moodle Account Username" + ',' + "Moodle Account Email" + ',' + "Returning Mentor" + ',' +
                 "Previous Position" + ',' +"Additional Notes About Mentor" + ',' +
                 "Reading Mentor" + ',' + "Math Mentor" + ',' + "Online - Mondays & Wednesdays & Thursdays 9:40 - 11:10 am" + ',' + "Online - Mondays & Wednesdays & Thursdays 5:10 - 6:40 pm" + ',' +
                 "In-Person at Surrey City Centre Library - Tuesdays & Thursdays 9:30 - 11:00 am" + ',' + "In-Person at Sunset Community Centre - Tuesdays & Thursdays 4:50 - 6:15pm"
-                + "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm" + "Additional Comments on Availability";
+                +","+ "In-Person at Mosaic Family Centre - Tuesdays & Thursdays 4:30 - 6:00 pm" +","+ "Additional Comments on Availability";
     }
 
 

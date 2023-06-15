@@ -269,6 +269,7 @@ public class Main {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             writer.append(classContactList);
         }
+        f.close();
     }
 
     public static ArrayList<Mentor> sortArrayListByReturning(ArrayList<Mentor> initialMentorList) {
