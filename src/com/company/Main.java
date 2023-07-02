@@ -207,7 +207,7 @@ public class Main {
 
         for (Pod pod : output.keySet()) {
             classContactList.append("\n\n---------------------------------------------------");
-            classContactList.append("\n" + pod.toString());
+            classContactList.append("\n" + pod.output());
             classContactList.append("\n" + Mentor.printMentorOutputFieldOrder());
             for (Mentor thisMentor : output.get(pod)) {
                 classContactList.append("\n" + thisMentor.toString());

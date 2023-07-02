@@ -30,6 +30,18 @@ public class Pod {
         return getTime();
     }
 
+    public String output(){
+        String s = "";
+        s += getTime();
+        if(isMath){
+            s += ", Math";
+        }
+        if(isReading){
+            s += ", Reading";
+        }
+        return s;
+    }
+
     /* ###################################################################
         Getters and setters
         ################################################################### */

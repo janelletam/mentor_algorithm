@@ -1,9 +1,6 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -47,10 +44,9 @@ public class CSVReader {
     public static ArrayList<LastTermMentor> readLastTermMentorsCSV(String fileName) throws IOException {
         ArrayList<LastTermMentor> listOfLastTermMentors = new ArrayList<LastTermMentor>();
         Path pathToFile = Paths.get(fileName);
-        bufferedReader = Files.newBufferedReader(pathToFile,
-                StandardCharsets.US_ASCII);
+        bufferedReader = new BufferedReader(new FileReader(fileName));
 
-        String line = nextLine();
+        String line = bufferedReader.readLine();
         while (!line.equals("null")) { //!!!
 
             // Use string.split to load a string array with the values from
@@ -188,7 +184,7 @@ public class CSVReader {
 
     private static Pod createPod(String[] attributes) {
         String time = attributes[0];
-        String podName= attributes[0];
+        String podName= attributes[1];
         boolean isReading = false;
         boolean isMath = false;
         boolean isIP = false;
